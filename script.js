@@ -1,3 +1,4 @@
+const lasso = d3.lasso(); // creates a new lasso
 // Keep these script-global
 let filteredTwilightData = [];
 let filteredMoonData = [];
@@ -73,8 +74,6 @@ function renderObservations() {
     g.selectAll(".observation").remove(); // Clear previous observations
 
     filteredObservationData.forEach((obs, i) => {
-        const link = g;  // Disable URL linking for now
-
         const xStart = customTimeScale(obs.start_time) + padding;
         const xEnd = customTimeScale(obs.end_time) - padding;
         const width = xEnd - xStart;
@@ -82,7 +81,7 @@ function renderObservations() {
         const rectHeight = dateScale.bandwidth() * 0.8;
         const rectY = dateScale(obs.date) + dateScale.bandwidth() * 0.1;
 
-        const group = link.append("g")
+        const group = g.append("g")
             .attr("class", "observation")
             .attr("data-index", i);
 
@@ -128,23 +127,6 @@ function renderObservations() {
             .on("mouseout", function() {
                 d3.select("#tooltip").style("display", "none");
             })
-            .on("click", function() {
-                const isSelected = d3.select(this).classed("selected");
-                d3.select(this).classed("selected", !isSelected);
-
-                // Highlight the selected observation
-                if (!isSelected) {
-                    d3.select(this)
-                      .select("rect")
-                      .attr("stroke", "yellow")
-                      .attr("stroke-width", 2);
-                } else {
-                    d3.select(this)
-                      .select("rect")
-                      .attr("stroke", null)
-                      .attr("stroke-width", null);
-                }
-            });
     });
 }
 
