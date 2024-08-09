@@ -1,4 +1,3 @@
-const lasso = d3.lasso(); // creates a new lasso
 // Keep these script-global
 let filteredTwilightData = [];
 let filteredMoonData = [];
@@ -73,60 +72,48 @@ function renderObservations() {
 
     g.selectAll(".observation").remove(); // Clear previous observations
 
-    filteredObservationData.forEach((obs, i) => {
-        const xStart = customTimeScale(obs.start_time) + padding;
-        const xEnd = customTimeScale(obs.end_time) - padding;
-        const width = xEnd - xStart;
+    const observations = g.selectAll(".observation")
+        .data(filteredObservationData)
+        .enter()
+        .append("g")
+        .attr("class", "observation")
+        .attr("data-index", (d, i) => i);
 
-        const rectHeight = dateScale.bandwidth() * 0.8;
-        const rectY = dateScale(obs.date) + dateScale.bandwidth() * 0.1;
+    observations.append("rect")
+        .attr("x", d => customTimeScale(d.start_time) + padding)
+        .attr("y", d => dateScale(d.date) + dateScale.bandwidth() * 0.1)
+        .attr("width", d => customTimeScale(d.end_time) - customTimeScale(d.start_time) - padding * 2)
+        .attr("height", dateScale.bandwidth() * 0.8)
+        .attr("fill", d => observationColorScale(d.category))
+        .attr("opacity", d => observationOpacity(d.category))
+        .attr("rx", cornerRadius)
+        .attr("ry", cornerRadius);
 
-        const group = g.append("g")
-            .attr("class", "observation")
-            .attr("data-index", i);
+    observations.append("text")
+        .attr("x", d => customTimeScale(d.start_time) + (customTimeScale(d.end_time) - customTimeScale(d.start_time)) / 2)
+        .attr("y", d => dateScale(d.date) + dateScale.bandwidth() * 0.1 + dateScale.bandwidth() * 0.4)
+        .attr("dy", ".35em")
+        .attr("text-anchor", "middle")
+        .attr("fill", "#FFFFFF")
+        .style("font-family", "monospace")
+        .style("font-size", "10px")
+        .text(d => d.label);
 
-        group.append("rect")
-            .attr("x", xStart)
-            .attr("y", rectY)
-            .attr("width", width)
-            .attr("height", rectHeight)
-            .attr("fill", observationColorScale(obs.category))
-            .attr("opacity", observationOpacity(obs.category))
-            .attr("rx", cornerRadius)
-            .attr("ry", cornerRadius);
-
-        group.append("text")
-            .attr("x", xStart + width / 2)
-            .attr("y", rectY + rectHeight / 2)
-            .attr("dy", ".35em") // Adjusts the text vertically to be centered
-            .attr("text-anchor", "middle") // Centers the text horizontally
-            .attr("fill", "#FFFFFF") // Text color
+    observations.on("mouseover", function(event, d) {
+        const tooltip = d3.select("#tooltip");
+        const moonDataForDate = filteredMoonData.find(moon => moon.date === d.date);
+        tooltip.style("display", "block")
+            .style("left", (event.pageX + 5) + "px")
+            .style("top", (event.pageY + 5) + "px")
             .style("font-family", "monospace")
             .style("font-size", "10px")
-            .text(obs.label);
-
-        // Find the corresponding moon data for the current observation date
-        const moonDataForDate = filteredMoonData.find(moon => moon.date === obs.date);
-
-        group.on("mouseover", function(event) {
-            const tooltip = d3.select("#tooltip");
-            tooltip.style("display", "block")
-                .style("left", (event.pageX + 5) + "px")
-                .style("top", (event.pageY + 5) + "px")
-                .style("font-family", "monospace")
-                .style("font-size", "10px")
-                .html(formatTooltip(
-                    obs, moonDataForDate ? moonDataForDate.illumination : 0
-                ));
-            })
-            .on("mousemove", function(event) {
-                const tooltip = d3.select("#tooltip");
-                tooltip.style("left", (event.pageX + 5) + "px")
-                    .style("top", (event.pageY + 5) + "px");
-            })
-            .on("mouseout", function() {
-                d3.select("#tooltip").style("display", "none");
-            })
+            .html(formatTooltip(d, moonDataForDate ? moonDataForDate.illumination : 0));
+    }).on("mousemove", function(event) {
+        const tooltip = d3.select("#tooltip");
+        tooltip.style("left", (event.pageX + 5) + "px")
+            .style("top", (event.pageY + 5) + "px");
+    }).on("mouseout", function() {
+        d3.select("#tooltip").style("display", "none");
     });
 }
 
