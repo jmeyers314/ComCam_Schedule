@@ -364,6 +364,7 @@ function loadObservations() {
                 date => date.toISOString().split("T")[0]).includes(d.date)
             );
         availableBlockData = initializeAvailableBlocks(filteredTwilightData);
+        pruneAvailableBlocks();
 
         // Add twilight rectangles; only need to do this once.
         filteredTwilightData.forEach(state => {
@@ -525,6 +526,71 @@ function initializeAvailableBlocks(twilightData) {
     });
 
     return availableBlockData;
+}
+
+function pruneAvailableBlocks() {
+    let prunedBlocks = [];
+
+    availableBlockData.forEach(availableBlock => {
+        let newBlocks = [availableBlock]; // Start with the available block itself
+
+        filteredObservationData.forEach(observation => {
+            let tempBlocks = [];
+
+            newBlocks.forEach(block => {
+                if (observation.date === block.date) { // They are on the same date
+                    // Case 1: Observation completely covers the available block
+                    if (observation.start_time <= block.start_time && observation.end_time >= block.end_time) {
+                        // This available block is fully covered by the observation and should be removed.
+                        // Do nothing here, so it gets removed.
+                    }
+                    // Case 2: Observation overlaps the start of the available block
+                    else if (observation.start_time <= block.start_time && observation.end_time > block.start_time && observation.end_time < block.end_time) {
+                        // Truncate the start of the available block
+                        tempBlocks.push({
+                            ...block,
+                            start_time: observation.end_time
+                        });
+                    }
+                    // Case 3: Observation overlaps the end of the available block
+                    else if (observation.start_time > block.start_time && observation.start_time < block.end_time && observation.end_time >= block.end_time) {
+                        // Truncate the end of the available block
+                        tempBlocks.push({
+                            ...block,
+                            end_time: observation.start_time
+                        });
+                    }
+                    // Case 4: Observation is inside the available block
+                    else if (observation.start_time > block.start_time && observation.end_time < block.end_time) {
+                        // Split the available block into two blocks
+                        tempBlocks.push({
+                            ...block,
+                            end_time: observation.start_time
+                        });
+                        tempBlocks.push({
+                            ...block,
+                            start_time: observation.end_time
+                        });
+                    }
+                    // Case 5: No overlap
+                    else {
+                        // No change needed, keep the block as it is.
+                        tempBlocks.push(block);
+                    }
+                } else {
+                    // No overlap, different dates, keep the block as it is.
+                    tempBlocks.push(block);
+                }
+            });
+
+            newBlocks = tempBlocks; // Update the current blocks for this available block
+        });
+
+        prunedBlocks = prunedBlocks.concat(newBlocks); // Add the remaining blocks to the pruned list
+    });
+
+    // Update the global availableBlockData array with the pruned blocks
+    availableBlockData = prunedBlocks;
 }
 
 loadObservations();
