@@ -67,6 +67,21 @@ function formatTooltip(obs, moonIllumination) {
            `Moon Illumination: ${(moonIllumination * 100).toFixed(2)}%`;
 }
 
+// Helper function to format the time for the input field
+function formatTimeForInput(hoursDecimal) {
+    let hours = Math.floor(hoursDecimal);
+    let minutes = Math.round((hoursDecimal - hours) * 60);
+
+    // Adjust for the 24-hour time format
+    if (hours < 0) {
+        hours += 24;
+    } else if (hours >= 24) {
+        hours -= 24;
+    }
+
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+}
+
 function renderObservations() {
     const padding = 3; // Horizontal padding for the rectangles
     const cornerRadius = 3;
@@ -187,10 +202,10 @@ function renderObservations() {
                 // Update the highlighting
                 observations.select("rect")
                     .attr("stroke", function(d) {
-                        return d3.select(this.parentNode).classed("selected") ? "yellow" : null;
+                        return d3.select(this.parentNode).classed("selected") ? "white" : null;
                     })
                     .attr("stroke-width", function(d) {
-                        return d3.select(this.parentNode).classed("selected") ? 2 : null;
+                        return d3.select(this.parentNode).classed("selected") ? 3 : null;
                     });
             } else {
                 // Handle the lasso selection logic as before
@@ -211,18 +226,36 @@ function renderObservations() {
                     return event.sourceEvent.shiftKey ? isCurrentlySelected || isWithinLasso : isWithinLasso;
                 });
 
-                // Highlight selected observations with a bright yellow boundary
+                // Highlight selected observations with a bright boundary
                 observations.select("rect")
                     .attr("stroke", function(d) {
-                        return d3.select(this.parentNode).classed("selected") ? "yellow" : null;
+                        return d3.select(this.parentNode).classed("selected") ? "white" : null;
                     })
                     .attr("stroke-width", function(d) {
-                        return d3.select(this.parentNode).classed("selected") ? 2 : null;
+                        return d3.select(this.parentNode).classed("selected") ? 3 : null;
                     });
 
                 // Remove the lasso rectangle after selection
                 lassoRect.remove();
                 lassoRect = null;
+            }
+            // Handle the visibility of the edit form
+            const selectedObservations = d3.selectAll(".observation.selected");
+
+            if (selectedObservations.size() === 1) {
+                const selectedData = selectedObservations.data()[0];
+
+                // Populate the form with the selected block's data
+                document.getElementById("editDate").value = selectedData.date;
+                document.getElementById("editStartTime").value = formatTimeForInput(selectedData.start_time);
+                document.getElementById("editEndTime").value = formatTimeForInput(selectedData.end_time);
+                document.getElementById("editLabel").value = selectedData.label;
+
+                // Show the form
+                document.getElementById("editFormContainer").style.display = "block";
+            } else {
+                // Hide the form if no or more than one item is selected
+                document.getElementById("editFormContainer").style.display = "none";
             }
         });
 
@@ -488,3 +521,35 @@ document.addEventListener("keydown", function(event) {
         selectedObservations.remove();
     }
 });
+
+document.getElementById("editForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    const selectedObservations = d3.selectAll(".observation.selected");
+
+    if (selectedObservations.size() === 1) {
+        const selectedData = selectedObservations.data()[0];
+
+        // Update the selected block's data with the values from the form
+        selectedData.date = document.getElementById("editDate").value;
+        selectedData.start_time = parseTime(document.getElementById("editStartTime").value);
+        selectedData.end_time = parseTime(document.getElementById("editEndTime").value);
+        selectedData.label = document.getElementById("editLabel").value;
+
+        // Hide the form after submission
+        document.getElementById("editFormContainer").style.display = "none";
+
+        // Rerender the calendar to reflect the changes
+        renderObservations();
+    }
+});
+
+// Helper function to parse time from the input field (hh:mm format) to decimal hours
+function parseTime(timeStr) {
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    const decimalHours = hours + minutes / 60;
+    if (decimalHours >= 12)
+        return decimalHours - 24;
+    else
+        return decimalHours;
+}
