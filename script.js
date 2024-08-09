@@ -321,8 +321,6 @@ function renderObservations() {
     svg.call(lassoDrag);
 }
 
-
-
 function renderAxes() {
     const xAxis = d3.axisBottom(customTimeScale).tickFormat(d => {
         const hours = Math.floor(d);
@@ -363,7 +361,7 @@ function loadObservations() {
             .filter(d => dateRange.map(
                 date => date.toISOString().split("T")[0]).includes(d.date)
             );
-        availableBlockData = initializeAvailableBlocks(filteredTwilightData);
+        initializeAvailableBlocks();
         pruneAvailableBlocks();
 
         // Add twilight rectangles; only need to do this once.
@@ -502,8 +500,9 @@ function loadObservations() {
     });
 }
 
-function initializeAvailableBlocks(twilightData) {
-    const availableBlockData = [];
+function initializeAvailableBlocks() {
+    let blockData = [];
+    twilightData = filteredTwilightData;
 
     twilightData.forEach(state => {
         // Create blocks for each twilight period and night period
@@ -520,12 +519,12 @@ function initializeAvailableBlocks(twilightData) {
         // Filter out any blocks that have no duration (e.g., if start_time equals end_time)
         blocks.forEach(block => {
             if (block.start_time < block.end_time) {
-                availableBlockData.push(block);
+                blockData.push(block);
             }
         });
     });
 
-    return availableBlockData;
+    availableBlockData = blockData;
 }
 
 function pruneAvailableBlocks() {
@@ -645,6 +644,9 @@ document.addEventListener("keydown", function(event) {
 
         // Remove selected observations from the SVG
         selectedObservations.remove();
+        initializeAvailableBlocks();
+        pruneAvailableBlocks();
+        renderObservations();
     }
 });
 
@@ -677,6 +679,10 @@ function updateSelectedObservation() {
             .attr("x", customTimeScale(selectedData.start_time) + (customTimeScale(selectedData.end_time) - customTimeScale(selectedData.start_time)) / 2)
             .attr("y", dateScale(selectedData.date) + dateScale.bandwidth() * 0.1 + dateScale.bandwidth() * 0.4)
             .text(selectedData.label);
+
+        initializeAvailableBlocks();
+        pruneAvailableBlocks();
+        renderObservations();
     }
 }
 
