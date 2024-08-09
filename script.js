@@ -115,7 +115,93 @@ function renderObservations() {
     }).on("mouseout", function() {
         d3.select("#tooltip").style("display", "none");
     });
+
+    // Implement the rectangular lasso selection
+    let lassoStartCoords = null;
+    let lassoRect = null;
+    let shiftKeyPressed = false;
+
+    const lassoDrag = d3.drag()
+        .on("start", function(event) {
+            // Adjust the start coordinates to account for margins
+            lassoStartCoords = d3.pointer(event, this);
+            lassoStartCoords[0] -= margin.left;
+            lassoStartCoords[1] -= margin.top;
+
+            // Capture the shift key state at the start of the drag
+            shiftKeyPressed = event.sourceEvent.shiftKey;
+
+            // If the Shift key is not held, clear the existing selection
+            if (!shiftKeyPressed) {
+                observations.classed("selected", false);
+            }
+
+            // Remove any existing lasso rectangle
+            if (lassoRect) lassoRect.remove();
+
+            // Create a new lasso rectangle
+            lassoRect = g.append("rect")
+                .attr("class", "lasso")
+                .attr("x", lassoStartCoords[0])
+                .attr("y", lassoStartCoords[1])
+                .attr("width", 0)
+                .attr("height", 0)
+                .attr("stroke", "black")
+                .attr("stroke-dasharray", "4")
+                .attr("fill", "none");
+        })
+        .on("drag", function(event) {
+            let [x, y] = d3.pointer(event, this);
+            x -= margin.left;
+            y -= margin.top;
+
+            // Calculate the new width and height of the lasso rectangle
+            const width = Math.abs(x - lassoStartCoords[0]);
+            const height = Math.abs(y - lassoStartCoords[1]);
+
+            // Update the position and size of the lasso rectangle
+            lassoRect.attr("x", Math.min(x, lassoStartCoords[0]))
+                .attr("y", Math.min(y, lassoStartCoords[1]))
+                .attr("width", width)
+                .attr("height", height);
+        })
+        .on("end", function() {
+            // Get the final lasso rectangle bounds
+            const x0 = parseFloat(lassoRect.attr("x"));
+            const y0 = parseFloat(lassoRect.attr("y"));
+            const x1 = x0 + parseFloat(lassoRect.attr("width"));
+            const y1 = y0 + parseFloat(lassoRect.attr("height"));
+
+            // Select elements whose center is within the lasso rectangle
+            observations.classed("selected", function(d) {
+                const rectXCenter = customTimeScale(d.start_time) + (customTimeScale(d.end_time) - customTimeScale(d.start_time)) / 2;
+                const rectYCenter = dateScale(d.date) + dateScale.bandwidth() / 2;
+
+                const isCurrentlySelected = d3.select(this).classed("selected");
+                const isWithinLasso = rectXCenter >= x0 && rectXCenter <= x1 && rectYCenter >= y0 && rectYCenter <= y1;
+
+                // Add to the selection if within the lasso or keep the current selection state if shift is held
+                return shiftKeyPressed ? isCurrentlySelected || isWithinLasso : isWithinLasso;
+            });
+
+            // Highlight selected observations with a bright boundary
+            observations.select("rect")
+                .attr("stroke", function(d) {
+                    return d3.select(this.parentNode).classed("selected") ? "white" : null;
+                })
+                .attr("stroke-width", function(d) {
+                    return d3.select(this.parentNode).classed("selected") ? 3 : null;
+                });
+
+            // Remove the lasso rectangle after selection
+            lassoRect.remove();
+            lassoRect = null;
+        });
+
+    // Apply the drag behavior to the SVG canvas
+    svg.call(lassoDrag);
 }
+
 
 function renderAxes() {
     const xAxis = d3.axisBottom(customTimeScale).tickFormat(d => {
