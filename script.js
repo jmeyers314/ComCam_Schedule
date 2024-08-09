@@ -69,6 +69,9 @@ function formatTooltip(obs, moonIllumination) {
 function renderObservations() {
     const padding = 3; // Horizontal padding for the rectangles
     const cornerRadius = 3;
+    let dragThreshold = 5; // Threshold to distinguish between click and drag
+    let startPos = null;    // Store the start position of a drag
+    let lassoRect = null;   // Define lassoRect within the renderObservations function
 
     g.selectAll(".observation").remove(); // Clear previous observations
 
@@ -116,23 +119,17 @@ function renderObservations() {
         d3.select("#tooltip").style("display", "none");
     });
 
-    // Implement the rectangular lasso selection
-    let lassoStartCoords = null;
-    let lassoRect = null;
-    let shiftKeyPressed = false;
-
     const lassoDrag = d3.drag()
         .on("start", function(event) {
+            startPos = d3.pointer(event, this); // Capture the start position
+
             // Adjust the start coordinates to account for margins
             lassoStartCoords = d3.pointer(event, this);
             lassoStartCoords[0] -= margin.left;
             lassoStartCoords[1] -= margin.top;
 
-            // Capture the shift key state at the start of the drag
-            shiftKeyPressed = event.sourceEvent.shiftKey;
-
             // If the Shift key is not held, clear the existing selection
-            if (!shiftKeyPressed) {
+            if (!event.sourceEvent.shiftKey) {
                 observations.classed("selected", false);
             }
 
@@ -165,42 +162,74 @@ function renderObservations() {
                 .attr("width", width)
                 .attr("height", height);
         })
-        .on("end", function() {
-            // Get the final lasso rectangle bounds
-            const x0 = parseFloat(lassoRect.attr("x"));
-            const y0 = parseFloat(lassoRect.attr("y"));
-            const x1 = x0 + parseFloat(lassoRect.attr("width"));
-            const y1 = y0 + parseFloat(lassoRect.attr("height"));
+        .on("end", function(event) {
+            const endPos = d3.pointer(event, this); // Capture the end position
+            const dragDistance = Math.sqrt(
+                Math.pow(endPos[0] - startPos[0], 2) +
+                Math.pow(endPos[1] - startPos[1], 2)
+            );
 
-            // Select elements whose center is within the lasso rectangle
-            observations.classed("selected", function(d) {
-                const rectXCenter = customTimeScale(d.start_time) + (customTimeScale(d.end_time) - customTimeScale(d.start_time)) / 2;
-                const rectYCenter = dateScale(d.date) + dateScale.bandwidth() / 2;
+            if (dragDistance < dragThreshold) {
+                // Treat as a click if drag distance is below threshold
+                const target = d3.select(event.sourceEvent.target.parentNode);
+                const isSelected = target.classed("selected");
 
-                const isCurrentlySelected = d3.select(this).classed("selected");
-                const isWithinLasso = rectXCenter >= x0 && rectXCenter <= x1 && rectYCenter >= y0 && rectYCenter <= y1;
+                if (event.sourceEvent.shiftKey) {
+                    // If Shift is held, toggle selection
+                    target.classed("selected", !isSelected);
+                } else {
+                    // If Shift is not held, clear other selections and select this one
+                    observations.classed("selected", false);
+                    target.classed("selected", true);
+                }
 
-                // Add to the selection if within the lasso or keep the current selection state if shift is held
-                return shiftKeyPressed ? isCurrentlySelected || isWithinLasso : isWithinLasso;
-            });
+                // Update the highlighting
+                observations.select("rect")
+                    .attr("stroke", function(d) {
+                        return d3.select(this.parentNode).classed("selected") ? "yellow" : null;
+                    })
+                    .attr("stroke-width", function(d) {
+                        return d3.select(this.parentNode).classed("selected") ? 2 : null;
+                    });
+            } else {
+                // Handle the lasso selection logic as before
+                const x0 = parseFloat(lassoRect.attr("x"));
+                const y0 = parseFloat(lassoRect.attr("y"));
+                const x1 = x0 + parseFloat(lassoRect.attr("width"));
+                const y1 = y0 + parseFloat(lassoRect.attr("height"));
 
-            // Highlight selected observations with a bright boundary
-            observations.select("rect")
-                .attr("stroke", function(d) {
-                    return d3.select(this.parentNode).classed("selected") ? "white" : null;
-                })
-                .attr("stroke-width", function(d) {
-                    return d3.select(this.parentNode).classed("selected") ? 3 : null;
+                // Select elements whose center is within the lasso rectangle
+                observations.classed("selected", function(d) {
+                    const rectXCenter = customTimeScale(d.start_time) + (customTimeScale(d.end_time) - customTimeScale(d.start_time)) / 2;
+                    const rectYCenter = dateScale(d.date) + dateScale.bandwidth() / 2;
+
+                    const isCurrentlySelected = d3.select(this).classed("selected");
+                    const isWithinLasso = rectXCenter >= x0 && rectXCenter <= x1 && rectYCenter >= y0 && rectYCenter <= y1;
+
+                    // Add to the selection if within the lasso or keep the current selection state if shift is held
+                    return event.sourceEvent.shiftKey ? isCurrentlySelected || isWithinLasso : isWithinLasso;
                 });
 
-            // Remove the lasso rectangle after selection
-            lassoRect.remove();
-            lassoRect = null;
+                // Highlight selected observations with a bright yellow boundary
+                observations.select("rect")
+                    .attr("stroke", function(d) {
+                        return d3.select(this.parentNode).classed("selected") ? "yellow" : null;
+                    })
+                    .attr("stroke-width", function(d) {
+                        return d3.select(this.parentNode).classed("selected") ? 2 : null;
+                    });
+
+                // Remove the lasso rectangle after selection
+                lassoRect.remove();
+                lassoRect = null;
+            }
         });
 
     // Apply the drag behavior to the SVG canvas
     svg.call(lassoDrag);
 }
+
+
 
 
 function renderAxes() {
