@@ -2,6 +2,7 @@
 let filteredTwilightData = [];
 let filteredMoonData = [];
 let filteredObservationData = [];
+let availableBlockData = [];
 
 const svg = d3.select("#mySVG");
 
@@ -229,9 +230,6 @@ function renderObservations() {
     svg.call(lassoDrag);
 }
 
-
-
-
 function renderAxes() {
     const xAxis = d3.axisBottom(customTimeScale).tickFormat(d => {
         const hours = Math.floor(d);
@@ -272,6 +270,7 @@ function loadObservations() {
             .filter(d => dateRange.map(
                 date => date.toISOString().split("T")[0]).includes(d.date)
             );
+        availableBlockData = initializeAvailableBlocks(filteredTwilightData);
 
         // Add twilight rectangles; only need to do this once.
         filteredTwilightData.forEach(state => {
@@ -407,6 +406,32 @@ function loadObservations() {
     }).catch(function(error) {
         console.error("Error loading the JSON data: ", error);
     });
+}
+
+function initializeAvailableBlocks(twilightData) {
+    const availableBlockData = [];
+
+    twilightData.forEach(state => {
+        // Create blocks for each twilight period and night period
+        const blocks = [
+            { date: state.date, start_time: state.sunset, end_time: state.evening_6deg },
+            { date: state.date, start_time: state.evening_6deg, end_time: state.evening_12deg },
+            { date: state.date, start_time: state.evening_12deg, end_time: state.evening_18deg },
+            { date: state.date, start_time: state.evening_18deg, end_time: state.morning_18deg }, // Night
+            { date: state.date, start_time: state.morning_18deg, end_time: state.morning_12deg },
+            { date: state.date, start_time: state.morning_12deg, end_time: state.morning_6deg },
+            { date: state.date, start_time: state.morning_6deg, end_time: state.sunrise }
+        ];
+
+        // Filter out any blocks that have no duration (e.g., if start_time equals end_time)
+        blocks.forEach(block => {
+            if (block.start_time < block.end_time) {
+                availableBlockData.push(block);
+            }
+        });
+    });
+
+    return availableBlockData;
 }
 
 loadObservations();
