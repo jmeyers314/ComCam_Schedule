@@ -71,6 +71,10 @@ function formatTooltip(obs, moonIllumination) {
 function formatTimeForInput(hoursDecimal) {
     let hours = Math.floor(hoursDecimal);
     let minutes = Math.round((hoursDecimal - hours) * 60);
+    if (minutes === 60) {
+        hours++;
+        minutes = 0;
+    }
 
     // Adjust for the 24-hour time format
     if (hours < 0) {
@@ -85,12 +89,15 @@ function formatTimeForInput(hoursDecimal) {
 function renderObservations() {
     const padding = 3; // Horizontal padding for the rectangles
     const cornerRadius = 3;
-    let dragThreshold = 5; // Threshold to distinguish between click and drag
+    const dragThreshold = 5; // Threshold to distinguish between click and drag
     let startPos = null;    // Store the start position of a drag
     let lassoRect = null;   // Define lassoRect within the renderObservations function
 
-    g.selectAll(".observation").remove(); // Clear previous observations
+    // Clear previous observations and available blocks
+    g.selectAll(".observation").remove();
+    g.selectAll(".available-block").remove();
 
+    // Render observations
     const observations = g.selectAll(".observation")
         .data(filteredObservationData)
         .enter()
@@ -135,6 +142,7 @@ function renderObservations() {
         d3.select("#tooltip").style("display", "none");
     });
 
+    // Lasso drag behavior for observation blocks
     const lassoDrag = d3.drag()
         .on("start", function(event) {
             startPos = d3.pointer(event, this); // Capture the start position
@@ -147,6 +155,9 @@ function renderObservations() {
             // If the Shift key is not held, clear the existing selection
             if (!event.sourceEvent.shiftKey) {
                 observations.classed("selected", false);
+                d3.selectAll(".available-block").classed("selected", false)
+                    .attr("stroke", "none") // Remove highlighting from available blocks
+                    .attr("stroke-width", null);
             }
 
             // Remove any existing lasso rectangle
@@ -179,6 +190,11 @@ function renderObservations() {
                 .attr("height", height);
         })
         .on("end", function(event) {
+            // Deselect all available blocks when lasso selection ends
+            d3.selectAll(".available-block").classed("selected", false)
+                .attr("stroke", "none") // Remove highlighting from available blocks
+                .attr("stroke-width", null);
+
             const endPos = d3.pointer(event, this); // Capture the end position
             const dragDistance = Math.sqrt(
                 Math.pow(endPos[0] - startPos[0], 2) +
@@ -239,6 +255,7 @@ function renderObservations() {
                 lassoRect.remove();
                 lassoRect = null;
             }
+
             // Handle the visibility of the edit form
             const selectedObservations = d3.selectAll(".observation.selected");
 
@@ -260,11 +277,51 @@ function renderObservations() {
                 // Hide the form if no or more than one item is selected
                 document.getElementById("editFormContainer").style.display = "none";
             }
+        }); // End of lassoDrag
+
+    // Render available blocks (invisible but selectable)
+    const availableBlocks = g.selectAll(".available-block")
+        .data(availableBlockData)
+        .enter()
+        .append("rect")
+        .attr("class", "available-block")
+        .attr("x", d => customTimeScale(d.start_time))
+        .attr("y", d => dateScale(d.date))
+        .attr("width", d => customTimeScale(d.end_time) - customTimeScale(d.start_time))
+        .attr("height", dateScale.bandwidth())
+        .attr("fill", "transparent") // Make the blocks invisible
+        .attr("stroke", "none")
+        .attr("pointer-events", "all") // Ensure they can be clicked even if invisible
+        .on("click", function(event, d) {
+            d3.selectAll(".observation").classed("selected", false);
+            d3.selectAll(".available-block").classed("selected", false)
+                .attr("stroke", "none") // Remove highlighting from other available blocks
+                .attr("stroke-width", null);
+            d3.select(this).classed("selected", true);
+
+            // Highlight the selected available block
+            d3.select(this)
+                .attr("stroke", "yellow")
+                .attr("stroke-width", 3);
+
+            // Handle form population for available blocks
+            document.getElementById("editDate").value = d.date;
+            document.getElementById("editStartTime").value = formatTimeForInput(d.start_time);
+            document.getElementById("editEndTime").value = formatTimeForInput(d.end_time);
+            document.getElementById("editLabel").value = ""; // No label for available blocks
+            document.getElementById("editCategory").value = ""; // No category for available blocks
+            document.getElementById("editTooltip").value = ""; // No tooltip for available blocks
+            document.getElementById("editUrl").value = ""; // No URL for available blocks
+
+            // Show the form
+            document.getElementById("editFormContainer").style.display = "block";
         });
 
     // Apply the drag behavior to the SVG canvas
     svg.call(lassoDrag);
 }
+
+
 
 function renderAxes() {
     const xAxis = d3.axisBottom(customTimeScale).tickFormat(d => {
