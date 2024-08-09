@@ -236,7 +236,7 @@ function loadObservations() {
                 .attr("class", "twilight")
                 .attr("x", customTimeScale(state.sunrise))
                 .attr("y", dateScale(state.date))
-                .attr("width", customTimeScale(8) - customTimeScale(state.sunrise))
+                .attr("width", customTimeScale(maxTime) - customTimeScale(state.sunrise))
                 .attr("height", dateScale.bandwidth())
                 .attr("fill", sunStateColorScale("day"));
         });
@@ -245,7 +245,7 @@ function loadObservations() {
         filteredMoonData.forEach(state => {
             state.moonintervals.forEach(interval => {
                 const start = Math.max(minTime, interval[0]);
-                const end = Math.min(8, interval[1]);
+                const end = Math.min(maxTime, interval[1]);
 
                 // Only add the rectangle if the interval is within the valid range
                 if (start < end) {
