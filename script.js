@@ -1,3 +1,8 @@
+// Global twilight and moon data
+let filteredTwilightData = [];
+let filteredMoonData = [];
+let filteredObservationData = [];
+
 // Select the SVG element
 const svg = d3.select("#mySVG");
 
@@ -61,7 +66,7 @@ function formatTooltip(obs, moonIllumination) {
     return `${obs.date}<br>${obs.tooltip}<br>Start: ${startTime}<br>End: ${endTime}<br>Duration: ${duration}<br>Moon Illumination: ${(moonIllumination * 100).toFixed(2)}%`;
 }
 
-function renderObservations(filteredObservationData, filteredMoonData) {
+function renderObservations() {
     const padding = 3; // Horizontal padding for the rectangles
     const cornerRadius = 3; // Radius for rounded corners
 
@@ -162,9 +167,9 @@ function loadObservations() {
         const [twilightData, moonData, observationData] = data;
 
         // Filter data to exclude dates outside the specified range
-        const filteredTwilightData = twilightData.filter(d => dateRange.map(date => date.toISOString().split("T")[0]).includes(d.date));
-        const filteredMoonData = moonData.filter(d => dateRange.map(date => date.toISOString().split("T")[0]).includes(d.date));
-        let filteredObservationData = observationData.filter(d => dateRange.map(date => date.toISOString().split("T")[0]).includes(d.date));
+        filteredTwilightData = twilightData.filter(d => dateRange.map(date => date.toISOString().split("T")[0]).includes(d.date));
+        filteredMoonData = moonData.filter(d => dateRange.map(date => date.toISOString().split("T")[0]).includes(d.date));
+        filteredObservationData = observationData.filter(d => dateRange.map(date => date.toISOString().split("T")[0]).includes(d.date));
 
         // Add background rectangles for sun states
         filteredTwilightData.forEach(state => {
@@ -262,7 +267,7 @@ function loadObservations() {
         });
 
         // Render observations
-        renderObservations(filteredObservationData, filteredMoonData);
+        renderObservations();
 
         // Render axes
         renderAxes();
@@ -286,8 +291,8 @@ d3.select("#deleteButton").on("click", function() {
     selectedObservations.remove();
 });
 
-d3.select("#downloadButton").on("click", function() {
-    // Provide updated observations.json for download
+d3.select("#saveButton").on("click", function() {
+    // Provide updated observation.json to save
     const updatedDataStr = JSON.stringify(filteredObservationData, null, 2);
     const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(updatedDataStr);
 
@@ -308,9 +313,10 @@ d3.select("#fileInput").on("change", function() {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            const uploadedData = JSON.parse(e.target.result);
+            observationData = JSON.parse(e.target.result);
+            filteredObservationData = observationData.filter(d => dateRange.map(date => date.toISOString().split("T")[0]).includes(d.date));
             g.selectAll(".observation").remove(); // Clear existing observation elements
-            renderObservations(uploadedData, []); // Use the uploaded data to render observations (moon data empty to avoid conflict)
+            renderObservations(); // Use the uploaded data to render observations (moon data empty to avoid conflict)
         };
         reader.readAsText(file);
     }
