@@ -411,22 +411,6 @@ function loadObservations() {
 
 loadObservations();
 
-// Add event listeners to buttons
-d3.select("#deleteButton").on("click", function() {
-    const selectedObservations = d3.selectAll(".observation.selected");
-    const indicesToDelete = selectedObservations.nodes().map(
-        d => +d.getAttribute("data-index")
-    );
-
-    // Filter out the selected observations
-    filteredObservationData = filteredObservationData.filter(
-        (obs, i) => !indicesToDelete.includes(i)
-    );
-
-    // Remove selected observations from the SVG
-    selectedObservations.remove();
-});
-
 d3.select("#saveButton").on("click", function() {
     const updatedDataStr = JSON.stringify(filteredObservationData, null, 2);
     const dataUri = (
@@ -460,5 +444,22 @@ d3.select("#fileInput").on("change", function() {
             renderObservations(); // Rerender.
         };
         reader.readAsText(file);
+    }
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === 'd') {
+        const selectedObservations = d3.selectAll(".observation.selected");
+        const indicesToDelete = selectedObservations.nodes().map(
+            d => +d.getAttribute("data-index")
+        );
+
+        // Filter out the selected observations
+        filteredObservationData = filteredObservationData.filter(
+            (obs, i) => !indicesToDelete.includes(i)
+        );
+
+        // Remove selected observations from the SVG
+        selectedObservations.remove();
     }
 });

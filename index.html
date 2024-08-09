@@ -33,13 +33,21 @@
     <div id="container">
         <svg id="mySVG" width="1000" height="800"></svg>
         <div id="buttons">
-            <button id="deleteButton">Delete Selected</button>
+            <button id="loadButton">Load Observations</button>
             <button id="saveButton">Save Observations</button>
             <input type="file" id="fileInput" style="display: none;">
-            <button id="loadButton">Load Observations</button>
         </div>
     </div>
     <div id="tooltip" class="tooltip"></div>
     <script src="script.js"></script>
+    <div id="instructions">
+        <p>Instructions:</p>
+        <ul>
+            <li>Click on an observation to select it. Hold the <strong>Shift</strong> key to select multiple observations.</li>
+            <li>Drag to create a selection box (lasso) around multiple observations. Hold the <strong>Shift</strong> key while dragging to add to the current selection.</li>
+            <li>Press the <strong>d</strong> key to delete the selected observations.</li>
+            <li>You can save and load observations using the buttons near the bottom.</li>
+        </ul>
+    </div>
 </body>
 </html>
