@@ -250,6 +250,9 @@ function renderObservations() {
                 document.getElementById("editStartTime").value = formatTimeForInput(selectedData.start_time);
                 document.getElementById("editEndTime").value = formatTimeForInput(selectedData.end_time);
                 document.getElementById("editLabel").value = selectedData.label;
+                document.getElementById("editCategory").value = selectedData.category;
+                document.getElementById("editTooltip").value = selectedData.tooltip;
+                document.getElementById("editUrl").value = selectedData.url;
 
                 // Show the form
                 document.getElementById("editFormContainer").style.display = "block";
@@ -522,9 +525,7 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
-document.getElementById("editForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-
+function updateSelectedObservation() {
     const selectedObservations = d3.selectAll(".observation.selected");
 
     if (selectedObservations.size() === 1) {
@@ -535,14 +536,35 @@ document.getElementById("editForm").addEventListener("submit", function(event) {
         selectedData.start_time = parseTime(document.getElementById("editStartTime").value);
         selectedData.end_time = parseTime(document.getElementById("editEndTime").value);
         selectedData.label = document.getElementById("editLabel").value;
+        selectedData.category = document.getElementById("editCategory").value;
+        selectedData.tooltip = document.getElementById("editTooltip").value;
+        selectedData.url = document.getElementById("editUrl").value;
 
-        // Hide the form after submission
-        document.getElementById("editFormContainer").style.display = "none";
+        // Update the block directly without re-rendering everything
+        const block = d3.select(".observation.selected");
 
-        // Rerender the calendar to reflect the changes
-        renderObservations();
+        block.select("rect")
+            .attr("x", customTimeScale(selectedData.start_time) + 3) // Adjust for padding
+            .attr("y", dateScale(selectedData.date) + dateScale.bandwidth() * 0.1)
+            .attr("width", customTimeScale(selectedData.end_time) - customTimeScale(selectedData.start_time) - 6) // Adjust for padding
+            .attr("fill", observationColorScale(selectedData.category)) // Update color based on category
+            .attr("opacity", observationOpacity(selectedData.category)); // Update opacity based on category
+
+        block.select("text")
+            .attr("x", customTimeScale(selectedData.start_time) + (customTimeScale(selectedData.end_time) - customTimeScale(selectedData.start_time)) / 2)
+            .attr("y", dateScale(selectedData.date) + dateScale.bandwidth() * 0.1 + dateScale.bandwidth() * 0.4)
+            .text(selectedData.label);
     }
-});
+}
+
+// Add event listeners to form fields for real-time updates
+document.getElementById("editDate").addEventListener("input", updateSelectedObservation);
+document.getElementById("editStartTime").addEventListener("input", updateSelectedObservation);
+document.getElementById("editEndTime").addEventListener("input", updateSelectedObservation);
+document.getElementById("editLabel").addEventListener("input", updateSelectedObservation);
+document.getElementById("editCategory").addEventListener("change", updateSelectedObservation);
+document.getElementById("editTooltip").addEventListener("input", updateSelectedObservation);
+document.getElementById("editUrl").addEventListener("input", updateSelectedObservation);
 
 // Helper function to parse time from the input field (hh:mm format) to decimal hours
 function parseTime(timeStr) {

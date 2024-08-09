@@ -36,6 +36,9 @@
             border: 1px solid #ccc;
             background-color: #f9f9f9;
             display: none; /* Initially hidden */
+            align-self: flex-start; /* Ensure the form container aligns to the left */
+            width: fit-content; /* Make the form take up only as much space as needed */
+            box-sizing: border-box; /* Include padding and borders in width calculation */
         }
 
         #buttons {
@@ -76,7 +79,21 @@
                 <label for="editLabel">Label:</label>
                 <input type="text" id="editLabel" name="label"><br><br>
 
-                <button type="submit">Save Changes</button>
+                <label for="editCategory">Category:</label>
+                <select id="editCategory" name="category">
+                    <option value="Calibration">Calibration</option>
+                    <option value="Prep">Prep</option>
+                    <option value="AOS transient">AOS transient</option>
+                    <option value="AOS data">AOS data</option>
+                    <option value="IQ">IQ</option>
+                    <option value="Science">Science</option>
+                </select><br><br>
+
+                <label for="editTooltip">Tooltip:</label>
+                <input type="text" id="editTooltip" name="tooltip"><br><br>
+
+                <label for="editUrl">URL:</label>
+                <input type="url" id="editUrl" name="url"><br><br>
             </form>
         </div>
     </div>
