@@ -631,7 +631,11 @@ d3.select("#fileInput").on("change", function() {
 });
 
 document.addEventListener("keydown", function(event) {
-    if (event.key === 'd') {
+    // Check if the currently focused element is an input or textarea
+    const activeElement = document.activeElement;
+    const isInputFocused = activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA';
+
+    if (event.key === 'd' && !isInputFocused) {
         const selectedObservations = d3.selectAll(".observation.selected");
         const indicesToDelete = selectedObservations.nodes().map(
             d => +d.getAttribute("data-index")
@@ -650,6 +654,7 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
+
 function updateSelectedObservation() {
     const selectedObservations = d3.selectAll(".observation.selected");
 
@@ -665,24 +670,21 @@ function updateSelectedObservation() {
         selectedData.tooltip = document.getElementById("editTooltip").value;
         selectedData.url = document.getElementById("editUrl").value;
 
-        // Update the block directly without re-rendering everything
-        const block = d3.select(".observation.selected");
+        // Store the index of the selected observation
+        const selectedIndex = filteredObservationData.indexOf(selectedData);
 
-        block.select("rect")
-            .attr("x", customTimeScale(selectedData.start_time) + 3) // Adjust for padding
-            .attr("y", dateScale(selectedData.date) + dateScale.bandwidth() * 0.1)
-            .attr("width", customTimeScale(selectedData.end_time) - customTimeScale(selectedData.start_time) - 6) // Adjust for padding
-            .attr("fill", observationColorScale(selectedData.category)) // Update color based on category
-            .attr("opacity", observationOpacity(selectedData.category)); // Update opacity based on category
-
-        block.select("text")
-            .attr("x", customTimeScale(selectedData.start_time) + (customTimeScale(selectedData.end_time) - customTimeScale(selectedData.start_time)) / 2)
-            .attr("y", dateScale(selectedData.date) + dateScale.bandwidth() * 0.1 + dateScale.bandwidth() * 0.4)
-            .text(selectedData.label);
-
+        // Re-render the observations and available blocks
         initializeAvailableBlocks();
         pruneAvailableBlocks();
         renderObservations();
+
+        // Reapply the selection to the updated observation
+        d3.selectAll(".observation")
+            .filter((d, i) => i === selectedIndex)
+            .classed("selected", true)
+            .select("rect")
+            .attr("stroke", "white")
+            .attr("stroke-width", 3);
     }
 }
 
@@ -694,6 +696,66 @@ document.getElementById("editLabel").addEventListener("input", updateSelectedObs
 document.getElementById("editCategory").addEventListener("change", updateSelectedObservation);
 document.getElementById("editTooltip").addEventListener("input", updateSelectedObservation);
 document.getElementById("editUrl").addEventListener("input", updateSelectedObservation);
+
+// Event listener for the 'a' key to add a new observation
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'a') {
+        const selectedAvailableBlock = d3.selectAll(".available-block.selected").data()[0];
+
+        if (selectedAvailableBlock) {
+            // Calculate the duration of the new observation block (1 hour or remainder of the available time)
+            const duration = Math.min(1, selectedAvailableBlock.end_time - selectedAvailableBlock.start_time);
+            const endTime = selectedAvailableBlock.start_time + duration;
+
+            // Create the new observation block
+            const newObservation = {
+                date: selectedAvailableBlock.date,
+                start_time: selectedAvailableBlock.start_time,
+                end_time: endTime,
+                category: "Science", // Default category
+                label: "Science", // Default label
+                tooltip: "Science Verification data",
+                url: "http://www.example.com/science.html"
+            };
+
+            // Add the new observation to the filteredObservationData
+            filteredObservationData.push(newObservation);
+
+            // Update availableBlockData by removing or truncating the selected available block
+            if (endTime === selectedAvailableBlock.end_time) {
+                // Remove the available block if fully covered by the new observation
+                availableBlockData = availableBlockData.filter(block => block !== selectedAvailableBlock);
+            } else {
+                // Truncate the available block
+                selectedAvailableBlock.start_time = endTime;
+            }
+
+            // Re-render the observations and available blocks
+            renderObservations();
+
+            // Select and highlight the new observation block
+            d3.selectAll(".observation").classed("selected", function(d) {
+                return d === newObservation;
+            });
+
+            d3.selectAll(".observation.selected").select("rect")
+                .attr("stroke", "white")
+                .attr("stroke-width", 3);
+
+            // Populate the form with the new observation block's data
+            document.getElementById("editDate").value = newObservation.date;
+            document.getElementById("editStartTime").value = formatTimeForInput(newObservation.start_time);
+            document.getElementById("editEndTime").value = formatTimeForInput(newObservation.end_time);
+            document.getElementById("editLabel").value = newObservation.label;
+            document.getElementById("editCategory").value = newObservation.category;
+            document.getElementById("editTooltip").value = newObservation.tooltip;
+            document.getElementById("editUrl").value = newObservation.url;
+
+            // Show the edit form
+            document.getElementById("editFormContainer").style.display = "block";
+        }
+    }
+});
 
 // Helper function to parse time from the input field (hh:mm format) to decimal hours
 function parseTime(timeStr) {
