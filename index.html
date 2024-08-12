@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>ComCam On-Sky Observing Schedule</title>
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <style>
@@ -66,7 +67,7 @@
             <h3>Observation</h3>
             <form id="editForm">
                 <label for="editDate">Date:</label>
-                <input type="date" id="editDate" name="date"><br><br>
+                <input type="text" id="editDate" name="date"><br><br>
 
                 <label for="editStartTime">Start Time:</label>
                 <input type="time" id="editStartTime" name="start_time"><br><br>
@@ -96,6 +97,29 @@
         </div>
     </div>
     <div id="tooltip" class="tooltip"></div>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        const dateInput = document.getElementById("editDate");
+
+        // Initialize Flatpickr
+        const flatpickrInstance = flatpickr(dateInput, {
+            dateFormat: "Y-m-d",  // Format for the date
+            onOpen: function(selectedDates, dateStr, instance) {
+                // On opening the calendar, set the view to the current value of the input
+                const currentDate = dateInput.value;
+                if (currentDate) {
+                    instance.setDate(currentDate, true); // Set and jump to the current date
+                }
+            }
+        });
+    </script>
+    <!-- <script>
+        flatpickr("#editDate", {
+        //   inline: true,
+          defaultDate: document.getElementById("editDate").value,
+          dateFormat: "Y-m-d",
+        });
+    </script> -->
     <script src="script.js"></script>
     <div id="instructions">
         <p>Instructions:</p>
