@@ -70,10 +70,10 @@
                 <input type="text" id="editDate" name="date"><br><br>
 
                 <label for="editStartTime">Start Time:</label>
-                <input type="time" id="editStartTime" name="start_time"><br><br>
+                <input type="text" id="editStartTime" name="start_time"><br><br>
 
                 <label for="editEndTime">End Time:</label>
-                <input type="time" id="editEndTime" name="end_time"><br><br>
+                <input type="text" id="editEndTime" name="end_time"><br><br>
 
                 <label for="editLabel">Label:</label>
                 <input type="text" id="editLabel" name="label"><br><br>
@@ -100,26 +100,52 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         const dateInput = document.getElementById("editDate");
+        const startTimeInput = document.getElementById("editStartTime");
+        const endTimeInput = document.getElementById("editEndTime");
 
-        // Initialize Flatpickr
-        const flatpickrInstance = flatpickr(dateInput, {
-            dateFormat: "Y-m-d",  // Format for the date
+        // Initialize Flatpickr for Date
+        flatpickr(dateInput, {
+            dateFormat: "Y-m-d",  // Date format
             onOpen: function(selectedDates, dateStr, instance) {
-                // On opening the calendar, set the view to the current value of the input
                 const currentDate = dateInput.value;
                 if (currentDate) {
-                    instance.setDate(currentDate, true); // Set and jump to the current date
+                    instance.setDate(currentDate, true); // Jump to current date in input
                 }
             }
         });
-    </script>
-    <!-- <script>
-        flatpickr("#editDate", {
-        //   inline: true,
-          defaultDate: document.getElementById("editDate").value,
-          dateFormat: "Y-m-d",
+
+        // Lazy initialization for time inputs
+        let startTimeInitialized = false;
+        let endTimeInitialized = false;
+
+        startTimeInput.addEventListener("focus", function () {
+            if (!startTimeInitialized) {
+                flatpickr(startTimeInput, {
+                    enableTime: true,
+                    noCalendar: true,  // Disable the date selection
+                    dateFormat: "H:i",  // Time format in 24-hour
+                    time_24hr: true,  // 24-hour time picker
+                    allowInput: true,  // Allow direct typing of time
+                    defaultDate: startTimeInput.value || "00:00",  // Default time if input is empty
+                });
+                startTimeInitialized = true;
+            }
         });
-    </script> -->
+
+        endTimeInput.addEventListener("focus", function () {
+            if (!endTimeInitialized) {
+                flatpickr(endTimeInput, {
+                    enableTime: true,
+                    noCalendar: true,  // Disable the date selection
+                    dateFormat: "H:i",  // Time format in 24-hour
+                    time_24hr: true,  // 24-hour time picker
+                    allowInput: true,  // Allow direct typing of time
+                    defaultDate: endTimeInput.value || "00:00",  // Default time if input is empty
+                });
+                endTimeInitialized = true;
+            }
+        });
+    </script>
     <script src="script.js"></script>
     <div id="instructions">
         <p>Instructions:</p>
