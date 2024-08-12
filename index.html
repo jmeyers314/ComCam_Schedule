@@ -17,8 +17,8 @@
         #container {
             display: flex;
             flex-direction: row; /* Align the calendar+buttons and form side by side */
-            align-items: flex-start;
-            width: 100%; /* Ensure it takes the full width */
+            width: 1250px;
+            /* border: 1px solid #ccc; */
         }
 
         #leftPanel {
@@ -30,15 +30,13 @@
         }
 
         #editFormContainer {
+            margin-top: 20px;
             margin-left: 20px; /* Space between the left panel and the form */
-            max-width: 300px; /* Set a max width for the form */
             padding: 10px;
             border: 1px solid #ccc;
             background-color: #f9f9f9;
-            display: none; /* Initially hidden */
-            align-self: flex-start; /* Ensure the form container aligns to the left */
-            width: fit-content; /* Make the form take up only as much space as needed */
-            box-sizing: border-box; /* Include padding and borders in width calculation */
+            display: none;
+            align-self: flex-start;
         }
 
         #buttons {
