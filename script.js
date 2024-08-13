@@ -654,7 +654,6 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
-
 function updateSelectedObservation() {
     const selectedObservations = d3.selectAll(".observation.selected");
 
@@ -766,3 +765,130 @@ function parseTime(timeStr) {
     else
         return decimalHours;
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const adjustmentStep = 15; // Time step in minutes
+
+    // Utility function to parse time in HH:MM format to decimal hours
+    function parseTimeToDecimalHours(timeStr) {
+        const [hours, minutes] = timeStr.split(':').map(Number);
+        let decimalHours = hours + minutes / 60;
+        // Adjust for the internal time scale
+        if (decimalHours >= 0 && decimalHours < 12) {
+            // Morning times (e.g., 00:00 to 07:30)
+            return decimalHours;
+        } else {
+            // Evening times (e.g., 19:00 to 24:00)
+            return decimalHours - 24;
+        }
+    }
+
+    // Utility function to format decimal hours back to HH:MM format
+    function formatDecimalHoursToTime(decimalHours) {
+        let adjustedHours = decimalHours;
+        if (decimalHours < 0) {
+            adjustedHours += 24; // Adjust back for positive hours
+        }
+        const hours = Math.floor(adjustedHours);
+        const minutes = Math.round((adjustedHours - hours) * 60);
+        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    }
+
+    // Function to get the list of stopping points based on observations and twilight edges
+    function getStoppingPoints(currentDate) {
+        const stoppingPoints = [];
+
+        // Filter and add twilight edges for the current date
+        filteredTwilightData.forEach(twilight => {
+            if (twilight.date === currentDate) {
+                stoppingPoints.push(twilight.sunset);
+                stoppingPoints.push(twilight.evening_6deg);
+                stoppingPoints.push(twilight.evening_12deg);
+                stoppingPoints.push(twilight.evening_18deg);
+                stoppingPoints.push(twilight.morning_18deg);
+                stoppingPoints.push(twilight.morning_12deg);
+                stoppingPoints.push(twilight.morning_6deg);
+                stoppingPoints.push(twilight.sunrise);
+            }
+        });
+
+        // Filter and add observation start and end times for the current date
+        filteredObservationData.forEach(observation => {
+            if (observation.date === currentDate) {
+                stoppingPoints.push(observation.start_time);
+                stoppingPoints.push(observation.end_time);
+            }
+        });
+
+        // Remove duplicates and sort
+        return Array.from(new Set(stoppingPoints)).sort((a, b) => a - b);
+    }
+
+    // Function to find the next/previous stopping point based on direction
+    function findNextStoppingPoint(currentTime, currentDate, direction) {
+        const stoppingPoints = getStoppingPoints(currentDate);
+        if (direction > 0) {
+            // Find the next stopping point
+            for (let i = 0; i < stoppingPoints.length; i++) {
+                if (stoppingPoints[i] > currentTime) {
+                    return stoppingPoints[i];
+                }
+            }
+            return maxTime; // If no stopping point found, return maxTime
+        } else {
+            // Find the previous stopping point
+            for (let i = stoppingPoints.length - 1; i >= 0; i--) {
+                if (stoppingPoints[i] < currentTime) {
+                    return stoppingPoints[i];
+                }
+            }
+            return minTime; // If no stopping point found, return minTime
+        }
+    }
+
+    // Function to adjust time with respect to predefined stopping points
+    function adjustTime(inputField, adjustment) {
+        const currentDate = document.getElementById("editDate").value;
+        let currentDecimalHours = parseTimeToDecimalHours(inputField.value);
+        let newDecimalHours;
+
+        if (adjustment > 0) {
+            newDecimalHours = findNextStoppingPoint(currentDecimalHours, currentDate, 1);
+            newDecimalHours += 0.017; // Add a small offset to avoid rounding errors
+        } else {
+            newDecimalHours = findNextStoppingPoint(currentDecimalHours, currentDate, -1);
+            newDecimalHours -= 0.017; // Subtract a small offset to avoid rounding errors
+        }
+
+        // Adjust by 15 minutes if no stopping point is nearby
+        const minutesDifference = (newDecimalHours - currentDecimalHours) * 60;
+        if (Math.abs(minutesDifference) > adjustmentStep) {
+            newDecimalHours = currentDecimalHours + adjustment / 60;
+        }
+
+        // Ensure the time stays within the minTime to maxTime period
+        if (newDecimalHours < minTime) newDecimalHours = minTime;
+        if (newDecimalHours > maxTime) newDecimalHours = maxTime;
+
+        inputField.value = formatDecimalHoursToTime(newDecimalHours);
+        inputField.dispatchEvent(new Event('input')); // Trigger any input event listeners
+    }
+
+    // Event listeners for Start Time buttons
+    document.getElementById("startTimeUp").addEventListener("click", function() {
+        adjustTime(document.getElementById("editStartTime"), adjustmentStep);
+    });
+
+    document.getElementById("startTimeDown").addEventListener("click", function() {
+        adjustTime(document.getElementById("editStartTime"), -adjustmentStep);
+    });
+
+    // Event listeners for End Time buttons
+    document.getElementById("endTimeUp").addEventListener("click", function() {
+        adjustTime(document.getElementById("editEndTime"), adjustmentStep);
+    });
+
+    document.getElementById("endTimeDown").addEventListener("click", function() {
+        adjustTime(document.getElementById("editEndTime"), -adjustmentStep);
+    });
+});
