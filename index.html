@@ -49,7 +49,46 @@
             stroke-dasharray: 4;
             fill: none;
         }
-    </style>
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            resize: none; /* Prevent users from resizing the textarea */
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .time-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Style the time input fields */
+        .time-container input {
+            flex: 1;
+        }
+
+        /* Style the buttons */
+        .time-buttons {
+            display: flex;
+            flex-direction: column;
+            margin-left: 5px;
+        }
+
+        .time-buttons button {
+            width: 25px;
+            height: 25px;
+            padding: 0;
+            margin: 1px 0;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+</style>
 </head>
 <body>
     <div id="container">
@@ -69,11 +108,23 @@
                 <label for="editDate">Date:</label>
                 <input type="text" id="editDate" name="date"><br><br>
 
-                <label for="editStartTime">Start Time:</label>
-                <input type="text" id="editStartTime" name="start_time"><br><br>
+                <div class="time-container">
+                    <label for="editStartTime">Start Time:</label>
+                    <input type="text" id="editStartTime" name="start_time">
+                    <div class="time-buttons">
+                        <button type="button" id="startTimeUp">▲</button>
+                        <button type="button" id="startTimeDown">▼</button>
+                    </div>
+                </div>
 
-                <label for="editEndTime">End Time:</label>
-                <input type="text" id="editEndTime" name="end_time"><br><br>
+                <div class="time-container">
+                    <label for="editEndTime">End Time:</label>
+                    <input type="text" id="editEndTime" name="end_time">
+                    <div class="time-buttons">
+                        <button type="button" id="endTimeUp">▲</button>
+                        <button type="button" id="endTimeDown">▼</button>
+                    </div>
+                </div>
 
                 <label for="editLabel">Label:</label>
                 <input type="text" id="editLabel" name="label"><br><br>
@@ -93,6 +144,9 @@
 
                 <label for="editUrl">URL:</label>
                 <input type="url" id="editUrl" name="url"><br><br>
+
+                <label for="editNotes">Notes:</label>
+                <textarea id="editNotes" name="notes" maxlength="500" placeholder="Enter notes here..."></textarea><br><br>
             </form>
         </div>
     </div>
