@@ -277,6 +277,7 @@ function renderObservations() {
 
                 // Show the form
                 document.getElementById("editFormContainer").style.display = "block";
+                toggleFormInputs(true);
             } else {
                 // Hide the form if no or more than one item is selected
                 document.getElementById("editFormContainer").style.display = "none";
@@ -319,6 +320,7 @@ function renderObservations() {
 
             // Show the form
             document.getElementById("editFormContainer").style.display = "block";
+            toggleFormInputs(false);
         });
 
     // Apply the drag behavior to the SVG canvas
@@ -988,3 +990,16 @@ document.getElementById("editNotes").addEventListener("input", function() {
         selectedData.notes = this.value;  // Update the observation's notes
     }
 });
+
+function toggleFormInputs(enabled) {
+    const formElements = document.querySelectorAll('#editForm input, #editForm select, #editForm textarea, .time-buttons button');
+    formElements.forEach(element => {
+        element.disabled = !enabled;
+    });
+
+    // Specifically handle the Choices.js dropdown separately if needed
+    const filterTagsDropdown = document.querySelector('.choices__inner');
+    if (filterTagsDropdown) {
+        filterTagsDropdown.classList.toggle('disabled', !enabled);
+    }
+}
