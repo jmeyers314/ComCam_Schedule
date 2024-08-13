@@ -15,67 +15,56 @@ obstypes = {
         "category": "Calibration",
         "label": "Twiflat",
         "tooltip": "Morning twilight flats",
-        "url": "http://www.example.com/twiflats.html"
     },
     "prep": {
         "category": "Prep",
         "label": "Prep",
         "tooltip": "Get ready",
-        "url": "http://www.example.com/ready.html"
     },
     "sense": {
         "category": "AOS data",
         "label": "Sense",
         "tooltip": "Sensitivity sweeps",
-        "url": "http://www.example.com/sense.html"
     },
     "ref": {
         "category": "AOS data",
         "label": "Ref",
         "tooltip": "AOS reference",
-        "url": "http://www.example.com/ref.html"
     },
     "focus": {
         "category": "AOS transient",
         "label": "Focus",
         "tooltip": "Focus sweeps",
-        "url": "http://www.example.com/focus.html"
     },
     "coord": {
         "category": "AOS transient",
         "label": "Coord",
         "tooltip": "Validate coordinate systems",
-        "url": "http://www.example.com/coord.html"
     },
     "LUT": {
         "category": "AOS data",
         "label": "LUT",
         "tooltip": "Look-up table sweeps",
-        "url": "http://www.example.com/lut.html"
     },
     "loop": {
         "category": "AOS transient",
         "label": "Loop",
         "tooltip": "Closed-loop optimization",
-        "url": "http://www.example.com/loop.html"
     },
     "guider": {
         "category": "IQ",
         "label": "Guider",
         "tooltip": "Guider data",
-        "url": "http://www.example.com/guider.html"
     },
     "giant": {
         "category": "AOS data",
         "label": "Giant",
         "tooltip": "Giant donut",
-        "url": "http://www.example.com/giant.html"
     },
     "science": {
         "category": "Science",
         "label": "Science",
         "tooltip": "Science Verification data",
-        "url": "http://www.example.com/science.html"
     },
 }
 
@@ -88,7 +77,6 @@ def add_obs(date, start, end, obstype):
             "category": obstypes[obstype]["category"],
             "label": obstypes[obstype]["label"],
             "tooltip": obstypes[obstype]["tooltip"],
-            "url": obstypes[obstype]["url"]
         }
     )
 

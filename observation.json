@@ -5,8 +5,7 @@
     "end_time": -2.906203564256431,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-01",
@@ -14,8 +13,7 @@
     "end_time": 6.921218264847992,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-02",
@@ -23,8 +21,7 @@
     "end_time": -2.894274048507215,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-02",
@@ -32,8 +29,7 @@
     "end_time": 6.9005297608673555,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-03",
@@ -41,8 +37,7 @@
     "end_time": -2.8821753636002554,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-03",
@@ -50,8 +45,7 @@
     "end_time": 6.879931434988974,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-04",
@@ -59,8 +53,7 @@
     "end_time": -2.8699063248932375,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-04",
@@ -68,8 +61,7 @@
     "end_time": 6.859431747347115,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-05",
@@ -77,8 +69,7 @@
     "end_time": -2.8574659153819097,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-05",
@@ -86,8 +77,7 @@
     "end_time": 6.8390143364667875,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-06",
@@ -95,8 +85,7 @@
     "end_time": -2.844853319227697,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-06",
@@ -104,8 +93,7 @@
     "end_time": 6.818658079952,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-07",
@@ -113,8 +101,7 @@
     "end_time": -2.832067865878345,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-07",
@@ -122,8 +109,7 @@
     "end_time": 6.798421930521725,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-08",
@@ -131,8 +117,7 @@
     "end_time": -2.8191090971231474,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-08",
@@ -140,8 +125,7 @@
     "end_time": 6.778314650058745,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-09",
@@ -149,8 +133,7 @@
     "end_time": -2.805862829089166,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-09",
@@ -158,8 +141,7 @@
     "end_time": 6.758345067501066,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-10",
@@ -167,8 +149,7 @@
     "end_time": -2.7924332544207586,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-10",
@@ -176,8 +157,7 @@
     "end_time": 6.738522145897148,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-11",
@@ -185,8 +165,7 @@
     "end_time": -2.7788228988647474,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-11",
@@ -194,8 +173,7 @@
     "end_time": 6.718854982405899,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-12",
@@ -203,8 +181,7 @@
     "end_time": -2.7650315500795855,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-12",
@@ -212,8 +189,7 @@
     "end_time": 6.699352808296679,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-13",
@@ -221,8 +197,7 @@
     "end_time": -2.7510588839650167,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-13",
@@ -230,8 +205,7 @@
     "end_time": 6.680001195520161,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-14",
@@ -239,8 +213,7 @@
     "end_time": -2.7369044311344637,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-14",
@@ -248,8 +221,7 @@
     "end_time": 6.660754255950449,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-15",
@@ -257,8 +229,7 @@
     "end_time": -2.7225675210356726,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-15",
@@ -266,8 +237,7 @@
     "end_time": 6.641697518527506,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-16",
@@ -275,8 +245,7 @@
     "end_time": -2.7080473154783262,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-16",
@@ -284,8 +253,7 @@
     "end_time": 6.622840762138365,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-17",
@@ -293,8 +261,7 @@
     "end_time": -2.693343032151462,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-17",
@@ -302,8 +269,7 @@
     "end_time": 6.604193810373543,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-18",
@@ -311,8 +277,7 @@
     "end_time": -2.6784541681408895,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-18",
@@ -320,8 +285,7 @@
     "end_time": 6.585766509175299,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-19",
@@ -329,8 +293,7 @@
     "end_time": -2.663380835205318,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-19",
@@ -338,8 +301,7 @@
     "end_time": 6.567568715661762,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-20",
@@ -347,8 +309,7 @@
     "end_time": -2.6480080112814917,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-20",
@@ -356,8 +317,7 @@
     "end_time": 6.549610164016483,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-21",
@@ -365,8 +325,7 @@
     "end_time": -2.6323781535029425,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-21",
@@ -374,8 +333,7 @@
     "end_time": 6.5319005213677865,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-22",
@@ -383,8 +341,7 @@
     "end_time": -2.616561245173217,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-22",
@@ -392,8 +349,7 @@
     "end_time": 6.514386836439369,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-23",
@@ -401,8 +357,7 @@
     "end_time": -2.600560683757068,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-23",
@@ -410,8 +365,7 @@
     "end_time": 6.497081615030764,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-24",
@@ -419,8 +373,7 @@
     "end_time": -2.584380637854339,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-24",
@@ -428,8 +381,7 @@
     "end_time": 6.480051085352896,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-25",
@@ -437,8 +389,7 @@
     "end_time": -2.5680258907377733,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-25",
@@ -446,8 +397,7 @@
     "end_time": 6.4633042439818364,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-26",
@@ -455,8 +405,7 @@
     "end_time": -2.551501862704755,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-26",
@@ -464,8 +413,7 @@
     "end_time": 6.4468498528003675,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-27",
@@ -473,8 +421,7 @@
     "end_time": -2.5348145663738264,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-27",
@@ -482,8 +429,7 @@
     "end_time": 6.4306965060532075,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-28",
@@ -491,8 +437,7 @@
     "end_time": -2.517970595508815,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-28",
@@ -500,8 +445,7 @@
     "end_time": 6.414852596819399,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-29",
@@ -509,8 +453,7 @@
     "end_time": -2.5009770914912237,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-29",
@@ -518,8 +461,7 @@
     "end_time": 6.399326361715792,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-30",
@@ -527,8 +469,7 @@
     "end_time": -2.4836476854980005,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-30",
@@ -536,8 +477,7 @@
     "end_time": 6.384125847369431,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-31",
@@ -545,8 +485,7 @@
     "end_time": -2.4661123193800463,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-10-31",
@@ -554,8 +493,7 @@
     "end_time": 6.369258932769297,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-01",
@@ -563,8 +501,7 @@
     "end_time": -2.4484450668096556,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-01",
@@ -572,8 +509,7 @@
     "end_time": 6.3546660728752595,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-02",
@@ -581,8 +517,7 @@
     "end_time": -2.4306555613875402,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-02",
@@ -590,8 +525,7 @@
     "end_time": 6.340362858027218,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-03",
@@ -599,8 +533,7 @@
     "end_time": -2.412753961980344,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-03",
@@ -608,8 +541,7 @@
     "end_time": 6.32641604170203,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-04",
@@ -617,8 +549,7 @@
     "end_time": -2.394750896841289,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-04",
@@ -626,8 +557,7 @@
     "end_time": 6.312833189964293,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-05",
@@ -635,8 +565,7 @@
     "end_time": -2.376657441258432,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-05",
@@ -644,8 +573,7 @@
     "end_time": 6.299621757119892,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-06",
@@ -653,8 +581,7 @@
     "end_time": -2.3584850728511824,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-06",
@@ -662,8 +589,7 @@
     "end_time": 6.286789130419491,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-07",
@@ -671,8 +597,7 @@
     "end_time": -2.3402455709874643,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-07",
@@ -680,8 +605,7 @@
     "end_time": 6.274342697113751,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-08",
@@ -689,8 +613,7 @@
     "end_time": -2.321705482900144,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-08",
@@ -698,8 +621,7 @@
     "end_time": 6.2622897885739786,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-09",
@@ -707,8 +629,7 @@
     "end_time": -2.3030336871743216,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-09",
@@ -716,8 +637,7 @@
     "end_time": 6.250637758523224,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-10",
@@ -725,8 +645,7 @@
     "end_time": -2.2843266203999533,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-10",
@@ -734,8 +653,7 @@
     "end_time": 6.239393927156923,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-11",
@@ -743,8 +661,7 @@
     "end_time": -2.2655969560146345,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-11",
@@ -752,8 +669,7 @@
     "end_time": 6.228565637022255,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-12",
@@ -761,8 +677,7 @@
     "end_time": -2.246857188642025,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-12",
@@ -770,8 +685,7 @@
     "end_time": 6.2181601971387845,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-13",
@@ -779,8 +693,7 @@
     "end_time": -2.228119634091854,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-13",
@@ -788,8 +701,7 @@
     "end_time": 6.208184882998465,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-14",
@@ -797,8 +709,7 @@
     "end_time": -2.209396507591009,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-14",
@@ -806,8 +717,7 @@
     "end_time": 6.198617186397312,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-15",
@@ -815,8 +725,7 @@
     "end_time": -2.190700124949217,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-15",
@@ -824,8 +733,7 @@
     "end_time": 6.189422160387037,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-16",
@@ -833,8 +741,7 @@
     "end_time": -2.17199245467782,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-16",
@@ -842,8 +749,7 @@
     "end_time": 6.180681902915238,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-17",
@@ -851,8 +757,7 @@
     "end_time": -2.153002191334963,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-17",
@@ -860,8 +765,7 @@
     "end_time": 6.172403577715157,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-18",
@@ -869,8 +773,7 @@
     "end_time": -2.1340773962438107,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-18",
@@ -878,8 +781,7 @@
     "end_time": 6.164594102650879,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-19",
@@ -887,8 +789,7 @@
     "end_time": -2.1152333579957485,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-19",
@@ -896,8 +797,7 @@
     "end_time": 6.157260049134491,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-20",
@@ -905,8 +805,7 @@
     "end_time": -2.0964859686791897,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-20",
@@ -914,8 +813,7 @@
     "end_time": 6.15040749683976,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-21",
@@ -923,8 +821,7 @@
     "end_time": -2.0778516568243504,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-21",
@@ -932,8 +829,7 @@
     "end_time": 6.144042056053875,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-22",
@@ -941,8 +837,7 @@
     "end_time": -2.059347275644541,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-22",
@@ -950,8 +845,7 @@
     "end_time": 6.138168811798094,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-23",
@@ -959,8 +853,7 @@
     "end_time": -2.0409899912774563,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-23",
@@ -968,8 +861,7 @@
     "end_time": 6.132792357355354,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-24",
@@ -977,8 +869,7 @@
     "end_time": -2.0227972492575645,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-24",
@@ -986,8 +877,7 @@
     "end_time": 6.127916760742663,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-25",
@@ -995,8 +885,7 @@
     "end_time": -2.004586648195982,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-25",
@@ -1004,8 +893,7 @@
     "end_time": 6.123545620590447,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-26",
@@ -1013,8 +901,7 @@
     "end_time": -1.9863631054759026,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-26",
@@ -1022,8 +909,7 @@
     "end_time": 6.119681999087332,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-27",
@@ -1031,8 +917,7 @@
     "end_time": -1.9683621637523174,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-27",
@@ -1040,8 +925,7 @@
     "end_time": 6.1163284555077535,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-28",
@@ -1049,8 +933,7 @@
     "end_time": -1.9506025314331055,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-28",
@@ -1058,8 +941,7 @@
     "end_time": 6.113487023860214,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-29",
@@ -1067,8 +949,7 @@
     "end_time": -1.9331028945744038,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-29",
@@ -1076,8 +957,7 @@
     "end_time": 6.111159168183802,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-11-30",
@@ -1085,8 +965,7 @@
     "end_time": -1.9158819168806076,
     "category": "Prep",
     "label": "Prep",
-    "tooltip": "Get ready",
-    "url": "http://www.example.com/ready.html"
+    "tooltip": "Get ready"
   },
   {
     "date": "2024-11-30",
@@ -1094,8 +973,7 @@
     "end_time": 6.109345838427542,
     "category": "Calibration",
     "label": "Twiflat",
-    "tooltip": "Morning twilight flats",
-    "url": "http://www.example.com/twiflats.html"
+    "tooltip": "Morning twilight flats"
   },
   {
     "date": "2024-10-01",
@@ -1103,8 +981,7 @@
     "end_time": -1.906203564256431,
     "category": "AOS transient",
     "label": "Coord",
-    "tooltip": "Validate coordinate systems",
-    "url": "http://www.example.com/coord.html"
+    "tooltip": "Validate coordinate systems"
   },
   {
     "date": "2024-10-01",
@@ -1112,8 +989,7 @@
     "end_time": -0.906203564256431,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-01",
@@ -1121,8 +997,7 @@
     "end_time": 5.0937964357435686,
     "category": "AOS data",
     "label": "Sense",
-    "tooltip": "Sensitivity sweeps",
-    "url": "http://www.example.com/sense.html"
+    "tooltip": "Sensitivity sweeps"
   },
   {
     "date": "2024-10-01",
@@ -1130,8 +1005,7 @@
     "end_time": 5.975304063409565,
     "category": "AOS data",
     "label": "Ref",
-    "tooltip": "AOS reference",
-    "url": "http://www.example.com/ref.html"
+    "tooltip": "AOS reference"
   },
   {
     "date": "2024-10-02",
@@ -1139,8 +1013,7 @@
     "end_time": -1.894274048507215,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-02",
@@ -1148,8 +1021,7 @@
     "end_time": 5.105725951492785,
     "category": "AOS data",
     "label": "Sense",
-    "tooltip": "Sensitivity sweeps",
-    "url": "http://www.example.com/sense.html"
+    "tooltip": "Sensitivity sweeps"
   },
   {
     "date": "2024-10-02",
@@ -1157,8 +1029,7 @@
     "end_time": 5.952949807047842,
     "category": "AOS data",
     "label": "Ref",
-    "tooltip": "AOS reference",
-    "url": "http://www.example.com/ref.html"
+    "tooltip": "AOS reference"
   },
   {
     "date": "2024-10-03",
@@ -1166,8 +1037,7 @@
     "end_time": -1.8821753636002554,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-03",
@@ -1175,8 +1045,7 @@
     "end_time": 5.117824636399744,
     "category": "AOS data",
     "label": "Sense",
-    "tooltip": "Sensitivity sweeps",
-    "url": "http://www.example.com/sense.html"
+    "tooltip": "Sensitivity sweeps"
   },
   {
     "date": "2024-10-03",
@@ -1184,8 +1053,7 @@
     "end_time": 5.93063050881028,
     "category": "AOS data",
     "label": "Ref",
-    "tooltip": "AOS reference",
-    "url": "http://www.example.com/ref.html"
+    "tooltip": "AOS reference"
   },
   {
     "date": "2024-10-04",
@@ -1193,8 +1061,7 @@
     "end_time": -1.8699063248932375,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-04",
@@ -1202,8 +1069,7 @@
     "end_time": 5.130093675106762,
     "category": "AOS data",
     "label": "Sense",
-    "tooltip": "Sensitivity sweeps",
-    "url": "http://www.example.com/sense.html"
+    "tooltip": "Sensitivity sweeps"
   },
   {
     "date": "2024-10-04",
@@ -1211,8 +1077,7 @@
     "end_time": 5.908355209976433,
     "category": "AOS data",
     "label": "Ref",
-    "tooltip": "AOS reference",
-    "url": "http://www.example.com/ref.html"
+    "tooltip": "AOS reference"
   },
   {
     "date": "2024-10-05",
@@ -1220,8 +1085,7 @@
     "end_time": -1.8574659153819097,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-05",
@@ -1229,8 +1093,7 @@
     "end_time": 5.14253408461809,
     "category": "AOS data",
     "label": "Sense",
-    "tooltip": "Sensitivity sweeps",
-    "url": "http://www.example.com/sense.html"
+    "tooltip": "Sensitivity sweeps"
   },
   {
     "date": "2024-10-05",
@@ -1238,8 +1101,7 @@
     "end_time": 5.886133074760435,
     "category": "AOS data",
     "label": "Ref",
-    "tooltip": "AOS reference",
-    "url": "http://www.example.com/ref.html"
+    "tooltip": "AOS reference"
   },
   {
     "date": "2024-10-06",
@@ -1247,8 +1109,7 @@
     "end_time": -2.344853319227697,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-06",
@@ -1256,8 +1117,7 @@
     "end_time": 5.155146680772303,
     "category": "AOS data",
     "label": "LUT",
-    "tooltip": "Look-up table sweeps",
-    "url": "http://www.example.com/lut.html"
+    "tooltip": "Look-up table sweeps"
   },
   {
     "date": "2024-10-06",
@@ -1265,8 +1125,7 @@
     "end_time": 5.86385018751025,
     "category": "AOS data",
     "label": "Ref",
-    "tooltip": "AOS reference",
-    "url": "http://www.example.com/ref.html"
+    "tooltip": "AOS reference"
   },
   {
     "date": "2024-10-07",
@@ -1274,8 +1133,7 @@
     "end_time": -2.332067865878345,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-07",
@@ -1283,8 +1141,7 @@
     "end_time": 5.167932134121655,
     "category": "AOS data",
     "label": "LUT",
-    "tooltip": "Look-up table sweeps",
-    "url": "http://www.example.com/lut.html"
+    "tooltip": "Look-up table sweeps"
   },
   {
     "date": "2024-10-07",
@@ -1292,8 +1149,7 @@
     "end_time": 5.84157834202051,
     "category": "AOS data",
     "label": "Ref",
-    "tooltip": "AOS reference",
-    "url": "http://www.example.com/ref.html"
+    "tooltip": "AOS reference"
   },
   {
     "date": "2024-10-08",
@@ -1301,8 +1157,7 @@
     "end_time": -2.3191090971231474,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-08",
@@ -1310,8 +1165,7 @@
     "end_time": 5.180890902876852,
     "category": "AOS data",
     "label": "LUT",
-    "tooltip": "Look-up table sweeps",
-    "url": "http://www.example.com/lut.html"
+    "tooltip": "Look-up table sweeps"
   },
   {
     "date": "2024-10-08",
@@ -1319,8 +1173,7 @@
     "end_time": 5.819382313638924,
     "category": "AOS data",
     "label": "Ref",
-    "tooltip": "AOS reference",
-    "url": "http://www.example.com/ref.html"
+    "tooltip": "AOS reference"
   },
   {
     "date": "2024-10-09",
@@ -1328,8 +1181,7 @@
     "end_time": -2.305862829089166,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-09",
@@ -1337,8 +1189,7 @@
     "end_time": 5.1941371709108335,
     "category": "AOS data",
     "label": "LUT",
-    "tooltip": "Look-up table sweeps",
-    "url": "http://www.example.com/lut.html"
+    "tooltip": "Look-up table sweeps"
   },
   {
     "date": "2024-10-09",
@@ -1346,8 +1197,7 @@
     "end_time": 5.797271847724913,
     "category": "AOS data",
     "label": "Ref",
-    "tooltip": "AOS reference",
-    "url": "http://www.example.com/ref.html"
+    "tooltip": "AOS reference"
   },
   {
     "date": "2024-10-10",
@@ -1355,8 +1205,7 @@
     "end_time": -2.2924332544207586,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-10",
@@ -1364,8 +1213,7 @@
     "end_time": 5.207566745579241,
     "category": "AOS data",
     "label": "LUT",
-    "tooltip": "Look-up table sweeps",
-    "url": "http://www.example.com/lut.html"
+    "tooltip": "Look-up table sweeps"
   },
   {
     "date": "2024-10-10",
@@ -1373,8 +1221,7 @@
     "end_time": 5.775256890803574,
     "category": "AOS data",
     "label": "Ref",
-    "tooltip": "AOS reference",
-    "url": "http://www.example.com/ref.html"
+    "tooltip": "AOS reference"
   },
   {
     "date": "2024-10-11",
@@ -1382,8 +1229,7 @@
     "end_time": -2.2788228988647474,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-11",
@@ -1391,8 +1237,7 @@
     "end_time": 5.221177101135252,
     "category": "AOS data",
     "label": "LUT",
-    "tooltip": "Look-up table sweeps",
-    "url": "http://www.example.com/lut.html"
+    "tooltip": "Look-up table sweeps"
   },
   {
     "date": "2024-10-11",
@@ -1400,8 +1245,7 @@
     "end_time": 5.7533475011587125,
     "category": "AOS data",
     "label": "Ref",
-    "tooltip": "AOS reference",
-    "url": "http://www.example.com/ref.html"
+    "tooltip": "AOS reference"
   },
   {
     "date": "2024-10-12",
@@ -1409,8 +1253,7 @@
     "end_time": -2.2650315500795855,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-12",
@@ -1418,8 +1261,7 @@
     "end_time": 1.2349684499204145,
     "category": "IQ",
     "label": "Guider",
-    "tooltip": "Guider data",
-    "url": "http://www.example.com/guider.html"
+    "tooltip": "Guider data"
   },
   {
     "date": "2024-10-12",
@@ -1427,8 +1269,7 @@
     "end_time": 3.2349684499204145,
     "category": "AOS data",
     "label": "Giant",
-    "tooltip": "Giant donut",
-    "url": "http://www.example.com/giant.html"
+    "tooltip": "Giant donut"
   },
   {
     "date": "2024-10-12",
@@ -1436,8 +1277,7 @@
     "end_time": 5.731553982943295,
     "category": "Science",
     "label": "Science",
-    "tooltip": "Science Verification data",
-    "url": "http://www.example.com/science.html"
+    "tooltip": "Science Verification data"
   },
   {
     "date": "2024-10-13",
@@ -1445,8 +1285,7 @@
     "end_time": -2.2510588839650167,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-13",
@@ -1454,8 +1293,7 @@
     "end_time": 3.2489411160349833,
     "category": "AOS transient",
     "label": "Loop",
-    "tooltip": "Closed-loop optimization",
-    "url": "http://www.example.com/loop.html"
+    "tooltip": "Closed-loop optimization"
   },
   {
     "date": "2024-10-13",
@@ -1463,8 +1301,7 @@
     "end_time": 5.70980393886566,
     "category": "Science",
     "label": "Science",
-    "tooltip": "Science Verification data",
-    "url": "http://www.example.com/science.html"
+    "tooltip": "Science Verification data"
   },
   {
     "date": "2024-10-14",
@@ -1472,8 +1309,7 @@
     "end_time": -2.2369044311344637,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-14",
@@ -1481,8 +1317,7 @@
     "end_time": 3.2630955688655363,
     "category": "AOS transient",
     "label": "Loop",
-    "tooltip": "Closed-loop optimization",
-    "url": "http://www.example.com/loop.html"
+    "tooltip": "Closed-loop optimization"
   },
   {
     "date": "2024-10-14",
@@ -1490,8 +1325,7 @@
     "end_time": 5.688052855432032,
     "category": "Science",
     "label": "Science",
-    "tooltip": "Science Verification data",
-    "url": "http://www.example.com/science.html"
+    "tooltip": "Science Verification data"
   },
   {
     "date": "2024-10-15",
@@ -1499,8 +1333,7 @@
     "end_time": -2.2225675210356726,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-15",
@@ -1508,8 +1341,7 @@
     "end_time": 3.2774324789643274,
     "category": "AOS transient",
     "label": "Loop",
-    "tooltip": "Closed-loop optimization",
-    "url": "http://www.example.com/loop.html"
+    "tooltip": "Closed-loop optimization"
   },
   {
     "date": "2024-10-15",
@@ -1517,8 +1349,7 @@
     "end_time": 5.6664448343217355,
     "category": "Science",
     "label": "Science",
-    "tooltip": "Science Verification data",
-    "url": "http://www.example.com/science.html"
+    "tooltip": "Science Verification data"
   },
   {
     "date": "2024-10-16",
@@ -1526,8 +1357,7 @@
     "end_time": -2.2080473154783262,
     "category": "AOS transient",
     "label": "Focus",
-    "tooltip": "Focus sweeps",
-    "url": "http://www.example.com/focus.html"
+    "tooltip": "Focus sweeps"
   },
   {
     "date": "2024-10-16",
@@ -1535,8 +1365,7 @@
     "end_time": 3.2919526845216738,
     "category": "AOS transient",
     "label": "Loop",
-    "tooltip": "Closed-loop optimization",
-    "url": "http://www.example.com/loop.html"
+    "tooltip": "Closed-loop optimization"
   },
   {
     "date": "2024-10-16",
@@ -1544,7 +1373,6 @@
     "end_time": 5.6449908390641195,
     "category": "Science",
     "label": "Science",
-    "tooltip": "Science Verification data",
-    "url": "http://www.example.com/science.html"
+    "tooltip": "Science Verification data"
   }
 ]

@@ -715,7 +715,6 @@ document.addEventListener('keydown', function(event) {
                 category: "Science", // Default category
                 label: "Science", // Default label
                 tooltip: "Science Verification data",
-                url: "http://www.example.com/science.html",
                 filters: ['i']
             };
 
