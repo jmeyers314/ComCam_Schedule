@@ -3,9 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
     <title>ComCam On-Sky Observing Schedule</title>
     <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <style>
+        .choices__list--dropdown .choices__list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjust minmax to fit your design */
+            gap: 5px; /* Space between lozenges */
+        }
+
+        .choices__list--dropdown .choices__item--choice {
+            display: inline-block;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .choices__inner {
+            width: 250px; /* Or set to a specific width, e.g., 250px */
+            padding: 5px; /* Optional: Add padding for a better appearance */
+        }
+
+        /* Specific styles for each filter in the dropdown */
+        .choices__list--dropdown .choices__item--choice[data-value="u"] {
+            background-color: #800080; /* Purple */
+        }
+
+        .choices__list--dropdown .choices__item--choice[data-value="g"] {
+            background-color: #0000FF; /* Blue */
+        }
+
+        .choices__list--dropdown .choices__item--choice[data-value="r"] {
+            background-color: #008000; /* Green */
+        }
+
+        .choices__list--dropdown .choices__item--choice[data-value="i"] {
+            background-color: #FFA500; /* Orange */
+        }
+
+        .choices__list--dropdown .choices__item--choice[data-value="z"] {
+            background-color: #FF0000; /* Red */
+        }
+
+        .choices__list--dropdown .choices__item--choice[data-value="y"] {
+            background-color: #000000; /* Black */
+        }
+
+        .choices__list--dropdown .choices__item--choice.is-highlighted[data-value="u"] {
+            background-color: #800080; /* Purple */
+        }
+
+        .choices__list--dropdown .choices__item--choice.is-highlighted[data-value="g"] {
+            background-color: #0000FF !important; /* Blue */
+        }
+
+        .choices__list--dropdown .choices__item--choice.is-highlighted[data-value="r"] {
+            background-color: #008000 !important; /* Green */
+        }
+
+        .choices__list--dropdown .choices__item--choice.is-highlighted[data-value="i"] {
+            background-color: #FFA500 !important; /* Orange */
+        }
+
+        .choices__list--dropdown .choices__item--choice.is-highlighted[data-value="z"] {
+            background-color: #FF0000 !important; /* Red */
+        }
+
+        .choices__list--dropdown .choices__item--choice.is-highlighted[data-value="y"] {
+            background-color: #000000 !important; /* Black */
+        }
+
+        .choices__list--dropdown .choices__item--choice.is-highlighted {
+            border: 4px solid black !important; /* Keep the border color visible */
+        }
+
+        /* Base styles for the selected lozenges */
+        .choices__item--selectable {
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin-right: 5px;
+            font-size: 14px;
+            color: white;
+        }
+
+        /* Specific styles for each selected lozenge */
+        .choices__item[data-value="u"] {
+            background-color: #800080; /* Purple */
+        }
+
+        .choices__item[data-value="g"] {
+            background-color: #0000FF; /* Blue */
+        }
+
+        .choices__item[data-value="r"] {
+            background-color: #008000; /* Green */
+        }
+
+        .choices__item[data-value="i"] {
+            background-color: #FFA500; /* Orange */
+        }
+
+        .choices__item[data-value="z"] {
+            background-color: #FF0000; /* Red */
+        }
+
+        .choices__item[data-value="y"] {
+            background-color: #000000; /* Black */
+        }
+
+        /* Hide the 'Press to select' text */
+        .choices__list--dropdown .choices__item--choice.is-highlighted::after {
+            content: none; /* Remove any content added via CSS */
+            display: none; /* Ensure the pseudo-element is hidden */
+        }
+
+        /* Alternatively, if it's within a span or similar element */
+        .choices__list--dropdown .choices__item--choice.is-highlighted [data-select-text] {
+            display: none; /* Hide the element */
+        }
+
+        /* Custom styling for other elements */
         .tooltip {
             position: absolute;
             background-color: white;
@@ -88,7 +208,7 @@
             cursor: pointer;
         }
 
-</style>
+    </style>
 </head>
 <body>
     <div id="container">
@@ -139,61 +259,22 @@
                     <option value="Science">Science</option>
                 </select><br><br>
 
+                <label for="filterTags">Filters:</label>
+                <select class="form-control" data-trigger name="filterTags" id="filterTags" multiple>
+                    <option value="u">u</option>
+                    <option value="g">g</option>
+                    <option value="r">r</option>
+                    <option value="i">i</option>
+                    <option value="z">z</option>
+                    <option value="y">y</option>
+                </select><br><br>
+
                 <label for="editNotes">Notes:</label>
                 <textarea id="editNotes" name="notes" maxlength="500" placeholder="Enter notes here..."></textarea><br><br>
             </form>
         </div>
     </div>
     <div id="tooltip" class="tooltip"></div>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-        const dateInput = document.getElementById("editDate");
-        const startTimeInput = document.getElementById("editStartTime");
-        const endTimeInput = document.getElementById("editEndTime");
-
-        // Initialize Flatpickr for Date
-        flatpickr(dateInput, {
-            dateFormat: "Y-m-d",  // Date format
-            onOpen: function(selectedDates, dateStr, instance) {
-                const currentDate = dateInput.value;
-                if (currentDate) {
-                    instance.setDate(currentDate, true); // Jump to current date in input
-                }
-            }
-        });
-
-        // Lazy initialization for time inputs
-        let startTimeInitialized = false;
-        let endTimeInitialized = false;
-
-        startTimeInput.addEventListener("focus", function () {
-            if (!startTimeInitialized) {
-                flatpickr(startTimeInput, {
-                    enableTime: true,
-                    noCalendar: true,  // Disable the date selection
-                    dateFormat: "H:i",  // Time format in 24-hour
-                    time_24hr: true,  // 24-hour time picker
-                    allowInput: true,  // Allow direct typing of time
-                    defaultDate: startTimeInput.value || "00:00",  // Default time if input is empty
-                });
-                startTimeInitialized = true;
-            }
-        });
-
-        endTimeInput.addEventListener("focus", function () {
-            if (!endTimeInitialized) {
-                flatpickr(endTimeInput, {
-                    enableTime: true,
-                    noCalendar: true,  // Disable the date selection
-                    dateFormat: "H:i",  // Time format in 24-hour
-                    time_24hr: true,  // 24-hour time picker
-                    allowInput: true,  // Allow direct typing of time
-                    defaultDate: endTimeInput.value || "00:00",  // Default time if input is empty
-                });
-                endTimeInitialized = true;
-            }
-        });
-    </script>
     <script src="script.js"></script>
     <div id="instructions">
         <p>Instructions:</p>

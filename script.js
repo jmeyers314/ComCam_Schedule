@@ -268,6 +268,7 @@ function renderObservations() {
                 document.getElementById("editEndTime").value = formatTimeForInput(selectedData.end_time);
                 document.getElementById("editLabel").value = selectedData.label;
                 document.getElementById("editCategory").value = selectedData.category;
+                setFilterTags(selectedData.filters);
 
                 // Show the form
                 document.getElementById("editFormContainer").style.display = "block";
@@ -308,6 +309,7 @@ function renderObservations() {
             document.getElementById("editEndTime").value = formatTimeForInput(d.end_time);
             document.getElementById("editLabel").value = ""; // No label for available blocks
             document.getElementById("editCategory").value = ""; // No category for available blocks
+            setFilterTags([]); // No filters for available blocks
 
             // Show the form
             document.getElementById("editFormContainer").style.display = "block";
@@ -356,7 +358,13 @@ function loadObservations() {
         filteredObservationData = observationData
             .filter(d => dateRange.map(
                 date => date.toISOString().split("T")[0]).includes(d.date)
-            );
+            )
+            .map(obs => {
+                // Ensure each observation has a filters field, defaulting to ['i']
+                obs.filters = obs.filters || ['i'];
+                return obs;
+            });
+
         initializeAvailableBlocks();
         pruneAvailableBlocks();
 
@@ -662,6 +670,7 @@ function updateSelectedObservation() {
         selectedData.end_time = parseTime(document.getElementById("editEndTime").value);
         selectedData.label = document.getElementById("editLabel").value;
         selectedData.category = document.getElementById("editCategory").value;
+        selectedData.filters = filterTags.getValue(true);
 
         // Store the index of the selected observation
         const selectedIndex = filteredObservationData.indexOf(selectedData);
@@ -706,7 +715,8 @@ document.addEventListener('keydown', function(event) {
                 category: "Science", // Default category
                 label: "Science", // Default label
                 tooltip: "Science Verification data",
-                url: "http://www.example.com/science.html"
+                url: "http://www.example.com/science.html",
+                filters: ['i']
             };
 
             // Add the new observation to the filteredObservationData
@@ -739,6 +749,7 @@ document.addEventListener('keydown', function(event) {
             document.getElementById("editEndTime").value = formatTimeForInput(newObservation.end_time);
             document.getElementById("editLabel").value = newObservation.label;
             document.getElementById("editCategory").value = newObservation.category;
+            setFilterTags(newObservation.filters);
 
             // Show the edit form
             document.getElementById("editFormContainer").style.display = "block";
@@ -882,3 +893,83 @@ document.addEventListener("DOMContentLoaded", function() {
         adjustTime(document.getElementById("editEndTime"), -adjustmentStep);
     });
 });
+
+const dateInput = document.getElementById("editDate");
+const startTimeInput = document.getElementById("editStartTime");
+const endTimeInput = document.getElementById("editEndTime");
+
+// Initialize Flatpickr for Date
+flatpickr(dateInput, {
+    dateFormat: "Y-m-d",  // Date format
+    onOpen: function(selectedDates, dateStr, instance) {
+        const currentDate = dateInput.value;
+        if (currentDate) {
+            instance.setDate(currentDate, true); // Jump to current date in input
+        }
+    }
+});
+
+// Lazy initialization for time inputs
+let startTimeInitialized = false;
+let endTimeInitialized = false;
+
+startTimeInput.addEventListener("focus", function () {
+    if (!startTimeInitialized) {
+        flatpickr(startTimeInput, {
+            enableTime: true,
+            noCalendar: true,  // Disable the date selection
+            dateFormat: "H:i",  // Time format in 24-hour
+            time_24hr: true,  // 24-hour time picker
+            allowInput: true,  // Allow direct typing of time
+            defaultDate: startTimeInput.value || "00:00",  // Default time if input is empty
+        });
+        startTimeInitialized = true;
+    }
+});
+
+endTimeInput.addEventListener("focus", function () {
+    if (!endTimeInitialized) {
+        flatpickr(endTimeInput, {
+            enableTime: true,
+            noCalendar: true,  // Disable the date selection
+            dateFormat: "H:i",  // Time format in 24-hour
+            time_24hr: true,  // 24-hour time picker
+            allowInput: true,  // Allow direct typing of time
+            defaultDate: endTimeInput.value || "00:00",  // Default time if input is empty
+        });
+        endTimeInitialized = true;
+    }
+});
+
+// Initialize Choices.js for the multi-select filters
+const filterOrder = ['u', 'g', 'r', 'i', 'z', 'y'];
+const filterTags = new Choices('#filterTags', {
+    removeItemButton: true,
+    maxItemCount: 3,  // Limit the number of selections to 3
+    shouldSort: false,  // Disable alphabetical sorting to maintain the order in HTML
+    shouldSortItems: false,  // Disable sorting of selected items
+    allowHTML: true, // Allow HTML content in the dropdown
+});
+
+function setFilterTags(items) {
+    // Clear the current selections and re-add them in the original order
+    sortedItems = items.sort((a, b) => filterOrder.indexOf(a) - filterOrder.indexOf(b));
+    filterTags.removeActiveItems(); // Remove all active items (lozenges)
+    sortedItems.forEach(tag => filterTags.setChoiceByValue(tag)); // Re-add items in the original order
+}
+
+function updateFilterObservationFilters() {
+    const selectedObservations = d3.selectAll(".observation.selected");
+
+    if (selectedObservations.size() === 1) {
+        const selectedData = selectedObservations.data()[0];
+        selectedData.filters = filterTags.getValue(true);  // Update the observation's filters
+    }
+}
+
+// Add event listeners to maintain order after each selection or removal
+document.getElementById('filterTags').addEventListener('change', function() {
+    setFilterTags(filterTags.getValue(true));
+    updateFilterObservationFilters();
+});
+
