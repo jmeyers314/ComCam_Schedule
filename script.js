@@ -325,6 +325,9 @@ function renderObservations() {
 
     // Apply the drag behavior to the SVG canvas
     svg.call(lassoDrag);
+
+    const filtersPerNight = calculateFiltersUsedPerNight();
+    renderLozenges(filtersPerNight);
 }
 
 function renderAxes() {
@@ -980,6 +983,7 @@ function updateFilterObservationFilters() {
 document.getElementById('filterTags').addEventListener('change', function() {
     setFilterTags(filterTags.getValue(true));
     updateFilterObservationFilters();
+    renderLozenges(calculateFiltersUsedPerNight());
 });
 
 document.getElementById("editNotes").addEventListener("input", function() {
@@ -1003,3 +1007,79 @@ function toggleFormInputs(enabled) {
         filterTagsDropdown.classList.toggle('disabled', !enabled);
     }
 }
+
+function calculateFiltersUsedPerNight() {
+    const filtersPerNight = {};
+
+    filteredObservationData.forEach(observation => {
+        const { date, filters } = observation;
+
+        if (!filtersPerNight[date]) {
+            filtersPerNight[date] = new Set();
+        }
+
+        filters.forEach(filter => {
+            filtersPerNight[date].add(filter);
+        });
+    });
+
+    return filtersPerNight;
+}
+
+function renderLozenges(filtersPerNight) {
+    const lozengeSVG = d3.select("#lozengesSVG");
+
+    // Define the margins for the lozenges SVG
+    const lozengeMargin = { top: 20, right: 10, bottom: 20, left: 0 };
+    const lozengeWidth = 25;
+    const lozengeHeight = 12;
+
+    lozengeSVG
+        .attr("width", lozengeWidth*3 + lozengeMargin.left + lozengeMargin.right)
+        .attr("height", height + lozengeMargin.top + lozengeMargin.bottom) // Use the same height as the main SVG
+
+    // Clear previous lozenges
+    lozengeSVG.selectAll("*").remove();
+
+    const dateKeys = Object.keys(filtersPerNight);
+
+    dateKeys.forEach((date) => {
+        const filters = Array.from(filtersPerNight[date]);
+        const yPosition = dateScale(date) + dateScale.bandwidth() * 0.1 + lozengeMargin.top;
+
+        sortedFilters = filters.sort((a, b) => filterOrder.indexOf(a) - filterOrder.indexOf(b));
+        sortedFilters.forEach((filter, filterIndex) => {
+            lozengeSVG.append("rect")
+                .attr("x", lozengeMargin.left + lozengeWidth * filterIndex)
+                .attr("y", yPosition)
+                .attr("width", lozengeWidth)
+                .attr("height", lozengeHeight)
+                .attr("rx", 7)
+                .attr("ry", 7)
+                .attr("fill", getFilterColor(filter));
+
+            lozengeSVG.append("text")
+                .attr("x", lozengeMargin.left + lozengeWidth / 2 + lozengeWidth * filterIndex)
+                .attr("y", yPosition + lozengeHeight / 2)
+                .attr("dy", ".35em")
+                .attr("text-anchor", "middle")
+                .attr("fill", "#FFFFFF")
+                .style("font-family", "monospace")
+                .style("font-size", "10px")
+                .text(filter);
+        });
+    });
+}
+
+function getFilterColor(filter) {
+    const colorMap = {
+        'u': 'var(--color-u)',
+        'g': 'var(--color-g)',
+        'r': 'var(--color-r)',
+        'i': 'var(--color-i)',
+        'z': 'var(--color-z)',
+        'y': 'var(--color-y)'
+    };
+    return colorMap[filter] || '#000000';  // Fallback to black if filter not found
+}
+
