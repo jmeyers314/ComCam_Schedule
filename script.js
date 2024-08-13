@@ -268,8 +268,6 @@ function renderObservations() {
                 document.getElementById("editEndTime").value = formatTimeForInput(selectedData.end_time);
                 document.getElementById("editLabel").value = selectedData.label;
                 document.getElementById("editCategory").value = selectedData.category;
-                document.getElementById("editTooltip").value = selectedData.tooltip;
-                document.getElementById("editUrl").value = selectedData.url;
 
                 // Show the form
                 document.getElementById("editFormContainer").style.display = "block";
@@ -310,8 +308,6 @@ function renderObservations() {
             document.getElementById("editEndTime").value = formatTimeForInput(d.end_time);
             document.getElementById("editLabel").value = ""; // No label for available blocks
             document.getElementById("editCategory").value = ""; // No category for available blocks
-            document.getElementById("editTooltip").value = ""; // No tooltip for available blocks
-            document.getElementById("editUrl").value = ""; // No URL for available blocks
 
             // Show the form
             document.getElementById("editFormContainer").style.display = "block";
@@ -666,8 +662,6 @@ function updateSelectedObservation() {
         selectedData.end_time = parseTime(document.getElementById("editEndTime").value);
         selectedData.label = document.getElementById("editLabel").value;
         selectedData.category = document.getElementById("editCategory").value;
-        selectedData.tooltip = document.getElementById("editTooltip").value;
-        selectedData.url = document.getElementById("editUrl").value;
 
         // Store the index of the selected observation
         const selectedIndex = filteredObservationData.indexOf(selectedData);
@@ -693,8 +687,6 @@ document.getElementById("editStartTime").addEventListener("input", updateSelecte
 document.getElementById("editEndTime").addEventListener("input", updateSelectedObservation);
 document.getElementById("editLabel").addEventListener("input", updateSelectedObservation);
 document.getElementById("editCategory").addEventListener("change", updateSelectedObservation);
-document.getElementById("editTooltip").addEventListener("input", updateSelectedObservation);
-document.getElementById("editUrl").addEventListener("input", updateSelectedObservation);
 
 // Event listener for the 'a' key to add a new observation
 document.addEventListener('keydown', function(event) {
@@ -747,8 +739,6 @@ document.addEventListener('keydown', function(event) {
             document.getElementById("editEndTime").value = formatTimeForInput(newObservation.end_time);
             document.getElementById("editLabel").value = newObservation.label;
             document.getElementById("editCategory").value = newObservation.category;
-            document.getElementById("editTooltip").value = newObservation.tooltip;
-            document.getElementById("editUrl").value = newObservation.url;
 
             // Show the edit form
             document.getElementById("editFormContainer").style.display = "block";
