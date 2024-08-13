@@ -68,6 +68,7 @@ function formatTooltip(obs, moonIllumination) {
     if (obs.notes) {
         out += `<br>Notes: ${obs.notes}`;
     }
+    out = out.replace(/\n/g, "<br>");
     return out;
 }
 
@@ -127,6 +128,7 @@ function renderObservations() {
         .attr("fill", "#FFFFFF")
         .style("font-family", "monospace")
         .style("font-size", "10px")
+        .style("pointer-events", "none")
         .text(d => d.label);
 
     observations.on("mouseover", function(event, d) {
@@ -639,7 +641,9 @@ d3.select("#fileInput").on("change", function() {
                     date => date.toISOString().split("T")[0]
                 ).includes(d.date)
             );
-            renderObservations(); // Rerender.
+            initializeAvailableBlocks();
+            pruneAvailableBlocks();
+            renderObservations();
         };
         reader.readAsText(file);
     }
@@ -650,7 +654,7 @@ document.addEventListener("keydown", function(event) {
     const activeElement = document.activeElement;
     const isInputFocused = activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA';
 
-    if (event.key === 'd' && !isInputFocused) {
+    if ((event.key === 'd' || event.key === 'Backspace') && !isInputFocused) {
         const selectedObservations = d3.selectAll(".observation.selected");
         const indicesToDelete = selectedObservations.nodes().map(
             d => +d.getAttribute("data-index")
@@ -745,6 +749,9 @@ document.addEventListener('keydown', function(event) {
             // Re-render the observations and available blocks
             renderObservations();
 
+            // Unselect the available block
+            d3.selectAll(".available-block.selected").classed("selected", false);
+
             // Select and highlight the new observation block
             d3.selectAll(".observation").classed("selected", function(d) {
                 return d === newObservation;
@@ -762,6 +769,9 @@ document.addEventListener('keydown', function(event) {
             document.getElementById("editCategory").value = newObservation.category;
             setFilterTags(newObservation.filters);
             document.getElementById("editNotes").value = newObservation.notes || "";
+
+            // Enable the form
+            toggleFormInputs(true);
 
             // Show the edit form
             document.getElementById("editFormContainer").style.display = "block";
