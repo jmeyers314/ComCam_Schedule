@@ -62,9 +62,13 @@ function formatTooltip(obs, moonIllumination) {
     const durationHours = obs.end_time - obs.start_time;
     const duration = formatTime(durationHours);
 
-    return `${obs.date}<br>${obs.tooltip}<br>Start: ${startTime}<br>` +
-           `End: ${endTime}<br>Duration: ${duration}<br>` +
-           `Moon Illumination: ${(moonIllumination * 100).toFixed(2)}%`;
+    let out = `${obs.date}<br>${obs.tooltip}<br>Start: ${startTime}<br>` +
+        `End: ${endTime}<br>Duration: ${duration}<br>` +
+        `Moon Illumination: ${(moonIllumination * 100).toFixed(2)}%`;
+    if (obs.notes) {
+        out += `<br>Notes: ${obs.notes}`;
+    }
+    return out;
 }
 
 // Helper function to format the time for the input field
@@ -269,6 +273,7 @@ function renderObservations() {
                 document.getElementById("editLabel").value = selectedData.label;
                 document.getElementById("editCategory").value = selectedData.category;
                 setFilterTags(selectedData.filters);
+                document.getElementById("editNotes").value = selectedData.notes || "";
 
                 // Show the form
                 document.getElementById("editFormContainer").style.display = "block";
@@ -310,6 +315,7 @@ function renderObservations() {
             document.getElementById("editLabel").value = ""; // No label for available blocks
             document.getElementById("editCategory").value = ""; // No category for available blocks
             setFilterTags([]); // No filters for available blocks
+            document.getElementById("editNotes").value = ""; // No notes for available blocks
 
             // Show the form
             document.getElementById("editFormContainer").style.display = "block";
@@ -671,6 +677,7 @@ function updateSelectedObservation() {
         selectedData.label = document.getElementById("editLabel").value;
         selectedData.category = document.getElementById("editCategory").value;
         selectedData.filters = filterTags.getValue(true);
+        selectedData.notes = document.getElementById("editNotes").value;
 
         // Store the index of the selected observation
         const selectedIndex = filteredObservationData.indexOf(selectedData);
@@ -749,6 +756,7 @@ document.addEventListener('keydown', function(event) {
             document.getElementById("editLabel").value = newObservation.label;
             document.getElementById("editCategory").value = newObservation.category;
             setFilterTags(newObservation.filters);
+            document.getElementById("editNotes").value = newObservation.notes || "";
 
             // Show the edit form
             document.getElementById("editFormContainer").style.display = "block";
@@ -972,3 +980,11 @@ document.getElementById('filterTags').addEventListener('change', function() {
     updateFilterObservationFilters();
 });
 
+document.getElementById("editNotes").addEventListener("input", function() {
+    const selectedObservations = d3.selectAll(".observation.selected");
+
+    if (selectedObservations.size() === 1) {
+        const selectedData = selectedObservations.data()[0];
+        selectedData.notes = this.value;  // Update the observation's notes
+    }
+});
