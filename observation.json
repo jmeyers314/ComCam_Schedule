@@ -12,7 +12,9 @@
     "start_time": 5.975304063409565,
     "end_time": 6.921218264847992,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "i"
+    ],
     "notes": ""
   },
   {
@@ -28,7 +30,9 @@
     "start_time": 5.952949807047842,
     "end_time": 6.9005297608673555,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "r"
+    ],
     "notes": ""
   },
   {
@@ -44,7 +48,9 @@
     "start_time": 5.93063050881028,
     "end_time": 6.879931434988974,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "g"
+    ],
     "notes": ""
   },
   {
@@ -60,7 +66,9 @@
     "start_time": 5.908355209976433,
     "end_time": 6.859431747347115,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "z"
+    ],
     "notes": ""
   },
   {
@@ -76,7 +84,9 @@
     "start_time": 5.886133074760435,
     "end_time": 6.8390143364667875,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "y"
+    ],
     "notes": ""
   },
   {
@@ -92,7 +102,9 @@
     "start_time": 5.86385018751025,
     "end_time": 6.818658079952,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "u"
+    ],
     "notes": ""
   },
   {
@@ -108,7 +120,9 @@
     "start_time": 5.84157834202051,
     "end_time": 6.798421930521725,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "r"
+    ],
     "notes": ""
   },
   {
@@ -124,7 +138,9 @@
     "start_time": 5.819382313638924,
     "end_time": 6.778314650058745,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "i"
+    ],
     "notes": ""
   },
   {
@@ -140,7 +156,9 @@
     "start_time": 5.797271847724913,
     "end_time": 6.758345067501066,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "i"
+    ],
     "notes": ""
   },
   {
@@ -156,7 +174,9 @@
     "start_time": 5.775256890803574,
     "end_time": 6.738522145897148,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "i"
+    ],
     "notes": ""
   },
   {
@@ -172,7 +192,9 @@
     "start_time": 5.7533475011587125,
     "end_time": 6.718854982405899,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "i"
+    ],
     "notes": ""
   },
   {
@@ -188,7 +210,9 @@
     "start_time": 5.731553982943295,
     "end_time": 6.699352808296679,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "u"
+    ],
     "notes": ""
   },
   {
@@ -204,7 +228,9 @@
     "start_time": 5.70980393886566,
     "end_time": 6.680001195520161,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "g"
+    ],
     "notes": ""
   },
   {
@@ -220,7 +246,9 @@
     "start_time": 5.688052855432032,
     "end_time": 6.660754255950449,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "z"
+    ],
     "notes": ""
   },
   {
@@ -236,7 +264,9 @@
     "start_time": 5.6664448343217355,
     "end_time": 6.641697518527506,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "y"
+    ],
     "notes": ""
   },
   {
@@ -252,7 +282,9 @@
     "start_time": 5.6449908390641195,
     "end_time": 6.622840762138365,
     "obstype": "Twiflat",
-    "filters": [],
+    "filters": [
+      "z"
+    ],
     "notes": ""
   },
   {
@@ -980,295 +1012,374 @@
     "start_time": -2.906203564256431,
     "end_time": -1.906203564256431,
     "obstype": "Dome slit",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-009"
   },
   {
     "date": "2024-10-01",
     "start_time": -1.906203564256431,
     "end_time": -0.906203564256431,
     "obstype": "M1M3 cover",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-010"
   },
   {
     "date": "2024-10-01",
     "start_time": -0.906203564256431,
     "end_time": 0.093796435743569,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-01",
     "start_time": 0.093796435743569,
     "end_time": 5.0937964357435686,
     "obstype": "Sense",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-004\n~10 dof"
   },
   {
     "date": "2024-10-01",
     "start_time": 5.0937964357435686,
     "end_time": 5.975304063409565,
     "obstype": "Ref",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "WET-010\n~80 Images"
   },
   {
     "date": "2024-10-02",
     "start_time": -2.894274048507215,
     "end_time": -1.894274048507215,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-02",
     "start_time": -1.894274048507215,
     "end_time": 5.105725951492785,
     "obstype": "Sense",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "r",
+      "i"
+    ],
+    "notes": "ASCT-004\n~15 dof"
   },
   {
     "date": "2024-10-02",
     "start_time": 5.105725951492785,
     "end_time": 5.952949807047842,
     "obstype": "Ref",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "r"
+    ],
+    "notes": "WET-010\n"
   },
   {
     "date": "2024-10-03",
     "start_time": -2.8821753636002554,
     "end_time": -1.8821753636002554,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "g"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-03",
     "start_time": -1.8821753636002554,
     "end_time": 5.117824636399744,
     "obstype": "Sense",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "g",
+      "i"
+    ],
+    "notes": "ASCT-004\n~15 dof"
   },
   {
     "date": "2024-10-03",
     "start_time": 5.117824636399744,
     "end_time": 5.93063050881028,
     "obstype": "Ref",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "g"
+    ],
+    "notes": "WET-010\n"
   },
   {
     "date": "2024-10-04",
     "start_time": -2.8699063248932375,
     "end_time": -1.8699063248932375,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "z"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-04",
     "start_time": -1.8699063248932375,
     "end_time": 5.130093675106762,
     "obstype": "Sense",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i",
+      "z"
+    ],
+    "notes": "ASCT-004\n~15 dof"
   },
   {
     "date": "2024-10-04",
     "start_time": 5.130093675106762,
     "end_time": 5.908355209976433,
     "obstype": "Ref",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "z"
+    ],
+    "notes": "WET-010\n"
   },
   {
     "date": "2024-10-05",
     "start_time": -2.8574659153819097,
     "end_time": -1.8574659153819097,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "y"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-05",
     "start_time": -1.8574659153819097,
     "end_time": 5.14253408461809,
     "obstype": "Sense",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i",
+      "y"
+    ],
+    "notes": "ASCT-004\n~15 dof"
   },
   {
     "date": "2024-10-05",
     "start_time": 5.14253408461809,
     "end_time": 5.886133074760435,
     "obstype": "Ref",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "y"
+    ],
+    "notes": "WET-010\n"
   },
   {
     "date": "2024-10-06",
     "start_time": -2.844853319227697,
     "end_time": -2.344853319227697,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-06",
     "start_time": -2.344853319227697,
     "end_time": 5.155146680772303,
     "obstype": "LUT",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "LUTT-003"
   },
   {
     "date": "2024-10-06",
     "start_time": 5.155146680772303,
     "end_time": 5.86385018751025,
     "obstype": "Ref",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "u"
+    ],
+    "notes": "WET-010\n"
   },
   {
     "date": "2024-10-07",
     "start_time": -2.832067865878345,
     "end_time": -2.332067865878345,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "r"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-07",
     "start_time": -2.332067865878345,
     "end_time": 5.167932134121655,
     "obstype": "LUT",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "r",
+      "i"
+    ],
+    "notes": "LUTT-004"
   },
   {
     "date": "2024-10-07",
     "start_time": 5.167932134121655,
     "end_time": 5.84157834202051,
     "obstype": "Ref",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "r"
+    ],
+    "notes": "WET-010\n"
   },
   {
     "date": "2024-10-08",
     "start_time": -2.8191090971231474,
     "end_time": -2.3191090971231474,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-08",
     "start_time": -2.3191090971231474,
     "end_time": 5.180890902876852,
     "obstype": "LUT",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "LUTT-003"
   },
   {
     "date": "2024-10-08",
     "start_time": 5.180890902876852,
     "end_time": 5.819382313638924,
     "obstype": "Ref",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "WET-010\n"
   },
   {
     "date": "2024-10-09",
     "start_time": -2.805862829089166,
     "end_time": -2.305862829089166,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-09",
     "start_time": -2.305862829089166,
     "end_time": 5.1941371709108335,
     "obstype": "LUT",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "LUTT-004"
   },
   {
     "date": "2024-10-09",
     "start_time": 5.1941371709108335,
     "end_time": 5.797271847724913,
     "obstype": "Ref",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "WET-010\n"
   },
   {
     "date": "2024-10-10",
     "start_time": -2.7924332544207586,
     "end_time": -2.2924332544207586,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-10",
     "start_time": -2.2924332544207586,
     "end_time": 5.207566745579241,
     "obstype": "LUT",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "LUTT-005"
   },
   {
     "date": "2024-10-10",
     "start_time": 5.207566745579241,
     "end_time": 5.775256890803574,
     "obstype": "Ref",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "WET-010\n"
   },
   {
     "date": "2024-10-11",
     "start_time": -2.7788228988647474,
     "end_time": -2.2788228988647474,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-11",
     "start_time": -2.2788228988647474,
     "end_time": 5.221177101135252,
     "obstype": "LUT",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "LUTT-003"
   },
   {
     "date": "2024-10-11",
     "start_time": 5.221177101135252,
     "end_time": 5.7533475011587125,
     "obstype": "Ref",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "WET-010\n"
   },
   {
     "date": "2024-10-12",
     "start_time": -2.7650315500795855,
     "end_time": -2.2650315500795855,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-12",
     "start_time": -2.2650315500795855,
     "end_time": 1.2349684499204145,
     "obstype": "Guide",
-    "filters": [],
+    "filters": [
+      "i"
+    ],
     "notes": ""
   },
   {
@@ -1276,15 +1387,22 @@
     "start_time": 1.2349684499204145,
     "end_time": 3.2349684499204145,
     "obstype": "Giant",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "u",
+      "r",
+      "i"
+    ],
+    "notes": "WET-005"
   },
   {
     "date": "2024-10-12",
     "start_time": 3.2349684499204145,
     "end_time": 5.731553982943295,
     "obstype": "Survey",
-    "filters": [],
+    "filters": [
+      "u",
+      "i"
+    ],
     "notes": ""
   },
   {
@@ -1292,23 +1410,31 @@
     "start_time": -2.7510588839650167,
     "end_time": -2.2510588839650167,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-13",
     "start_time": -2.2510588839650167,
     "end_time": 3.2489411160349833,
     "obstype": "Loop",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "CLT-002"
   },
   {
     "date": "2024-10-13",
     "start_time": 3.2489411160349833,
     "end_time": 5.70980393886566,
     "obstype": "Survey",
-    "filters": [],
+    "filters": [
+      "g",
+      "r",
+      "i"
+    ],
     "notes": ""
   },
   {
@@ -1316,23 +1442,31 @@
     "start_time": -2.7369044311344637,
     "end_time": -2.2369044311344637,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-14",
     "start_time": -2.2369044311344637,
     "end_time": 3.2630955688655363,
     "obstype": "Loop",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "CLT-002"
   },
   {
     "date": "2024-10-14",
     "start_time": 3.2630955688655363,
     "end_time": 5.688052855432032,
     "obstype": "Survey",
-    "filters": [],
+    "filters": [
+      "i",
+      "z",
+      "y"
+    ],
     "notes": ""
   },
   {
@@ -1340,23 +1474,31 @@
     "start_time": -2.7225675210356726,
     "end_time": -2.2225675210356726,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-15",
     "start_time": -2.2225675210356726,
     "end_time": 3.2774324789643274,
     "obstype": "Loop",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "i"
+    ],
+    "notes": "CLT-002"
   },
   {
     "date": "2024-10-15",
     "start_time": 3.2774324789643274,
     "end_time": 5.6664448343217355,
     "obstype": "Survey",
-    "filters": [],
+    "filters": [
+      "i",
+      "z",
+      "y"
+    ],
     "notes": ""
   },
   {
@@ -1364,23 +1506,31 @@
     "start_time": -2.7080473154783262,
     "end_time": -2.2080473154783262,
     "obstype": "Focus",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "z"
+    ],
+    "notes": "ASCT-002"
   },
   {
     "date": "2024-10-16",
     "start_time": -2.2080473154783262,
     "end_time": 3.2919526845216738,
     "obstype": "Loop",
-    "filters": [],
-    "notes": ""
+    "filters": [
+      "z"
+    ],
+    "notes": "CLT-002"
   },
   {
     "date": "2024-10-16",
     "start_time": 3.2919526845216738,
     "end_time": 5.6449908390641195,
     "obstype": "Survey",
-    "filters": [],
+    "filters": [
+      "i",
+      "z",
+      "y"
+    ],
     "notes": ""
   }
 ]
