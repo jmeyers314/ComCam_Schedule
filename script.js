@@ -1184,3 +1184,106 @@ function getFilterColor(filter) {
     return colorMap[filter] || '#000000';  // Fallback to black if filter not found
 }
 
+document.addEventListener("keydown", function(event) {
+    const selectedObservations = d3.selectAll(".observation.selected");
+
+    if (selectedObservations.size() === 1) {
+        switch (event.key) {
+            case "ArrowLeft":
+            case "ArrowRight":
+            case "ArrowUp":
+            case "ArrowDown":
+                event.preventDefault(); // Prevent the default arrow key behavior
+                break;
+        }
+        const selectedData = selectedObservations.data()[0];
+        let targetIndex = null;
+
+        switch (event.key) {
+            case "ArrowLeft":
+                targetIndex = findLeftNeighbor(selectedData);
+                break;
+            case "ArrowRight":
+                targetIndex = findRightNeighbor(selectedData);
+                break;
+            case "ArrowUp":
+                targetIndex = findVerticalNeighbor(selectedData, -1); // Up
+                break;
+            case "ArrowDown":
+                targetIndex = findVerticalNeighbor(selectedData, 1); // Down
+                break;
+        }
+
+        if (targetIndex !== null) {
+            highlightObservation(targetIndex);
+        }
+    }
+});
+
+function findLeftNeighbor(selectedData) {
+    const observationsForDate = filteredObservationData
+        .filter(obs => obs.date === selectedData.date)
+        .sort((a, b) => a.start_time - b.start_time);
+    const currentIndex = observationsForDate.indexOf(selectedData);
+
+    return currentIndex > 0 ? filteredObservationData.indexOf(observationsForDate[currentIndex - 1]) : null;
+}
+
+function findRightNeighbor(selectedData) {
+    const observationsForDate = filteredObservationData
+        .filter(obs => obs.date === selectedData.date)
+        .sort((a, b) => a.start_time - b.start_time);
+    const currentIndex = observationsForDate.indexOf(selectedData);
+
+    return currentIndex < observationsForDate.length - 1 ? filteredObservationData.indexOf(observationsForDate[currentIndex + 1]) : null;
+}
+
+function findVerticalNeighbor(selectedData, direction) {
+    const currentCenter = (selectedData.start_time + selectedData.end_time) / 2;
+    dateMap = dateRange.map(date => date.toISOString().split("T")[0]);
+    currentDateIndex = dateMap.indexOf(selectedData.date);
+    const targetDate = dateMap[currentDateIndex + direction];
+
+    if (!targetDate) return null; // No date to move to
+
+    const observationsForTargetDate = filteredObservationData.filter(obs => obs.date === targetDate);
+
+    if (observationsForTargetDate.length === 0) return null;
+
+    let closestObservation = null;
+    let closestDistance = Infinity;
+
+    observationsForTargetDate.forEach(obs => {
+        const obsCenter = (obs.start_time + obs.end_time) / 2;
+        const distance = Math.abs(obsCenter - currentCenter);
+
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            closestObservation = obs;
+        }
+    });
+
+    return closestObservation ? filteredObservationData.indexOf(closestObservation) : null;
+}
+
+function highlightObservation(index) {
+    d3.selectAll(".observation").classed("selected", false)
+        .select("rect").attr("stroke", null).attr("stroke-width", null);
+
+    const newSelectedObservation = d3.selectAll(".observation").filter((d, i) => i === index);
+    newSelectedObservation.classed("selected", true)
+        .select("rect").attr("stroke", "white").attr("stroke-width", 3);
+
+    // Update the form with the new selected observation's data
+    const selectedData = newSelectedObservation.data()[0];
+    document.getElementById("editDate").value = selectedData.date;
+    document.getElementById("editStartTime").value = formatTimeForInput(selectedData.start_time);
+    document.getElementById("editEndTime").value = formatTimeForInput(selectedData.end_time);
+    document.getElementById("editObsType").value = selectedData.obstype;
+    setFilterTags(selectedData.filters);
+    document.getElementById("editNotes").value = selectedData.notes || "";
+
+    // Make sure the form is visible and enabled
+    document.getElementById("editFormContainer").style.display = "block";
+    toggleFormInputs(true);
+}
