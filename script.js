@@ -370,6 +370,7 @@ function renderObservations() {
                 document.getElementById("editDate").value = selectedData.date;
                 document.getElementById("editStartTime").value = formatTimeForInput(selectedData.start_time);
                 document.getElementById("editEndTime").value = formatTimeForInput(selectedData.end_time);
+                document.getElementById("duration").value = formatTime(selectedData.end_time - selectedData.start_time);
                 document.getElementById("editObsType").value = selectedData.obstype;
                 setFilterTags(selectedData.filters);
                 document.getElementById("editNotes").value = selectedData.notes || "";
@@ -412,6 +413,7 @@ function renderObservations() {
             document.getElementById("editDate").value = d.date;
             document.getElementById("editStartTime").value = formatTimeForInput(d.start_time);
             document.getElementById("editEndTime").value = formatTimeForInput(d.end_time);
+            document.getElementById("duration").value = formatTime(d.end_time - d.start_time);
             document.getElementById("editObsType").value = ""; // No obstype for available blocks
             setFilterTags([]); // No filters for available blocks
             document.getElementById("editNotes").value = ""; // No notes for available blocks
@@ -857,6 +859,7 @@ document.addEventListener('keydown', function(event) {
             document.getElementById("editDate").value = newObservation.date;
             document.getElementById("editStartTime").value = formatTimeForInput(newObservation.start_time);
             document.getElementById("editEndTime").value = formatTimeForInput(newObservation.end_time);
+            document.getElementById("duration").value = formatTime(newObservation.end_time - newObservation.start_time);
             document.getElementById("editObsType").value = newObservation.obstype;
             setFilterTags(newObservation.filters);
             document.getElementById("editNotes").value = newObservation.notes || "";
@@ -1321,6 +1324,7 @@ function highlightObservation(selectedBlock) {
         document.getElementById("editDate").value = selectedBlock.date;
         document.getElementById("editStartTime").value = formatTimeForInput(selectedBlock.start_time);
         document.getElementById("editEndTime").value = formatTimeForInput(selectedBlock.end_time);
+        document.getElementById("duration").value = formatTime(selectedBlock.end_time - selectedBlock.start_time);
         document.getElementById("editObsType").value = selectedBlock.obstype;
         setFilterTags(selectedBlock.filters);
         document.getElementById("editNotes").value = selectedBlock.notes || "";
@@ -1333,6 +1337,7 @@ function highlightObservation(selectedBlock) {
         document.getElementById("editDate").value = selectedBlock.date;
         document.getElementById("editStartTime").value = formatTimeForInput(selectedBlock.start_time);
         document.getElementById("editEndTime").value = formatTimeForInput(selectedBlock.end_time);
+        document.getElementById("duration").value = formatTime(selectedBlock.end_time - selectedBlock.start_time);
         document.getElementById("editObsType").value = ""; // No obstype for available blocks
         setFilterTags([]); // No filters for available blocks
         document.getElementById("editNotes").value = ""; // No notes for available blocks
@@ -1342,3 +1347,19 @@ function highlightObservation(selectedBlock) {
         toggleFormInputs(false);
     }
 }
+
+function calculateAndDisplayDuration() {
+    const startTime = parseTime(document.getElementById("editStartTime").value);
+    const endTime = parseTime(document.getElementById("editEndTime").value);
+
+    if (startTime !== null && endTime !== null) {
+        const duration = endTime - startTime;
+        document.getElementById("duration").value = formatTime(duration);
+    } else {
+        document.getElementById("duration").value = '';
+    }
+}
+
+// Event listeners to update duration whenever start or end time changes
+document.getElementById("editStartTime").addEventListener("input", calculateAndDisplayDuration);
+document.getElementById("editEndTime").addEventListener("input", calculateAndDisplayDuration);
