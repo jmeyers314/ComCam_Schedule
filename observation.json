@@ -3,1376 +3,1384 @@
     "date": "2024-10-01",
     "start_time": -4.318633060902357,
     "end_time": -2.906203564256431,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-01",
     "start_time": 5.975304063409565,
     "end_time": 6.921218264847992,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-02",
     "start_time": -4.308746829628944,
     "end_time": -2.894274048507215,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-02",
     "start_time": 5.952949807047842,
     "end_time": 6.9005297608673555,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-03",
     "start_time": -4.298783976584673,
     "end_time": -2.8821753636002554,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-03",
     "start_time": 5.93063050881028,
     "end_time": 6.879931434988974,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-04",
     "start_time": -4.28874259069562,
     "end_time": -2.8699063248932375,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-04",
     "start_time": 5.908355209976433,
     "end_time": 6.859431747347115,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-05",
     "start_time": -4.278620850294828,
     "end_time": -2.8574659153819097,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-05",
     "start_time": 5.886133074760435,
     "end_time": 6.8390143364667875,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-06",
     "start_time": -4.268416922539473,
     "end_time": -2.844853319227697,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-06",
     "start_time": 5.86385018751025,
     "end_time": 6.818658079952,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-07",
     "start_time": -4.258102923631668,
     "end_time": -2.832067865878345,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-07",
     "start_time": 5.84157834202051,
     "end_time": 6.798421930521725,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-08",
     "start_time": -4.247700467705727,
     "end_time": -2.8191090971231474,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-08",
     "start_time": 5.819382313638924,
     "end_time": 6.778314650058745,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-09",
     "start_time": -4.237207900732756,
     "end_time": -2.805862829089166,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-09",
     "start_time": 5.797271847724913,
     "end_time": 6.758345067501066,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-10",
     "start_time": -4.226623613387346,
     "end_time": -2.7924332544207586,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-10",
     "start_time": 5.775256890803574,
     "end_time": 6.738522145897148,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-11",
     "start_time": -4.2159458957612514,
     "end_time": -2.7788228988647474,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-11",
     "start_time": 5.7533475011587125,
     "end_time": 6.718854982405899,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-12",
     "start_time": -4.205172948539257,
     "end_time": -2.7650315500795855,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-12",
     "start_time": 5.731553982943295,
     "end_time": 6.699352808296679,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-13",
     "start_time": -4.194302760064602,
     "end_time": -2.7510588839650167,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-13",
     "start_time": 5.70980393886566,
     "end_time": 6.680001195520161,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-14",
     "start_time": -4.183333050459623,
     "end_time": -2.7369044311344637,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-14",
     "start_time": 5.688052855432032,
     "end_time": 6.660754255950449,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-15",
     "start_time": -4.172261260449886,
     "end_time": -2.7225675210356726,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-15",
     "start_time": 5.6664448343217355,
     "end_time": 6.641697518527506,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-16",
     "start_time": -4.1610845401883125,
     "end_time": -2.7080473154783262,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-16",
     "start_time": 5.6449908390641195,
     "end_time": 6.622840762138365,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-17",
     "start_time": -4.149799961596727,
     "end_time": -2.693343032151462,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-17",
     "start_time": 5.6237018890678865,
     "end_time": 6.604193810373543,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-18",
     "start_time": -4.138404753059149,
     "end_time": -2.6784541681408895,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-18",
     "start_time": 5.602589081972836,
     "end_time": 6.585766509175299,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-19",
     "start_time": -4.126896545290947,
     "end_time": -2.663380835205318,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-19",
     "start_time": 5.5816635824739915,
     "end_time": 6.567568715661762,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-20",
     "start_time": -4.115273538976908,
     "end_time": -2.6480080112814917,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-20",
     "start_time": 5.560936532914637,
     "end_time": 6.549610164016483,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-21",
     "start_time": -4.103515796363354,
     "end_time": -2.6323781535029425,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-21",
     "start_time": 5.540213774889706,
     "end_time": 6.5319005213677865,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-22",
     "start_time": -4.091600563377142,
     "end_time": -2.616561245173217,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-22",
     "start_time": 5.519661001861094,
     "end_time": 6.514386836439369,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-23",
     "start_time": -4.079565614461899,
     "end_time": -2.600560683757068,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-23",
     "start_time": 5.499336797744034,
     "end_time": 6.497081615030764,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-24",
     "start_time": -4.067411620169878,
     "end_time": -2.584380637854339,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-24",
     "start_time": 5.479252092540262,
     "end_time": 6.480051085352896,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-25",
     "start_time": -4.055139720439911,
     "end_time": -2.5680258907377733,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-25",
     "start_time": 5.459417704492806,
     "end_time": 6.4633042439818364,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-26",
     "start_time": -4.042751524597406,
     "end_time": -2.551501862704755,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-26",
     "start_time": 5.439844284206627,
     "end_time": 6.4468498528003675,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-27",
     "start_time": -4.030249055474997,
     "end_time": -2.5348145663738264,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-27",
     "start_time": 5.420542392879723,
     "end_time": 6.4306965060532075,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-28",
     "start_time": -4.017634749412537,
     "end_time": -2.517970595508815,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-28",
     "start_time": 5.401522446423767,
     "end_time": 6.414852596819399,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-29",
     "start_time": -4.004911456257105,
     "end_time": -2.5009770914912237,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-29",
     "start_time": 5.382599059492348,
     "end_time": 6.399326361715792,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-30",
     "start_time": -3.99208240583539,
     "end_time": -2.4836476854980005,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-30",
     "start_time": 5.363895591348408,
     "end_time": 6.384125847369431,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-31",
     "start_time": -3.979151252657175,
     "end_time": -2.4661123193800463,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-31",
     "start_time": 5.345504041761158,
     "end_time": 6.369258932769297,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-01",
     "start_time": -3.9661220088601112,
     "end_time": -2.4484450668096556,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-01",
     "start_time": 5.327434737235306,
     "end_time": 6.3546660728752595,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-02",
     "start_time": -3.952999100089073,
     "end_time": -2.4306555613875402,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-02",
     "start_time": 5.30969789251685,
     "end_time": 6.340362858027218,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-03",
     "start_time": -3.939742237329483,
     "end_time": -2.412753961980344,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-03",
     "start_time": 5.292303733527659,
     "end_time": 6.32641604170203,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-04",
     "start_time": -3.926352895796299,
     "end_time": -2.394750896841289,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-04",
     "start_time": 5.275262385606764,
     "end_time": 6.312833189964293,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-05",
     "start_time": -3.912882160395384,
     "end_time": -2.376657441258432,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-05",
     "start_time": 5.2585840299725515,
     "end_time": 6.299621757119892,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-06",
     "start_time": -3.8993358314037323,
     "end_time": -2.3584850728511824,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-06",
     "start_time": 5.242278814315794,
     "end_time": 6.286789130419491,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-07",
     "start_time": -3.885719943791628,
     "end_time": -2.3402455709874643,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-07",
     "start_time": 5.226205185055731,
     "end_time": 6.274342697113751,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-08",
     "start_time": -3.872040666639805,
     "end_time": -2.321705482900144,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-08",
     "start_time": 5.210397362709044,
     "end_time": 6.2622897885739786,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-09",
     "start_time": -3.8583042696118355,
     "end_time": -2.3030336871743216,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-09",
     "start_time": 5.19499598443508,
     "end_time": 6.250637758523224,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-10",
     "start_time": -3.844517022371292,
     "end_time": -2.2843266203999533,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-10",
     "start_time": 5.180011779069899,
     "end_time": 6.239393927156923,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-11",
     "start_time": -3.830685071647167,
     "end_time": -2.2655969560146345,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-11",
     "start_time": 5.1654554530978185,
     "end_time": 6.228565637022255,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-12",
     "start_time": -3.8168144188821316,
     "end_time": -2.246857188642025,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-12",
     "start_time": 5.151337735354899,
     "end_time": 6.2181601971387845,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-13",
     "start_time": -3.802910875529051,
     "end_time": -2.228119634091854,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-13",
     "start_time": 5.137669332325457,
     "end_time": 6.208184882998465,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-14",
     "start_time": -3.7889801636338234,
     "end_time": -2.209396507591009,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-14",
     "start_time": 5.12446093931794,
     "end_time": 6.198617186397312,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-15",
     "start_time": -3.7749407440423965,
     "end_time": -2.190700124949217,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-15",
     "start_time": 5.111723229289053,
     "end_time": 6.189422160387037,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-16",
     "start_time": -3.760852351784706,
     "end_time": -2.17199245467782,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-16",
     "start_time": 5.099466886371372,
     "end_time": 6.180681902915238,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-17",
     "start_time": -3.7467535324394703,
     "end_time": -2.153002191334963,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-17",
     "start_time": 5.087702583521603,
     "end_time": 6.172403577715157,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-18",
     "start_time": -3.7326517179608345,
     "end_time": -2.1340773962438107,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-18",
     "start_time": 5.076440814882515,
     "end_time": 6.164594102650879,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-19",
     "start_time": -3.7185549661517143,
     "end_time": -2.1152333579957485,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-19",
     "start_time": 5.065517060458658,
     "end_time": 6.157260049134491,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-20",
     "start_time": -3.7044719718396664,
     "end_time": -2.0964859686791897,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-20",
     "start_time": 5.05506809055805,
     "end_time": 6.15040749683976,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-21",
     "start_time": -3.6904120221734047,
     "end_time": -2.0778516568243504,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-21",
     "start_time": 5.045159596949814,
     "end_time": 6.144042056053875,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-22",
     "start_time": -3.6763849072158337,
     "end_time": -2.059347275644541,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-22",
     "start_time": 5.03580106794834,
     "end_time": 6.138168811798094,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-23",
     "start_time": -3.6624008752405643,
     "end_time": -2.0409899912774563,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-23",
     "start_time": 5.027001500129698,
     "end_time": 6.132792357355354,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-24",
     "start_time": -3.6484705433249474,
     "end_time": -2.0227972492575645,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-24",
     "start_time": 5.018769465386866,
     "end_time": 6.127916760742663,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-25",
     "start_time": -3.6346049197018147,
     "end_time": -2.004586648195982,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-25",
     "start_time": 5.0111130438745,
     "end_time": 6.123545620590447,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-26",
     "start_time": -3.620782434940338,
     "end_time": -1.9863631054759026,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-26",
     "start_time": 5.004039857536553,
     "end_time": 6.119681999087332,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-27",
     "start_time": -3.606945365667343,
     "end_time": -1.9683621637523174,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-27",
     "start_time": 4.997557025402783,
     "end_time": 6.1163284555077535,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-28",
     "start_time": -3.59320817515254,
     "end_time": -1.9506025314331055,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-28",
     "start_time": 4.991671130061148,
     "end_time": 6.113487023860214,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-29",
     "start_time": -3.579583313316107,
     "end_time": -1.9331028945744038,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-29",
     "start_time": 4.986388262361286,
     "end_time": 6.111159168183802,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-30",
     "start_time": -3.5660834424197674,
     "end_time": -1.9158819168806076,
-    "category": "Prep",
-    "label": "Prep",
-    "tooltip": "Get ready"
+    "obstype": "Prep",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-11-30",
     "start_time": 4.98171394318342,
     "end_time": 6.109345838427542,
-    "category": "Calibration",
-    "label": "Twiflat",
-    "tooltip": "Morning twilight flats"
+    "obstype": "Twiflat",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-01",
     "start_time": -2.906203564256431,
     "end_time": -1.906203564256431,
-    "category": "AOS transient",
-    "label": "Coord",
-    "tooltip": "Validate coordinate systems"
+    "obstype": "Dome slit",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-01",
     "start_time": -1.906203564256431,
     "end_time": -0.906203564256431,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "M1M3 cover",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-01",
     "start_time": -0.906203564256431,
+    "end_time": 0.093796435743569,
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
+  },
+  {
+    "date": "2024-10-01",
+    "start_time": 0.093796435743569,
     "end_time": 5.0937964357435686,
-    "category": "AOS data",
-    "label": "Sense",
-    "tooltip": "Sensitivity sweeps"
+    "obstype": "Sense",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-01",
     "start_time": 5.0937964357435686,
     "end_time": 5.975304063409565,
-    "category": "AOS data",
-    "label": "Ref",
-    "tooltip": "AOS reference"
+    "obstype": "Ref",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-02",
     "start_time": -2.894274048507215,
     "end_time": -1.894274048507215,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-02",
     "start_time": -1.894274048507215,
     "end_time": 5.105725951492785,
-    "category": "AOS data",
-    "label": "Sense",
-    "tooltip": "Sensitivity sweeps"
+    "obstype": "Sense",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-02",
     "start_time": 5.105725951492785,
     "end_time": 5.952949807047842,
-    "category": "AOS data",
-    "label": "Ref",
-    "tooltip": "AOS reference"
+    "obstype": "Ref",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-03",
     "start_time": -2.8821753636002554,
     "end_time": -1.8821753636002554,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-03",
     "start_time": -1.8821753636002554,
     "end_time": 5.117824636399744,
-    "category": "AOS data",
-    "label": "Sense",
-    "tooltip": "Sensitivity sweeps"
+    "obstype": "Sense",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-03",
     "start_time": 5.117824636399744,
     "end_time": 5.93063050881028,
-    "category": "AOS data",
-    "label": "Ref",
-    "tooltip": "AOS reference"
+    "obstype": "Ref",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-04",
     "start_time": -2.8699063248932375,
     "end_time": -1.8699063248932375,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-04",
     "start_time": -1.8699063248932375,
     "end_time": 5.130093675106762,
-    "category": "AOS data",
-    "label": "Sense",
-    "tooltip": "Sensitivity sweeps"
+    "obstype": "Sense",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-04",
     "start_time": 5.130093675106762,
     "end_time": 5.908355209976433,
-    "category": "AOS data",
-    "label": "Ref",
-    "tooltip": "AOS reference"
+    "obstype": "Ref",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-05",
     "start_time": -2.8574659153819097,
     "end_time": -1.8574659153819097,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-05",
     "start_time": -1.8574659153819097,
     "end_time": 5.14253408461809,
-    "category": "AOS data",
-    "label": "Sense",
-    "tooltip": "Sensitivity sweeps"
+    "obstype": "Sense",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-05",
     "start_time": 5.14253408461809,
     "end_time": 5.886133074760435,
-    "category": "AOS data",
-    "label": "Ref",
-    "tooltip": "AOS reference"
+    "obstype": "Ref",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-06",
     "start_time": -2.844853319227697,
     "end_time": -2.344853319227697,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-06",
     "start_time": -2.344853319227697,
     "end_time": 5.155146680772303,
-    "category": "AOS data",
-    "label": "LUT",
-    "tooltip": "Look-up table sweeps"
+    "obstype": "LUT",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-06",
     "start_time": 5.155146680772303,
     "end_time": 5.86385018751025,
-    "category": "AOS data",
-    "label": "Ref",
-    "tooltip": "AOS reference"
+    "obstype": "Ref",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-07",
     "start_time": -2.832067865878345,
     "end_time": -2.332067865878345,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-07",
     "start_time": -2.332067865878345,
     "end_time": 5.167932134121655,
-    "category": "AOS data",
-    "label": "LUT",
-    "tooltip": "Look-up table sweeps"
+    "obstype": "LUT",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-07",
     "start_time": 5.167932134121655,
     "end_time": 5.84157834202051,
-    "category": "AOS data",
-    "label": "Ref",
-    "tooltip": "AOS reference"
+    "obstype": "Ref",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-08",
     "start_time": -2.8191090971231474,
     "end_time": -2.3191090971231474,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-08",
     "start_time": -2.3191090971231474,
     "end_time": 5.180890902876852,
-    "category": "AOS data",
-    "label": "LUT",
-    "tooltip": "Look-up table sweeps"
+    "obstype": "LUT",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-08",
     "start_time": 5.180890902876852,
     "end_time": 5.819382313638924,
-    "category": "AOS data",
-    "label": "Ref",
-    "tooltip": "AOS reference"
+    "obstype": "Ref",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-09",
     "start_time": -2.805862829089166,
     "end_time": -2.305862829089166,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-09",
     "start_time": -2.305862829089166,
     "end_time": 5.1941371709108335,
-    "category": "AOS data",
-    "label": "LUT",
-    "tooltip": "Look-up table sweeps"
+    "obstype": "LUT",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-09",
     "start_time": 5.1941371709108335,
     "end_time": 5.797271847724913,
-    "category": "AOS data",
-    "label": "Ref",
-    "tooltip": "AOS reference"
+    "obstype": "Ref",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-10",
     "start_time": -2.7924332544207586,
     "end_time": -2.2924332544207586,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-10",
     "start_time": -2.2924332544207586,
     "end_time": 5.207566745579241,
-    "category": "AOS data",
-    "label": "LUT",
-    "tooltip": "Look-up table sweeps"
+    "obstype": "LUT",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-10",
     "start_time": 5.207566745579241,
     "end_time": 5.775256890803574,
-    "category": "AOS data",
-    "label": "Ref",
-    "tooltip": "AOS reference"
+    "obstype": "Ref",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-11",
     "start_time": -2.7788228988647474,
     "end_time": -2.2788228988647474,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-11",
     "start_time": -2.2788228988647474,
     "end_time": 5.221177101135252,
-    "category": "AOS data",
-    "label": "LUT",
-    "tooltip": "Look-up table sweeps"
+    "obstype": "LUT",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-11",
     "start_time": 5.221177101135252,
     "end_time": 5.7533475011587125,
-    "category": "AOS data",
-    "label": "Ref",
-    "tooltip": "AOS reference"
+    "obstype": "Ref",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-12",
     "start_time": -2.7650315500795855,
     "end_time": -2.2650315500795855,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-12",
     "start_time": -2.2650315500795855,
     "end_time": 1.2349684499204145,
-    "category": "IQ",
-    "label": "Guider",
-    "tooltip": "Guider data"
+    "obstype": "Guide",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-12",
     "start_time": 1.2349684499204145,
     "end_time": 3.2349684499204145,
-    "category": "AOS data",
-    "label": "Giant",
-    "tooltip": "Giant donut"
+    "obstype": "Giant",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-12",
     "start_time": 3.2349684499204145,
     "end_time": 5.731553982943295,
-    "category": "Science",
-    "label": "Science",
-    "tooltip": "Science Verification data"
+    "obstype": "Survey",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-13",
     "start_time": -2.7510588839650167,
     "end_time": -2.2510588839650167,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-13",
     "start_time": -2.2510588839650167,
     "end_time": 3.2489411160349833,
-    "category": "AOS transient",
-    "label": "Loop",
-    "tooltip": "Closed-loop optimization"
+    "obstype": "Loop",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-13",
     "start_time": 3.2489411160349833,
     "end_time": 5.70980393886566,
-    "category": "Science",
-    "label": "Science",
-    "tooltip": "Science Verification data"
+    "obstype": "Survey",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-14",
     "start_time": -2.7369044311344637,
     "end_time": -2.2369044311344637,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-14",
     "start_time": -2.2369044311344637,
     "end_time": 3.2630955688655363,
-    "category": "AOS transient",
-    "label": "Loop",
-    "tooltip": "Closed-loop optimization"
+    "obstype": "Loop",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-14",
     "start_time": 3.2630955688655363,
     "end_time": 5.688052855432032,
-    "category": "Science",
-    "label": "Science",
-    "tooltip": "Science Verification data"
+    "obstype": "Survey",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-15",
     "start_time": -2.7225675210356726,
     "end_time": -2.2225675210356726,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-15",
     "start_time": -2.2225675210356726,
     "end_time": 3.2774324789643274,
-    "category": "AOS transient",
-    "label": "Loop",
-    "tooltip": "Closed-loop optimization"
+    "obstype": "Loop",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-15",
     "start_time": 3.2774324789643274,
     "end_time": 5.6664448343217355,
-    "category": "Science",
-    "label": "Science",
-    "tooltip": "Science Verification data"
+    "obstype": "Survey",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-16",
     "start_time": -2.7080473154783262,
     "end_time": -2.2080473154783262,
-    "category": "AOS transient",
-    "label": "Focus",
-    "tooltip": "Focus sweeps"
+    "obstype": "Focus",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-16",
     "start_time": -2.2080473154783262,
     "end_time": 3.2919526845216738,
-    "category": "AOS transient",
-    "label": "Loop",
-    "tooltip": "Closed-loop optimization"
+    "obstype": "Loop",
+    "filters": [],
+    "notes": ""
   },
   {
     "date": "2024-10-16",
     "start_time": 3.2919526845216738,
     "end_time": 5.6449908390641195,
-    "category": "Science",
-    "label": "Science",
-    "tooltip": "Science Verification data"
+    "obstype": "Survey",
+    "filters": [],
+    "notes": ""
   }
 ]

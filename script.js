@@ -42,6 +42,99 @@ const observationOpacity = d3.scaleOrdinal()
     .domain(["Calibration", "Prep", "AOS transient", "AOS data", "IQ", "Science"])
     .range([0.4, 0.4, 0.4, 0.7, 0.4, 0.4]);
 
+const obstypes = {
+    "Prep": {
+        "tooltip": "Get Ready",
+        "category": "Prep",
+    },
+
+    "Twiflat": {
+        "tooltip": "Twilight flats",
+        "category": "Calibration",
+    },
+    "Bias": {
+        "tooltip": "Bias frames",
+        "category": "Calibration",
+    },
+    "Dark": {
+        "tooltip": "Dark frames",
+        "category": "Calibration",
+    },
+    "Bright": {
+        "tooltip": "Bright star scans",
+        "category": "Calibration",
+    },
+    "Pinhole": {
+        "tooltip": "Pinhole mask imaging",
+        "category": "Calibration",
+    },
+
+    "Dome slit": {
+        "tooltip": "Dome slit coord tests",
+        "category": "AOS transient",
+    },
+    "M1M3 cover": {
+        "tooltip": "Mirror cover petal tests",
+        "category": "AOS transient",
+    },
+    "Focus": {
+        "tooltip": "Focus sweeps",
+        "category": "AOS transient",
+    },
+
+    "Sense": {
+        "tooltip": "Sensitivity Matrix",
+        "category": "AOS data",
+    },
+    "Ref": {
+        "tooltip": "Reference wavefront",
+        "category": "AOS data",
+    },
+    "LUT": {
+        "tooltip": "Look-up table sweeps",
+        "category": "AOS data",
+    },
+    "Loop": {
+        "tooltip": "Closed-loop optimization",
+        "category": "AOS transient",
+    },
+    "Giant": {
+        "tooltip": "Giant donuts",
+        "category": "AOS data",
+    },
+
+    "Guide": {
+        "tooltip": "Guider mode imaging",
+        "category": "IQ",
+    },
+    "Stutter": {
+        "tooltip": "Stuttered imaging",
+        "category": "IQ",
+    },
+    "Streak": {
+        "tooltip": "Streaked imaging",
+        "category": "IQ",
+    },
+    "MOSS": {
+        "tooltip": "MOSS Dome Seeing Monitoring",
+        "category": "IQ",
+    },
+
+    "DD*F": {
+        "tooltip": "Dense dithered star fields",
+        "category": "Science",
+    },
+    "Deep": {
+        "tooltip": "Deep field imaging",
+        "category": "Science",
+    },
+    "Survey": {
+        "tooltip": "Survey field imaging",
+        "category": "Science",
+    }
+}
+
+
 function formatTime(hoursDecimal) {
     let hours = Math.floor(hoursDecimal);
     let minutes = Math.round((hoursDecimal - hours) * 60);
@@ -62,9 +155,14 @@ function formatTooltip(obs, moonIllumination) {
     const durationHours = obs.end_time - obs.start_time;
     const duration = formatTime(durationHours);
 
-    let out = `${obs.date}<br>${obs.tooltip}<br>Start: ${startTime}<br>` +
-        `End: ${endTime}<br>Duration: ${duration}<br>` +
-        `Moon Illumination: ${(moonIllumination * 100).toFixed(2)}%`;
+    let out = `${obs.date}<br>`;
+    if (obs.obstype in obstypes) {
+        out += `${obstypes[obs.obstype]['tooltip']}<br>`;
+    }
+    out += `Start: ${startTime}<br>`;
+    out += `End: ${endTime}<br>`;
+    out += `Duration: ${duration}<br>`;
+    out += `Moon Illumination: ${(moonIllumination * 100).toFixed(2)}%`;
     if (obs.notes) {
         out += `<br>Notes: ${obs.notes}`;
     }
@@ -115,8 +213,8 @@ function renderObservations() {
         .attr("y", d => dateScale(d.date) + dateScale.bandwidth() * 0.1)
         .attr("width", d => customTimeScale(d.end_time) - customTimeScale(d.start_time) - padding * 2)
         .attr("height", dateScale.bandwidth() * 0.8)
-        .attr("fill", d => observationColorScale(d.category))
-        .attr("opacity", d => observationOpacity(d.category))
+        .attr("fill", d => observationColorScale(obstypes[d.obstype]['category']))
+        .attr("opacity", d => observationOpacity(obstypes[d.obstype]['category']))
         .attr("rx", cornerRadius)
         .attr("ry", cornerRadius);
 
@@ -129,7 +227,7 @@ function renderObservations() {
         .style("font-family", "monospace")
         .style("font-size", "10px")
         .style("pointer-events", "none")
-        .text(d => d.label);
+        .text(d => d.obstype);
 
     observations.on("mouseover", function(event, d) {
         const tooltip = d3.select("#tooltip");
@@ -272,8 +370,7 @@ function renderObservations() {
                 document.getElementById("editDate").value = selectedData.date;
                 document.getElementById("editStartTime").value = formatTimeForInput(selectedData.start_time);
                 document.getElementById("editEndTime").value = formatTimeForInput(selectedData.end_time);
-                document.getElementById("editLabel").value = selectedData.label;
-                document.getElementById("editCategory").value = selectedData.category;
+                document.getElementById("editObsType").value = selectedData.obstype;
                 setFilterTags(selectedData.filters);
                 document.getElementById("editNotes").value = selectedData.notes || "";
 
@@ -315,8 +412,7 @@ function renderObservations() {
             document.getElementById("editDate").value = d.date;
             document.getElementById("editStartTime").value = formatTimeForInput(d.start_time);
             document.getElementById("editEndTime").value = formatTimeForInput(d.end_time);
-            document.getElementById("editLabel").value = ""; // No label for available blocks
-            document.getElementById("editCategory").value = ""; // No category for available blocks
+            document.getElementById("editObsType").value = ""; // No obstype for available blocks
             setFilterTags([]); // No filters for available blocks
             document.getElementById("editNotes").value = ""; // No notes for available blocks
 
@@ -683,8 +779,7 @@ function updateSelectedObservation() {
         selectedData.date = document.getElementById("editDate").value;
         selectedData.start_time = parseTime(document.getElementById("editStartTime").value);
         selectedData.end_time = parseTime(document.getElementById("editEndTime").value);
-        selectedData.label = document.getElementById("editLabel").value;
-        selectedData.category = document.getElementById("editCategory").value;
+        selectedData.obstype = document.getElementById("editObsType").value;
         selectedData.filters = filterTags.getValue(true);
         selectedData.notes = document.getElementById("editNotes").value;
 
@@ -710,8 +805,7 @@ function updateSelectedObservation() {
 document.getElementById("editDate").addEventListener("input", updateSelectedObservation);
 document.getElementById("editStartTime").addEventListener("input", updateSelectedObservation);
 document.getElementById("editEndTime").addEventListener("input", updateSelectedObservation);
-document.getElementById("editLabel").addEventListener("input", updateSelectedObservation);
-document.getElementById("editCategory").addEventListener("change", updateSelectedObservation);
+document.getElementById("editObsType").addEventListener("input", updateSelectedObservation);
 
 // Event listener for the 'a' key to add a new observation
 document.addEventListener('keydown', function(event) {
@@ -728,9 +822,7 @@ document.addEventListener('keydown', function(event) {
                 date: selectedAvailableBlock.date,
                 start_time: selectedAvailableBlock.start_time,
                 end_time: endTime,
-                category: "Science", // Default category
-                label: "Science", // Default label
-                tooltip: "Science Verification data",
+                obstype: "Survey",
                 filters: ['i']
             };
 
@@ -765,8 +857,7 @@ document.addEventListener('keydown', function(event) {
             document.getElementById("editDate").value = newObservation.date;
             document.getElementById("editStartTime").value = formatTimeForInput(newObservation.start_time);
             document.getElementById("editEndTime").value = formatTimeForInput(newObservation.end_time);
-            document.getElementById("editLabel").value = newObservation.label;
-            document.getElementById("editCategory").value = newObservation.category;
+            document.getElementById("editObsType").value = newObservation.obstype;
             setFilterTags(newObservation.filters);
             document.getElementById("editNotes").value = newObservation.notes || "";
 
