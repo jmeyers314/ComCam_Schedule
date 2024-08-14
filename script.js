@@ -1185,9 +1185,27 @@ function getFilterColor(filter) {
 }
 
 document.addEventListener("keydown", function(event) {
-    const selectedObservations = d3.selectAll(".observation.selected");
+    // Check if the focused element is an input, textarea, or other form control
+    const activeElement = document.activeElement;
+    const isInputFocused = activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.isContentEditable;
 
+    // If an input or textarea is focused, do not trap the arrow keys
+    if (isInputFocused) {
+        return; // Allow the default behavior and do not handle the arrow keys
+    }
+
+    const selectedObservations = d3.selectAll(".observation.selected");
+    const selectedAvailableBlocks = d3.selectAll(".available-block.selected");
+
+    // Determine if an observation or an available block is selected
+    let selectedData = null;
     if (selectedObservations.size() === 1) {
+        selectedData = selectedObservations.data()[0];
+    } else if (selectedAvailableBlocks.size() === 1) {
+        selectedData = selectedAvailableBlocks.data()[0];
+    }
+
+    if (selectedData) {
         switch (event.key) {
             case "ArrowLeft":
             case "ArrowRight":
@@ -1196,94 +1214,131 @@ document.addEventListener("keydown", function(event) {
                 event.preventDefault(); // Prevent the default arrow key behavior
                 break;
         }
-        const selectedData = selectedObservations.data()[0];
-        let targetIndex = null;
+
+        let targetBlock = null;
 
         switch (event.key) {
             case "ArrowLeft":
-                targetIndex = findLeftNeighbor(selectedData);
+                targetBlock = findLeftNeighbor(selectedData);
                 break;
             case "ArrowRight":
-                targetIndex = findRightNeighbor(selectedData);
+                targetBlock = findRightNeighbor(selectedData);
                 break;
             case "ArrowUp":
-                targetIndex = findVerticalNeighbor(selectedData, -1); // Up
+                targetBlock = findVerticalNeighbor(selectedData, -1); // Up
                 break;
             case "ArrowDown":
-                targetIndex = findVerticalNeighbor(selectedData, 1); // Down
+                targetBlock = findVerticalNeighbor(selectedData, 1); // Down
                 break;
         }
 
-        if (targetIndex !== null) {
-            highlightObservation(targetIndex);
+        if (targetBlock !== null) {
+            highlightObservation(targetBlock);
         }
     }
 });
 
+
 function findLeftNeighbor(selectedData) {
-    const observationsForDate = filteredObservationData
+    const allBlocks = [...filteredObservationData, ...availableBlockData]
         .filter(obs => obs.date === selectedData.date)
         .sort((a, b) => a.start_time - b.start_time);
-    const currentIndex = observationsForDate.indexOf(selectedData);
 
-    return currentIndex > 0 ? filteredObservationData.indexOf(observationsForDate[currentIndex - 1]) : null;
+    const currentIndex = allBlocks.indexOf(selectedData);
+
+    return currentIndex > 0 ? allBlocks[currentIndex - 1] : null;
 }
 
 function findRightNeighbor(selectedData) {
-    const observationsForDate = filteredObservationData
+    const allBlocks = [...filteredObservationData, ...availableBlockData]
         .filter(obs => obs.date === selectedData.date)
         .sort((a, b) => a.start_time - b.start_time);
-    const currentIndex = observationsForDate.indexOf(selectedData);
 
-    return currentIndex < observationsForDate.length - 1 ? filteredObservationData.indexOf(observationsForDate[currentIndex + 1]) : null;
+    const currentIndex = allBlocks.indexOf(selectedData);
+
+    return currentIndex < allBlocks.length - 1 ? allBlocks[currentIndex + 1] : null;
 }
 
 function findVerticalNeighbor(selectedData, direction) {
     const currentCenter = (selectedData.start_time + selectedData.end_time) / 2;
     dateMap = dateRange.map(date => date.toISOString().split("T")[0]);
-    currentDateIndex = dateMap.indexOf(selectedData.date);
+    const currentDateIndex = dateMap.indexOf(selectedData.date);
     const targetDate = dateMap[currentDateIndex + direction];
 
     if (!targetDate) return null; // No date to move to
 
-    const observationsForTargetDate = filteredObservationData.filter(obs => obs.date === targetDate);
+    const allBlocksForTargetDate = [...filteredObservationData, ...availableBlockData]
+        .filter(obs => obs.date === targetDate);
 
-    if (observationsForTargetDate.length === 0) return null;
+    if (allBlocksForTargetDate.length === 0) return null;
 
-    let closestObservation = null;
+    let closestBlock = null;
     let closestDistance = Infinity;
 
-    observationsForTargetDate.forEach(obs => {
+    allBlocksForTargetDate.forEach(obs => {
         const obsCenter = (obs.start_time + obs.end_time) / 2;
         const distance = Math.abs(obsCenter - currentCenter);
 
         if (distance < closestDistance) {
             closestDistance = distance;
-            closestObservation = obs;
+            closestBlock = obs;
         }
     });
 
-    return closestObservation ? filteredObservationData.indexOf(closestObservation) : null;
+    return closestBlock;
 }
 
-function highlightObservation(index) {
+function highlightObservation(selectedBlock) {
+    // Deselect all available blocks
+    d3.selectAll(".available-block").classed("selected", false)
+        .attr("stroke", "none") // Remove highlighting from available blocks
+        .attr("stroke-width", null);
+
+    // Deselect all observation blocks
     d3.selectAll(".observation").classed("selected", false)
-        .select("rect").attr("stroke", null).attr("stroke-width", null);
+        .select("rect").attr("stroke", "none").attr("stroke-width", null);
 
-    const newSelectedObservation = d3.selectAll(".observation").filter((d, i) => i === index);
-    newSelectedObservation.classed("selected", true)
-        .select("rect").attr("stroke", "white").attr("stroke-width", 3);
+    // Determine if the selected block is an observation or an available block
+    const isObservation = filteredObservationData.includes(selectedBlock);
+    const blockSelection = isObservation ? ".observation" : ".available-block";
 
-    // Update the form with the new selected observation's data
-    const selectedData = newSelectedObservation.data()[0];
-    document.getElementById("editDate").value = selectedData.date;
-    document.getElementById("editStartTime").value = formatTimeForInput(selectedData.start_time);
-    document.getElementById("editEndTime").value = formatTimeForInput(selectedData.end_time);
-    document.getElementById("editObsType").value = selectedData.obstype;
-    setFilterTags(selectedData.filters);
-    document.getElementById("editNotes").value = selectedData.notes || "";
+    // Apply the selection and highlight the appropriate block
+    d3.selectAll(blockSelection)
+        .filter(d => d === selectedBlock)
+        .classed("selected", true)
+        .attr("stroke", isObservation ? null : "yellow")
+        .attr("stroke-width", isObservation ? null : 3);
 
-    // Make sure the form is visible and enabled
-    document.getElementById("editFormContainer").style.display = "block";
-    toggleFormInputs(true);
+    if (isObservation) {
+        // Highlight the selected observation block
+        d3.selectAll(".observation")
+            .filter(d => d === selectedBlock)
+            .select("rect")
+            .attr("stroke", "white")
+            .attr("stroke-width", 3);
+
+        // Update the form with the selected observation's data
+        document.getElementById("editDate").value = selectedBlock.date;
+        document.getElementById("editStartTime").value = formatTimeForInput(selectedBlock.start_time);
+        document.getElementById("editEndTime").value = formatTimeForInput(selectedBlock.end_time);
+        document.getElementById("editObsType").value = selectedBlock.obstype;
+        setFilterTags(selectedBlock.filters);
+        document.getElementById("editNotes").value = selectedBlock.notes || "";
+
+        // Show the form and enable inputs
+        document.getElementById("editFormContainer").style.display = "block";
+        toggleFormInputs(true);
+    } else {
+        // Handle case for available blocks
+        document.getElementById("editDate").value = selectedBlock.date;
+        document.getElementById("editStartTime").value = formatTimeForInput(selectedBlock.start_time);
+        document.getElementById("editEndTime").value = formatTimeForInput(selectedBlock.end_time);
+        document.getElementById("editObsType").value = ""; // No obstype for available blocks
+        setFilterTags([]); // No filters for available blocks
+        document.getElementById("editNotes").value = ""; // No notes for available blocks
+
+        // Show the form but disable inputs
+        document.getElementById("editFormContainer").style.display = "block";
+        toggleFormInputs(false);
+    }
 }
