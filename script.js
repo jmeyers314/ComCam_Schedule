@@ -158,6 +158,12 @@ function formatTime(hoursDecimal) {
     let hours = Math.floor(hoursDecimal);
     let minutes = Math.round((hoursDecimal - hours) * 60);
 
+    // Handle the case where minutes rounds up to 60
+    if (minutes === 60) {
+        hours++;
+        minutes = 0;
+    }
+
     // Adjust decimal hours to be +ve hh:mm format
     if (hours < 0) {
         hours += 24;
@@ -187,25 +193,6 @@ function formatTooltip(obs, moonIllumination) {
     }
     out = out.replace(/\n/g, "<br>");
     return out;
-}
-
-// Helper function to format the time for the input field
-function formatTimeForInput(hoursDecimal) {
-    let hours = Math.floor(hoursDecimal);
-    let minutes = Math.round((hoursDecimal - hours) * 60);
-    if (minutes === 60) {
-        hours++;
-        minutes = 0;
-    }
-
-    // Adjust for the 24-hour time format
-    if (hours < 0) {
-        hours += 24;
-    } else if (hours >= 24) {
-        hours -= 24;
-    }
-
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 }
 
 function renderObservations() {
@@ -387,8 +374,8 @@ function renderObservations() {
 
                 // Populate the form with the selected block's data
                 document.getElementById("editDate").value = selectedData.date;
-                document.getElementById("editStartTime").value = formatTimeForInput(selectedData.start_time);
-                document.getElementById("editEndTime").value = formatTimeForInput(selectedData.end_time);
+                document.getElementById("editStartTime").value = formatTime(selectedData.start_time);
+                document.getElementById("editEndTime").value = formatTime(selectedData.end_time);
                 document.getElementById("duration").value = formatTime(selectedData.end_time - selectedData.start_time);
                 document.getElementById("editObsType").value = selectedData.obstype;
                 setFilterTags(selectedData.filters);
@@ -430,8 +417,8 @@ function renderObservations() {
 
             // Handle form population for available blocks
             document.getElementById("editDate").value = d.date;
-            document.getElementById("editStartTime").value = formatTimeForInput(d.start_time);
-            document.getElementById("editEndTime").value = formatTimeForInput(d.end_time);
+            document.getElementById("editStartTime").value = formatTime(d.start_time);
+            document.getElementById("editEndTime").value = formatTime(d.end_time);
             document.getElementById("duration").value = formatTime(d.end_time - d.start_time);
             document.getElementById("editObsType").value = ""; // No obstype for available blocks
             setFilterTags([]); // No filters for available blocks
@@ -860,8 +847,8 @@ document.addEventListener('keydown', function(event) {
 
             // Populate the form with the new observation block's data
             document.getElementById("editDate").value = newObservation.date;
-            document.getElementById("editStartTime").value = formatTimeForInput(newObservation.start_time);
-            document.getElementById("editEndTime").value = formatTimeForInput(newObservation.end_time);
+            document.getElementById("editStartTime").value = formatTime(newObservation.start_time);
+            document.getElementById("editEndTime").value = formatTime(newObservation.end_time);
             document.getElementById("duration").value = formatTime(newObservation.end_time - newObservation.start_time);
             document.getElementById("editObsType").value = newObservation.obstype;
             setFilterTags(newObservation.filters);
@@ -1324,8 +1311,8 @@ function highlightObservation(selectedBlock) {
 
         // Update the form with the selected observation's data
         document.getElementById("editDate").value = selectedBlock.date;
-        document.getElementById("editStartTime").value = formatTimeForInput(selectedBlock.start_time);
-        document.getElementById("editEndTime").value = formatTimeForInput(selectedBlock.end_time);
+        document.getElementById("editStartTime").value = formatTime(selectedBlock.start_time);
+        document.getElementById("editEndTime").value = formatTime(selectedBlock.end_time);
         document.getElementById("duration").value = formatTime(selectedBlock.end_time - selectedBlock.start_time);
         document.getElementById("editObsType").value = selectedBlock.obstype;
         setFilterTags(selectedBlock.filters);
@@ -1337,8 +1324,8 @@ function highlightObservation(selectedBlock) {
     } else {
         // Handle case for available blocks
         document.getElementById("editDate").value = selectedBlock.date;
-        document.getElementById("editStartTime").value = formatTimeForInput(selectedBlock.start_time);
-        document.getElementById("editEndTime").value = formatTimeForInput(selectedBlock.end_time);
+        document.getElementById("editStartTime").value = formatTime(selectedBlock.start_time);
+        document.getElementById("editEndTime").value = formatTime(selectedBlock.end_time);
         document.getElementById("duration").value = formatTime(selectedBlock.end_time - selectedBlock.start_time);
         document.getElementById("editObsType").value = ""; // No obstype for available blocks
         setFilterTags([]); // No filters for available blocks
