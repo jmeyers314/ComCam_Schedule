@@ -31,17 +31,31 @@ const dateScale = d3.scaleBand()
     .range([0, height])
     .padding(0.01);
 
-const sunStateColorScale = d3.scaleOrdinal()
-    .domain(["day", "6-deg twilight", "12-deg twilight", "18-deg twilight", "night"])
-    .range(["#EEEE00", "#00FFFF", "#00AAAA", "#005555", "#000000"]);
+const sunStateColor = {
+    "day": "#EEEE00",
+    "twilight6": "#00FFFF",
+    "twilight12": "#00AAAA",
+    "twilight18": "#005555",
+    "night": "#000000"
+};
 
-const observationColorScale = d3.scaleOrdinal()
-    .domain(["Calibration", "Prep", "AOS transient", "AOS data", "IQ", "Science"])
-    .range(["#FF0000", "#FF0000", "#FFFF00", "#0000FF", "#00FF00", "#00FFFF"]);
+const categoryColor = {
+    "Calibration": "#FF0000",
+    "Prep": "#FF0000",
+    "AOS transient": "#FFFF00",
+    "AOS data": "#0000FF",
+    "IQ": "#00FF00",
+    "Science": "#00FFFF"
+};
 
-const observationOpacity = d3.scaleOrdinal()
-    .domain(["Calibration", "Prep", "AOS transient", "AOS data", "IQ", "Science"])
-    .range([0.4, 0.4, 0.4, 0.7, 0.4, 0.4]);
+const categoryOpacity = {
+    "Calibration": 0.4,
+    "Prep": 0.4,
+    "AOS transient": 0.4,
+    "AOS data": 0.7,
+    "IQ": 0.4,
+    "Science": 0.4
+};
 
 const obstypes = {
     "Prep": {
@@ -214,8 +228,8 @@ function renderObservations() {
         .attr("y", d => dateScale(d.date) + dateScale.bandwidth() * 0.1)
         .attr("width", d => customTimeScale(d.end_time) - customTimeScale(d.start_time) - padding * 2)
         .attr("height", dateScale.bandwidth() * 0.8)
-        .attr("fill", d => observationColorScale(obstypes[d.obstype]['category']))
-        .attr("opacity", d => observationOpacity(obstypes[d.obstype]['category']))
+        .attr("fill", d => categoryColor[obstypes[d.obstype]['category']])
+        .attr("opacity", d => categoryOpacity[obstypes[d.obstype]['category']])
         .attr("rx", cornerRadius)
         .attr("ry", cornerRadius);
 
@@ -478,7 +492,7 @@ function loadObservations() {
                 .attr("y", dateScale(state.date))
                 .attr("width", wafternoon)
                 .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColorScale("day"));
+                .attr("fill", sunStateColor.day);
 
             let we6deg = (
                 customTimeScale(state.evening_6deg) -
@@ -490,7 +504,7 @@ function loadObservations() {
                 .attr("y", dateScale(state.date))
                 .attr("width", we6deg)
                 .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColorScale("6-deg twilight"));
+                .attr("fill", sunStateColor.twilight6);
 
             let we12deg = (
                 customTimeScale(state.evening_12deg) -
@@ -502,7 +516,7 @@ function loadObservations() {
                 .attr("y", dateScale(state.date))
                 .attr("width", we12deg)
                 .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColorScale("12-deg twilight"));
+                .attr("fill", sunStateColor.twilight12);
 
             let we18deg = (
                 customTimeScale(state.evening_18deg) -
@@ -514,7 +528,7 @@ function loadObservations() {
                 .attr("y", dateScale(state.date))
                 .attr("width", we12deg)
                 .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColorScale("18-deg twilight"));
+                .attr("fill", sunStateColor.twilight18);
 
             let wnight = (
                 customTimeScale(state.morning_18deg) -
@@ -526,7 +540,7 @@ function loadObservations() {
                 .attr("y", dateScale(state.date))
                 .attr("width", wnight)
                 .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColorScale("night"));
+                .attr("fill", sunStateColor.night);
 
             let wm18deg = (
                 customTimeScale(state.morning_12deg) -
@@ -538,7 +552,7 @@ function loadObservations() {
                 .attr("y", dateScale(state.date))
                 .attr("width", wm18deg)
                 .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColorScale("18-deg twilight"));
+                .attr("fill", sunStateColor.twilight18);
 
             let wm12deg = (
                 customTimeScale(state.morning_6deg) -
@@ -550,7 +564,7 @@ function loadObservations() {
                 .attr("y", dateScale(state.date))
                 .attr("width", wm12deg)
                 .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColorScale("12-deg twilight"));
+                .attr("fill", sunStateColor.twilight12);
 
             let wm6deg = (
                 customTimeScale(state.sunrise) -
@@ -562,7 +576,7 @@ function loadObservations() {
                 .attr("y", dateScale(state.date))
                 .attr("width", wm6deg)
                 .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColorScale("6-deg twilight"));
+                .attr("fill", sunStateColor.twilight6);
 
             let wmorning = (
                 customTimeScale(maxTime) -
@@ -574,7 +588,7 @@ function loadObservations() {
                 .attr("y", dateScale(state.date))
                 .attr("width", wmorning)
                 .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColorScale("day"));
+                .attr("fill", sunStateColor.day);
         });
 
         // Moon rectangles; only needed once.
