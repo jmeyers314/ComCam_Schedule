@@ -472,133 +472,57 @@ function loadObservations() {
         pruneAvailableBlocks();
 
         // Add twilight rectangles; only need to do this once.
-        filteredTwilightData.forEach(state => {
-            let wafternoon = (
-                customTimeScale(state.sunset) -
-                customTimeScale(minTime)
-            );
-            g.append("rect")
-                .attr("class", "twilight")
-                .attr("x", customTimeScale(minTime))
-                .attr("y", dateScale(state.date))
-                .attr("width", wafternoon)
-                .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColor.day);
+        filteredTwilightData.forEach(date => {
+            const twilightIntervals = [
+                { start: minTime, end: date.sunset, fill: sunStateColor.day, date: date.date },
+                { start: date.sunset, end: date.evening_6deg, fill: sunStateColor.twilight6, date: date.date },
+                { start: date.evening_6deg, end: date.evening_12deg, fill: sunStateColor.twilight12, date: date.date },
+                { start: date.evening_12deg, end: date.evening_18deg, fill: sunStateColor.twilight18, date: date.date },
+                { start: date.evening_18deg, end: date.morning_18deg, fill: sunStateColor.night, date: date.date },
+                { start: date.morning_18deg, end: date.morning_12deg, fill: sunStateColor.twilight18, date: date.date },
+                { start: date.morning_12deg, end: date.morning_6deg, fill: sunStateColor.twilight12, date: date.date },
+                { start: date.morning_6deg, end: date.sunrise, fill: sunStateColor.twilight6, date: date.date },
+                { start: date.sunrise, end: maxTime, fill: sunStateColor.day, date: date.date }
+            ];
 
-            let we6deg = (
-                customTimeScale(state.evening_6deg) -
-                customTimeScale(state.sunset)
-            );
-            g.append("rect")
+            // Bind the data for each date and append rectangles
+            g.selectAll(".twilight-" + date.date)
+                .data(twilightIntervals)
+                .enter()
+                .append("rect")
                 .attr("class", "twilight")
-                .attr("x", customTimeScale(state.sunset))
-                .attr("y", dateScale(state.date))
-                .attr("width", we6deg)
+                .attr("x", d => customTimeScale(d.start))
+                .attr("y", d => dateScale(d.date))
+                .attr("width", d => customTimeScale(d.end) - customTimeScale(d.start))
                 .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColor.twilight6);
-
-            let we12deg = (
-                customTimeScale(state.evening_12deg) -
-                customTimeScale(state.evening_6deg)
-            );
-            g.append("rect")
-                .attr("class", "twilight")
-                .attr("x", customTimeScale(state.evening_6deg))
-                .attr("y", dateScale(state.date))
-                .attr("width", we12deg)
-                .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColor.twilight12);
-
-            let we18deg = (
-                customTimeScale(state.evening_18deg) -
-                customTimeScale(state.evening_12deg)
-            );
-            g.append("rect")
-                .attr("class", "twilight")
-                .attr("x", customTimeScale(state.evening_12deg))
-                .attr("y", dateScale(state.date))
-                .attr("width", we12deg)
-                .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColor.twilight18);
-
-            let wnight = (
-                customTimeScale(state.morning_18deg) -
-                customTimeScale(state.evening_18deg)
-            );
-            g.append("rect")
-                .attr("class", "twilight")
-                .attr("x", customTimeScale(state.evening_18deg))
-                .attr("y", dateScale(state.date))
-                .attr("width", wnight)
-                .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColor.night);
-
-            let wm18deg = (
-                customTimeScale(state.morning_12deg) -
-                customTimeScale(state.morning_18deg)
-            );
-            g.append("rect")
-                .attr("class", "twilight")
-                .attr("x", customTimeScale(state.morning_18deg))
-                .attr("y", dateScale(state.date))
-                .attr("width", wm18deg)
-                .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColor.twilight18);
-
-            let wm12deg = (
-                customTimeScale(state.morning_6deg) -
-                customTimeScale(state.morning_12deg)
-            );
-            g.append("rect")
-                .attr("class", "twilight")
-                .attr("x", customTimeScale(state.morning_12deg))
-                .attr("y", dateScale(state.date))
-                .attr("width", wm12deg)
-                .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColor.twilight12);
-
-            let wm6deg = (
-                customTimeScale(state.sunrise) -
-                customTimeScale(state.morning_6deg)
-            );
-            g.append("rect")
-                .attr("class", "twilight")
-                .attr("x", customTimeScale(state.morning_6deg))
-                .attr("y", dateScale(state.date))
-                .attr("width", wm6deg)
-                .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColor.twilight6);
-
-            let wmorning = (
-                customTimeScale(maxTime) -
-                customTimeScale(state.sunrise)
-            );
-            g.append("rect")
-                .attr("class", "twilight")
-                .attr("x", customTimeScale(state.sunrise))
-                .attr("y", dateScale(state.date))
-                .attr("width", wmorning)
-                .attr("height", dateScale.bandwidth())
-                .attr("fill", sunStateColor.day);
+                .attr("fill", d => d.fill);
         });
 
         // Moon rectangles; only needed once.
-        filteredMoonData.forEach(state => {
-            state.moonintervals.forEach(interval => {
-                const start = Math.max(minTime, interval[0]);
-                const end = Math.min(maxTime, interval[1]);
-                if (start < end) {
-                    g.append("rect")
-                        .attr("class", "moon")
-                        .attr("x", customTimeScale(start))
-                        .attr("y", dateScale(state.date))
-                        .attr("width", customTimeScale(end) - customTimeScale(start))
-                        .attr("height", dateScale.bandwidth())
-                        .attr("fill", "grey")
-                        .attr("opacity", 0.5);
-                }
-            });
-        });
+        const flattenedMoonData = filteredMoonData.flatMap(date =>
+            date.moonintervals
+                .map(interval => {
+                    const start = Math.max(minTime, interval[0]);
+                    const end = Math.min(maxTime, interval[1]);
+                    return {
+                        start,
+                        end,
+                        date: date.date
+                    };
+                })
+                .filter(({ start, end }) => start < end)
+        );
+        g.selectAll(".moon")
+            .data(flattenedMoonData)
+            .enter()
+            .append("rect")
+            .attr("class", "moon")
+            .attr("x", d => customTimeScale(d.start))
+            .attr("y", d => dateScale(d.date))
+            .attr("width", d => customTimeScale(d.end)-customTimeScale(d.start))
+            .attr("height", dateScale.bandwidth())
+            .attr("fill", "grey")
+            .attr("opacity", 0.5);
 
         renderObservations();
         renderAxes();
