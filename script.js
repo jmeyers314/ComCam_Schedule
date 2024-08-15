@@ -149,6 +149,10 @@ const obstypes = {
     }
 }
 
+Object.values(obstypes).forEach(type => {
+    type.color = categoryColor[type.category];
+    type.opacity = categoryOpacity[type.category];
+});
 
 function formatTime(hoursDecimal) {
     let hours = Math.floor(hoursDecimal);
@@ -228,8 +232,8 @@ function renderObservations() {
         .attr("y", d => dateScale(d.date) + dateScale.bandwidth() * 0.1)
         .attr("width", d => customTimeScale(d.end_time) - customTimeScale(d.start_time) - padding * 2)
         .attr("height", dateScale.bandwidth() * 0.8)
-        .attr("fill", d => categoryColor[obstypes[d.obstype]['category']])
-        .attr("opacity", d => categoryOpacity[obstypes[d.obstype]['category']])
+        .attr("fill", d => obstypes[d.obstype].color)
+        .attr("opacity", d => obstypes[d.obstype].opacity)
         .attr("rx", cornerRadius)
         .attr("ry", cornerRadius);
 
