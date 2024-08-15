@@ -25,8 +25,9 @@ const customTimeScale = d3.scaleLinear()
 const dateStart = new Date("2024-10-01");
 const dateEnd = new Date("2024-12-01");
 const dateRange = d3.timeDay.range(dateStart, dateEnd);
+const dates = dateRange.map(d => d.toISOString().split("T")[0]);
 const dateScale = d3.scaleBand()
-    .domain(dateRange.map(d => d.toISOString().split("T")[0]))
+    .domain(dates)
     .range([0, height])
     .padding(0.01);
 
@@ -458,23 +459,9 @@ function loadObservations() {
         const [twilightData, moonData, observationData] = data;
 
         // Filter data to exclude dates outside the specified range
-        filteredTwilightData = twilightData
-            .filter(d => dateRange.map(
-                date => date.toISOString().split("T")[0]).includes(d.date)
-            );
-        filteredMoonData = moonData
-            .filter(d => dateRange.map(
-                date => date.toISOString().split("T")[0]).includes(d.date)
-            );
-        filteredObservationData = observationData
-            .filter(d => dateRange.map(
-                date => date.toISOString().split("T")[0]).includes(d.date)
-            )
-            .map(obs => {
-                // Ensure each observation has a filters field, defaulting to ['i']
-                obs.filters = obs.filters || ['i'];
-                return obs;
-            });
+        filteredTwilightData = twilightData.filter(d => dates.includes(d.date));
+        filteredMoonData = moonData.filter(d => dates.includes(d.date));
+        filteredObservationData = observationData.filter(d => dates.includes(d.date));
 
         initializeAvailableBlocks();
         pruneAvailableBlocks();
@@ -735,9 +722,7 @@ d3.select("#fileInput").on("change", function() {
         reader.onload = function(e) {
             observationData = JSON.parse(e.target.result);
             filteredObservationData = observationData.filter(
-                d => dateRange.map(
-                    date => date.toISOString().split("T")[0]
-                ).includes(d.date)
+                d => dates.includes(d.date)
             );
             initializeAvailableBlocks();
             pruneAvailableBlocks();
@@ -1264,9 +1249,8 @@ function findRightNeighbor(selectedData) {
 
 function findVerticalNeighbor(selectedData, direction) {
     const currentCenter = (selectedData.start_time + selectedData.end_time) / 2;
-    dateMap = dateRange.map(date => date.toISOString().split("T")[0]);
-    const currentDateIndex = dateMap.indexOf(selectedData.date);
-    const targetDate = dateMap[currentDateIndex + direction];
+    const currentDateIndex = dates.indexOf(selectedData.date);
+    const targetDate = dates[currentDateIndex + direction];
 
     if (!targetDate) return null; // No date to move to
 
