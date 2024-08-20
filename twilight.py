@@ -18,6 +18,14 @@ RUBIN = Observer(
 
 cptz = pytz.timezone('America/Santiago')
 
+def secToHHMMSS(sec):
+    if sec < 0:
+        sec += 86400
+    hh = int(sec//3600)
+    mm = int((sec%3600)//60)
+    ss = int(sec%60)
+    return f'{hh:02d}:{mm:02d}:{ss:02d}'
+
 def twilight_for_day(dayobs):
     noon_cp = Time(dayobs) + 15*u.hour
     tmid = cptz.localize(
@@ -36,9 +44,15 @@ def twilight_for_day(dayobs):
         ('evening_12deg', -12),
         ('evening_18deg', -18),
     ]:
-        out[label] = (RUBIN.sun_set_time(
-            noon_cp, which='next', horizon=elev*u.deg
-        )-tmid).to_value(u.h)
+        out[label] = secToHHMMSS(
+            int(
+                (
+                    RUBIN.sun_set_time(
+                        noon_cp, which='next', horizon=elev*u.deg
+                    )-tmid
+                ).to_value(u.s)
+            )
+        )
 
 
     for label, elev in [
@@ -47,9 +61,15 @@ def twilight_for_day(dayobs):
         ('morning_6deg', -6),
         ('sunrise', 0)
     ]:
-        out[label] = (RUBIN.sun_rise_time(
-            noon_cp, which='next', horizon=elev*u.deg
-        )-tmid).to_value(u.h)
+        out[label] = secToHHMMSS(
+            int(
+                (
+                    RUBIN.sun_rise_time(
+                        noon_cp, which='next', horizon=elev*u.deg
+                    )-tmid
+                ).to_value(u.s)
+            )
+        )
     return out
 
 

@@ -16,6 +16,14 @@ RUBIN = Observer(
 )
 cptz = pytz.timezone('America/Santiago')
 
+def secToHHMMSS(sec):
+    if sec < 0:
+        sec += 86400
+    hh = int(sec//3600)
+    mm = int((sec%3600)//60)
+    ss = int(sec%60)
+    return f'{hh:02d}:{mm:02d}:{ss:02d}'
+
 data = []
 for dayobs in tqdm(Time('2024-09-01') + np.arange(270)*u.day):
     noon_cp = Time(dayobs) + 15*u.hour
@@ -31,19 +39,24 @@ for dayobs in tqdm(Time('2024-09-01') + np.arange(270)*u.day):
     )
     tmid = Time(tmid)
 
+    prevrise = int((prevrise-tmid).to_value(u.s))
+    prevriseset = int((prevriseset-tmid).to_value(u.s))
+    nextrise = int((nextrise-tmid).to_value(u.s))
+    nextriseset = int((nextriseset-tmid).to_value(u.s))
+
     intervals = []
-    intervals.append([
-         (prevrise-tmid).to_value(u.h),
-         (prevriseset-tmid).to_value(u.h)
-    ])
-    intervals.append([
-        (nextrise-tmid).to_value(u.h),
-        (nextriseset-tmid).to_value(u.h)
-    ])
-    if intervals[0][1] < -12:
-        del intervals[0]
-    elif intervals[1][0] > 12:
-        del intervals[1]
+
+    if prevriseset >= -12*3600:
+        intervals.append([
+            secToHHMMSS(np.clip(prevrise, -12*3600, 12*3600-1)),
+            secToHHMMSS(np.clip(prevriseset, -12*3600, 12*3600-1))
+        ])
+
+    if nextrise <= 12*3600:
+        intervals.append([
+            secToHHMMSS(np.clip(nextrise, -12*3600, 12*3600-1)),
+            secToHHMMSS(np.clip(nextriseset, -12*3600, 12*3600-1))
+        ])
 
     data.append({
         'dayobs': dayobs.strftime('%Y-%m-%d'),

@@ -15,8 +15,9 @@ const g = svg.append("g")
 
 // x-axis
 //  Time range for x-axis.  17:00 to 07:30
-const minTime = -5;
-const maxTime = 7.5;
+//  Use seconds from midnight.
+const minTime = -5*3600;
+const maxTime = 7.5*3600;
 const timeScale = d3.scaleLinear()
     .domain([minTime, maxTime])
     .range([0, width]);
@@ -154,38 +155,45 @@ Object.values(obstypes).forEach(type => {
     type.opacity = categoryOpacity[type.category];
 });
 
-function formatTime(hoursDecimal) {
-    let hours = Math.floor(hoursDecimal);
-    let minutes = Math.round((hoursDecimal - hours) * 60);
-
-    // Handle the case where minutes rounds up to 60
-    if (minutes === 60) {
-        hours++;
-        minutes = 0;
+function formatTime(secondsToMidnight, hms=false) {
+    if (secondsToMidnight < 0) {
+        secondsToMidnight += 86400;
     }
-
-    // Adjust decimal hours to be +ve hh:mm format
-    if (hours < 0) {
-        hours += 24;
-    } else if (hours >= 24) {
-        hours -= 24;
+    let hours = Math.floor(secondsToMidnight / 3600);
+    let minutes = Math.floor((secondsToMidnight - hours * 3600) / 60);
+    let seconds = Math.round(secondsToMidnight % 60);
+    if (hms) {
+        let out = ``;
+        if (hours > 0) {
+            out += `${hours}h`;
+        }
+        out += `${minutes}m${seconds}s`;
+        return out;
     }
+    let hourStr = String(hours).padStart(2, '0');
+    let minuteStr = String(minutes).padStart(2, '0');
+    let secondStr = String(seconds).padStart(2, '0');
+    return `${hourStr}:${minuteStr}:${secondStr}`;
+}
 
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+// Helper function to parse time from the input field (hh:mm format) to decimal hours
+function parseTime(timeStr) {
+    const [hours, minutes, seconds] = timeStr.split(':').map(Number);
+    let secondsToMidnight = hours*3600 + minutes*60 + seconds;
+    if (secondsToMidnight >= 43200) {
+        secondsToMidnight -= 86400; // Adjust for the internal time scale
+    }
+    return secondsToMidnight;
 }
 
 function formatTooltip(obs, moonIllumination) {
-    const startTime = formatTime(obs.start_time);
-    const endTime = formatTime(obs.end_time);
-    const durationHours = obs.end_time - obs.start_time;
-    const duration = formatTime(durationHours);
-
     let out = `${obs.dayobs}<br>`;
-    if (obs.obstype in obstypes) {
-        out += `${obstypes[obs.obstype]['tooltip']}<br>`;
+    if (obs.type in obstypes) {
+        out += `${obstypes[obs.type]['tooltip']}<br>`;
     }
-    out += `Start: ${startTime}<br>`;
-    out += `End: ${endTime}<br>`;
+    const duration = formatTime(obs.end - obs.start, hms=true);
+    out += `Start: ${formatTime(obs.start)}<br>`;
+    out += `End: ${formatTime(obs.end)}<br>`;
     out += `Duration: ${duration}<br>`;
     out += `Moon Illumination: ${(moonIllumination * 100).toFixed(2)}%`;
     if (obs.notes) {
@@ -215,17 +223,17 @@ function renderObservations() {
         .attr("data-index", (d, i) => i);
 
     observations.append("rect")
-        .attr("x", d => timeScale(d.start_time) + padding)
+        .attr("x", d => timeScale(d.start) + padding)
         .attr("y", d => dateScale(d.dayobs) + dateScale.bandwidth() * 0.1)
-        .attr("width", d => timeScale(d.end_time) - timeScale(d.start_time) - padding * 2)
+        .attr("width", d => timeScale(d.end) - timeScale(d.start) - padding * 2)
         .attr("height", dateScale.bandwidth() * 0.8)
-        .attr("fill", d => obstypes[d.obstype].color)
-        .attr("opacity", d => obstypes[d.obstype].opacity)
+        .attr("fill", d => obstypes[d.type].color)
+        .attr("opacity", d => obstypes[d.type].opacity)
         .attr("rx", cornerRadius)
         .attr("ry", cornerRadius);
 
     observations.append("text")
-        .attr("x", d => timeScale(d.start_time) + (timeScale(d.end_time) - timeScale(d.start_time)) / 2)
+        .attr("x", d => timeScale(d.start) + (timeScale(d.end) - timeScale(d.start)) / 2)
         .attr("y", d => dateScale(d.dayobs) + dateScale.bandwidth() * 0.1 + dateScale.bandwidth() * 0.4)
         .attr("dy", ".35em")
         .attr("text-anchor", "middle")
@@ -233,7 +241,7 @@ function renderObservations() {
         .style("font-family", "monospace")
         .style("font-size", "10px")
         .style("pointer-events", "none")
-        .text(d => d.obstype);
+        .text(d => d.type);
 
     observations.on("mouseover", function(event, d) {
         const tooltip = d3.select("#tooltip");
@@ -342,7 +350,7 @@ function renderObservations() {
 
                 // Select elements whose center is within the lasso rectangle
                 observations.classed("selected", function(d) {
-                    const rectXCenter = timeScale(d.start_time) + (timeScale(d.end_time) - timeScale(d.start_time)) / 2;
+                    const rectXCenter = timeScale(d.start) + (timeScale(d.end) - timeScale(d.start)) / 2;
                     const rectYCenter = dateScale(d.dayobs) + dateScale.bandwidth() / 2;
 
                     const isCurrentlySelected = d3.select(this).classed("selected");
@@ -374,10 +382,10 @@ function renderObservations() {
 
                 // Populate the form with the selected block's data
                 document.getElementById("editDate").value = selectedData.dayobs;
-                document.getElementById("editStartTime").value = formatTime(selectedData.start_time);
-                document.getElementById("editEndTime").value = formatTime(selectedData.end_time);
-                document.getElementById("duration").value = formatTime(selectedData.end_time - selectedData.start_time);
-                document.getElementById("editObsType").value = selectedData.obstype;
+                document.getElementById("editStartTime").value = formatTime(selectedData.start);
+                document.getElementById("editEndTime").value = formatTime(selectedData.end);
+                document.getElementById("duration").value = formatTime(selectedData.end - selectedData.start, hms=true);
+                document.getElementById("editObsType").value = selectedData.type;
                 setFilterTags(selectedData.filters);
                 document.getElementById("editNotes").value = selectedData.notes || "";
 
@@ -396,9 +404,9 @@ function renderObservations() {
         .enter()
         .append("rect")
         .attr("class", "available-block")
-        .attr("x", d => timeScale(d.start_time))
+        .attr("x", d => timeScale(d.start))
         .attr("y", d => dateScale(d.dayobs))
-        .attr("width", d => timeScale(d.end_time) - timeScale(d.start_time))
+        .attr("width", d => timeScale(d.end) - timeScale(d.start))
         .attr("height", dateScale.bandwidth())
         .attr("fill", "transparent") // Make the blocks invisible
         .attr("stroke", "none")
@@ -417,10 +425,10 @@ function renderObservations() {
 
             // Handle form population for available blocks
             document.getElementById("editDate").value = d.dayobs;
-            document.getElementById("editStartTime").value = formatTime(d.start_time);
-            document.getElementById("editEndTime").value = formatTime(d.end_time);
-            document.getElementById("duration").value = formatTime(d.end_time - d.start_time);
-            document.getElementById("editObsType").value = ""; // No obstype for available blocks
+            document.getElementById("editStartTime").value = formatTime(d.start);
+            document.getElementById("editEndTime").value = formatTime(d.end);
+            document.getElementById("duration").value = formatTime(d.end - d.start, hms=true);
+            document.getElementById("editObsType").value = ""; // No type for available blocks
             setFilterTags([]); // No filters for available blocks
             document.getElementById("editNotes").value = ""; // No notes for available blocks
 
@@ -437,12 +445,14 @@ function renderObservations() {
 }
 
 function renderAxes() {
-    const xAxis = d3.axisBottom(timeScale).tickFormat(d => {
-        const hours = Math.floor(d);
-        const minutes = (d - hours) * 60;
-        const date = new Date(1970, 0, 1, hours, minutes);
-        return d3.timeFormat("%H:%M")(date);
-    });
+    const xAxis = d3.axisBottom(timeScale)
+        .tickValues(d3.range(minTime, maxTime + 1, 3600))
+        .tickFormat(d => {
+            const hours = Math.floor(d/3600);
+            const minutes = (d/3600 - hours) * 60;
+            const date = new Date(1970, 0, 1, hours, minutes);
+            return d3.timeFormat("%H:%M")(date);
+        });
     const yAxis = d3.axisLeft(dateScale);
 
     g.append("g")
@@ -467,6 +477,20 @@ function loadObservations() {
         filteredTwilightData = twilightData.filter(d => dates.includes(d.dayobs));
         filteredMoonData = moonData.filter(d => dates.includes(d.dayobs));
         filteredObservationData = observationData.filter(d => dates.includes(d.dayobs));
+
+        filteredTwilightData.forEach(d => {
+            for (const k in d) {
+                if (k === "dayobs") continue;
+                d[k] = parseTime(d[k]);
+            }
+        });
+        filteredMoonData.forEach(d => {
+            d.moonintervals = d.moonintervals.map(interval => interval.map(parseTime));
+        });
+        filteredObservationData.forEach(d => {
+            d.start = parseTime(d.start);
+            d.end = parseTime(d.end);
+        });
 
         initializeAvailableBlocks();
         pruneAvailableBlocks();
@@ -538,18 +562,18 @@ function initializeAvailableBlocks() {
     twilightData.forEach(d => {
         // Create blocks for each twilight period and night period
         const blocks = [
-            { dayobs: d.dayobs, start_time: d.sunset, end_time: d.evening_6deg },
-            { dayobs: d.dayobs, start_time: d.evening_6deg, end_time: d.evening_12deg },
-            { dayobs: d.dayobs, start_time: d.evening_12deg, end_time: d.evening_18deg },
-            { dayobs: d.dayobs, start_time: d.evening_18deg, end_time: d.morning_18deg }, // Night
-            { dayobs: d.dayobs, start_time: d.morning_18deg, end_time: d.morning_12deg },
-            { dayobs: d.dayobs, start_time: d.morning_12deg, end_time: d.morning_6deg },
-            { dayobs: d.dayobs, start_time: d.morning_6deg, end_time: d.sunrise }
+            { dayobs: d.dayobs, start: d.sunset, end: d.evening_6deg },
+            { dayobs: d.dayobs, start: d.evening_6deg, end: d.evening_12deg },
+            { dayobs: d.dayobs, start: d.evening_12deg, end: d.evening_18deg },
+            { dayobs: d.dayobs, start: d.evening_18deg, end: d.morning_18deg }, // Night
+            { dayobs: d.dayobs, start: d.morning_18deg, end: d.morning_12deg },
+            { dayobs: d.dayobs, start: d.morning_12deg, end: d.morning_6deg },
+            { dayobs: d.dayobs, start: d.morning_6deg, end: d.sunrise }
         ];
 
-        // Filter out any blocks that have no duration (e.g., if start_time equals end_time)
+        // Filter out any blocks that have no duration (e.g., if start equals end)
         blocks.forEach(block => {
-            if (block.start_time < block.end_time) {
+            if (block.start < block.end) {
                 blockData.push(block);
             }
         });
@@ -570,36 +594,36 @@ function pruneAvailableBlocks() {
             newBlocks.forEach(block => {
             if (observation.dayobs === block.dayobs) { // They are on the same date
                     // Case 1: Observation completely covers the available block
-                    if (observation.start_time <= block.start_time && observation.end_time >= block.end_time) {
+                    if (observation.start <= block.start && observation.end >= block.end) {
                         // This available block is fully covered by the observation and should be removed.
                         // Do nothing here, so it gets removed.
                     }
                     // Case 2: Observation overlaps the start of the available block
-                    else if (observation.start_time <= block.start_time && observation.end_time > block.start_time && observation.end_time < block.end_time) {
+                    else if (observation.start <= block.start && observation.end > block.start && observation.end < block.end) {
                         // Truncate the start of the available block
                         tempBlocks.push({
                             ...block,
-                            start_time: observation.end_time
+                            start: observation.end
                         });
                     }
                     // Case 3: Observation overlaps the end of the available block
-                    else if (observation.start_time > block.start_time && observation.start_time < block.end_time && observation.end_time >= block.end_time) {
+                    else if (observation.start > block.start && observation.start < block.end && observation.end >= block.end) {
                         // Truncate the end of the available block
                         tempBlocks.push({
                             ...block,
-                            end_time: observation.start_time
+                            end: observation.start
                         });
                     }
                     // Case 4: Observation is inside the available block
-                    else if (observation.start_time > block.start_time && observation.end_time < block.end_time) {
+                    else if (observation.start > block.start && observation.end < block.end) {
                         // Split the available block into two blocks
                         tempBlocks.push({
                             ...block,
-                            end_time: observation.start_time
+                            end: observation.start
                         });
                         tempBlocks.push({
                             ...block,
-                            start_time: observation.end_time
+                            start: observation.end
                         });
                     }
                     // Case 5: No overlap
@@ -693,9 +717,9 @@ function updateSelectedObservation() {
 
         // Update the selected block's data with the values from the form
         selectedData.dayobs = document.getElementById("editDate").value;
-        selectedData.start_time = parseTime(document.getElementById("editStartTime").value);
-        selectedData.end_time = parseTime(document.getElementById("editEndTime").value);
-        selectedData.obstype = document.getElementById("editObsType").value;
+        selectedData.start = parseTime(document.getElementById("editStartTime").value);
+        selectedData.end = parseTime(document.getElementById("editEndTime").value);
+        selectedData.type = document.getElementById("editObsType").value;
         selectedData.filters = filterTags.getValue(true);
         selectedData.notes = document.getElementById("editNotes").value;
 
@@ -730,15 +754,15 @@ document.addEventListener('keydown', function(event) {
 
         if (selectedAvailableBlock) {
             // Calculate the duration of the new observation block (1 hour or remainder of the available time)
-            const duration = Math.min(1, selectedAvailableBlock.end_time - selectedAvailableBlock.start_time);
-            const endTime = selectedAvailableBlock.start_time + duration;
+            const duration = Math.min(3600, selectedAvailableBlock.end - selectedAvailableBlock.start);
+            const endTime = selectedAvailableBlock.start + duration;
 
             // Create the new observation block
             const newObservation = {
                 dayobs: selectedAvailableBlock.dayobs,
-                start_time: selectedAvailableBlock.start_time,
-                end_time: endTime,
-                obstype: "Survey",
+                start: selectedAvailableBlock.start,
+                end: endTime,
+                type: "Survey",
                 filters: ['i']
             };
 
@@ -746,12 +770,12 @@ document.addEventListener('keydown', function(event) {
             filteredObservationData.push(newObservation);
 
             // Update availableBlockData by removing or truncating the selected available block
-            if (endTime === selectedAvailableBlock.end_time) {
+            if (endTime === selectedAvailableBlock.end) {
                 // Remove the available block if fully covered by the new observation
                 availableBlockData = availableBlockData.filter(block => block !== selectedAvailableBlock);
             } else {
                 // Truncate the available block
-                selectedAvailableBlock.start_time = endTime;
+                selectedAvailableBlock.start = endTime;
             }
 
             // Re-render the observations and available blocks
@@ -771,10 +795,10 @@ document.addEventListener('keydown', function(event) {
 
             // Populate the form with the new observation block's data
             document.getElementById("editDate").value = newObservation.dayobs;
-            document.getElementById("editStartTime").value = formatTime(newObservation.start_time);
-            document.getElementById("editEndTime").value = formatTime(newObservation.end_time);
-            document.getElementById("duration").value = formatTime(newObservation.end_time - newObservation.start_time);
-            document.getElementById("editObsType").value = newObservation.obstype;
+            document.getElementById("editStartTime").value = formatTime(newObservation.start);
+            document.getElementById("editEndTime").value = formatTime(newObservation.end);
+            document.getElementById("duration").value = formatTime(newObservation.end - newObservation.start, hms=true);
+            document.getElementById("editObsType").value = newObservation.type;
             setFilterTags(newObservation.filters);
             document.getElementById("editNotes").value = newObservation.notes || "";
 
@@ -787,43 +811,9 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Helper function to parse time from the input field (hh:mm format) to decimal hours
-function parseTime(timeStr) {
-    const [hours, minutes] = timeStr.split(':').map(Number);
-    const decimalHours = hours + minutes / 60;
-    if (decimalHours >= 12)
-        return decimalHours - 24;
-    else
-        return decimalHours;
-}
 
 document.addEventListener("DOMContentLoaded", function() {
-    const adjustmentStep = 15; // Time step in minutes
-
-    // Utility function to parse time in HH:MM format to decimal hours
-    function parseTimeToDecimalHours(timeStr) {
-        const [hours, minutes] = timeStr.split(':').map(Number);
-        let decimalHours = hours + minutes / 60;
-        // Adjust for the internal time scale
-        if (decimalHours >= 0 && decimalHours < 12) {
-            // Morning times (e.g., 00:00 to 07:30)
-            return decimalHours;
-        } else {
-            // Evening times (e.g., 19:00 to 24:00)
-            return decimalHours - 24;
-        }
-    }
-
-    // Utility function to format decimal hours back to HH:MM format
-    function formatDecimalHoursToTime(decimalHours) {
-        let adjustedHours = decimalHours;
-        if (decimalHours < 0) {
-            adjustedHours += 24; // Adjust back for positive hours
-        }
-        const hours = Math.floor(adjustedHours);
-        const minutes = Math.round((adjustedHours - hours) * 60);
-        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-    }
+    const adjustmentStep = 15*60; // Time step in seconds
 
     // Function to get the list of stopping points based on observations and twilight edges
     function getStoppingPoints(currentDate) {
@@ -846,8 +836,8 @@ document.addEventListener("DOMContentLoaded", function() {
         // Filter and add observation start and end times for the current date
         filteredObservationData.forEach(observation => {
             if (observation.dayobs === currentDate) {
-                stoppingPoints.push(observation.start_time);
-                stoppingPoints.push(observation.end_time);
+                stoppingPoints.push(observation.start);
+                stoppingPoints.push(observation.end);
             }
         });
 
@@ -880,28 +870,26 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to adjust time with respect to predefined stopping points
     function adjustTime(inputField, adjustment) {
         const currentDate = document.getElementById("editDate").value;
-        let currentDecimalHours = parseTimeToDecimalHours(inputField.value);
-        let newDecimalHours;
+        let secondsToMidnight = parseTime(inputField.value);
+        let newSecondsToMidnight;
 
         if (adjustment > 0) {
-            newDecimalHours = findNextStoppingPoint(currentDecimalHours, currentDate, 1);
-            newDecimalHours += 0.017; // Add a small offset to avoid rounding errors
+            newSecondsToMidnight = findNextStoppingPoint(secondsToMidnight, currentDate, 1);
         } else {
-            newDecimalHours = findNextStoppingPoint(currentDecimalHours, currentDate, -1);
-            newDecimalHours -= 0.017; // Subtract a small offset to avoid rounding errors
+            newSecondsToMidnight = findNextStoppingPoint(secondsToMidnight, currentDate, -1);
         }
 
-        // Adjust by 15 minutes if no stopping point is nearby
-        const minutesDifference = (newDecimalHours - currentDecimalHours) * 60;
-        if (Math.abs(minutesDifference) > adjustmentStep) {
-            newDecimalHours = currentDecimalHours + adjustment / 60;
+        // Adjust by adjustmentStep if no stopping point is nearby
+        const secondsDifference = (newSecondsToMidnight - secondsToMidnight);
+        if (Math.abs(secondsDifference) > adjustmentStep) {
+            newSecondsToMidnight = secondsToMidnight + adjustment;
         }
 
         // Ensure the time stays within the minTime to maxTime period
-        if (newDecimalHours < minTime) newDecimalHours = minTime;
-        if (newDecimalHours > maxTime) newDecimalHours = maxTime;
+        if (newSecondsToMidnight < minTime) secondsToMidnight = minTime;
+        if (newSecondsToMidnight > maxTime) secondsToMidnight = maxTime;
 
-        inputField.value = formatDecimalHoursToTime(newDecimalHours);
+        inputField.value = formatTime(newSecondsToMidnight);
         inputField.dispatchEvent(new Event('input')); // Trigger any input event listeners
     }
 
@@ -924,13 +912,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+// Use Flatpickr for Date
 const dateInput = document.getElementById("editDate");
-const startTimeInput = document.getElementById("editStartTime");
-const endTimeInput = document.getElementById("editEndTime");
-
-// Initialize Flatpickr for Date
 flatpickr(dateInput, {
     dateFormat: "Y-m-d",  // Date format
+    closeOnSelect: false,
     onOpen: function(selectedDates, dateStr, instance) {
         const currentDate = dateInput.value;
         if (currentDate) {
@@ -939,33 +925,37 @@ flatpickr(dateInput, {
     }
 });
 
-// Lazy initialization for time inputs
-let startTimeInitialized = false;
-let endTimeInitialized = false;
+const startTimeInput = document.getElementById("editStartTime");
+const endTimeInput = document.getElementById("editEndTime");
 
+// Lazy initialization for flatpickr time inputs
+let startTimeInitialized = false;
 startTimeInput.addEventListener("focus", function () {
     if (!startTimeInitialized) {
         flatpickr(startTimeInput, {
             enableTime: true,
             noCalendar: true,  // Disable the date selection
-            dateFormat: "H:i",  // Time format in 24-hour
+            dateFormat: "H:i:S",  // Time format in 24-hour
             time_24hr: true,  // 24-hour time picker
             allowInput: true,  // Allow direct typing of time
-            defaultDate: startTimeInput.value || "00:00",  // Default time if input is empty
+            enableSeconds: true,  // Enable seconds input
+            defaultDate: startTimeInput.value || "00:00:00",  // Default time if input is empty
         });
         startTimeInitialized = true;
     }
 });
 
+let endTimeInitialized = false;
 endTimeInput.addEventListener("focus", function () {
     if (!endTimeInitialized) {
         flatpickr(endTimeInput, {
             enableTime: true,
             noCalendar: true,  // Disable the date selection
-            dateFormat: "H:i",  // Time format in 24-hour
+            dateFormat: "H:i:S",  // Time format in 24-hour
             time_24hr: true,  // 24-hour time picker
             allowInput: true,  // Allow direct typing of time
-            defaultDate: endTimeInput.value || "00:00",  // Default time if input is empty
+            enableSeconds: true,  // Enable seconds input
+            defaultDate: endTimeInput.value || "00:00:00",  // Default time if input is empty
         });
         endTimeInitialized = true;
     }
@@ -1159,7 +1149,7 @@ document.addEventListener("keydown", function(event) {
 function findLeftNeighbor(selectedData) {
     const allBlocks = [...filteredObservationData, ...availableBlockData]
     .filter(obs => obs.dayobs === selectedData.dayobs)
-        .sort((a, b) => a.start_time - b.start_time);
+        .sort((a, b) => a.start - b.start);
 
     const currentIndex = allBlocks.indexOf(selectedData);
 
@@ -1169,7 +1159,7 @@ function findLeftNeighbor(selectedData) {
 function findRightNeighbor(selectedData) {
     const allBlocks = [...filteredObservationData, ...availableBlockData]
         .filter(obs => obs.dayobs === selectedData.dayobs)
-        .sort((a, b) => a.start_time - b.start_time);
+        .sort((a, b) => a.start - b.start);
 
     const currentIndex = allBlocks.indexOf(selectedData);
 
@@ -1177,7 +1167,7 @@ function findRightNeighbor(selectedData) {
 }
 
 function findVerticalNeighbor(selectedData, direction) {
-    const currentCenter = (selectedData.start_time + selectedData.end_time) / 2;
+    const currentCenter = (selectedData.start + selectedData.end) / 2;
     const currentDateIndex = dates.indexOf(selectedData.dayobs);
     const targetDate = dates[currentDateIndex + direction];
 
@@ -1192,7 +1182,7 @@ function findVerticalNeighbor(selectedData, direction) {
     let closestDistance = Infinity;
 
     allBlocksForTargetDate.forEach(obs => {
-        const obsCenter = (obs.start_time + obs.end_time) / 2;
+        const obsCenter = (obs.start + obs.end) / 2;
         const distance = Math.abs(obsCenter - currentCenter);
 
         if (distance < closestDistance) {
@@ -1235,10 +1225,10 @@ function highlightObservation(selectedBlock) {
 
         // Update the form with the selected observation's data
         document.getElementById("editDate").value = selectedBlock.dayobs;
-        document.getElementById("editStartTime").value = formatTime(selectedBlock.start_time);
-        document.getElementById("editEndTime").value = formatTime(selectedBlock.end_time);
-        document.getElementById("duration").value = formatTime(selectedBlock.end_time - selectedBlock.start_time);
-        document.getElementById("editObsType").value = selectedBlock.obstype;
+        document.getElementById("editStartTime").value = formatTime(selectedBlock.start);
+        document.getElementById("editEndTime").value = formatTime(selectedBlock.end);
+        document.getElementById("duration").value = formatTime(selectedBlock.end - selectedBlock.start, hms=true);
+        document.getElementById("editObsType").value = selectedBlock.type;
         setFilterTags(selectedBlock.filters);
         document.getElementById("editNotes").value = selectedBlock.notes || "";
 
@@ -1248,10 +1238,10 @@ function highlightObservation(selectedBlock) {
     } else {
         // Handle case for available blocks
         document.getElementById("editDate").value = selectedBlock.dayobs;
-        document.getElementById("editStartTime").value = formatTime(selectedBlock.start_time);
-        document.getElementById("editEndTime").value = formatTime(selectedBlock.end_time);
-        document.getElementById("duration").value = formatTime(selectedBlock.end_time - selectedBlock.start_time);
-        document.getElementById("editObsType").value = ""; // No obstype for available blocks
+        document.getElementById("editStartTime").value = formatTime(selectedBlock.start);
+        document.getElementById("editEndTime").value = formatTime(selectedBlock.end);
+        document.getElementById("duration").value = formatTime(selectedBlock.end - selectedBlock.start, hms=true);
+        document.getElementById("editObsType").value = ""; // No type for available blocks
         setFilterTags([]); // No filters for available blocks
         document.getElementById("editNotes").value = ""; // No notes for available blocks
 
@@ -1267,7 +1257,7 @@ function calculateAndDisplayDuration() {
 
     if (startTime !== null && endTime !== null) {
         const duration = endTime - startTime;
-        document.getElementById("duration").value = formatTime(duration);
+        document.getElementById("duration").value = formatTime(duration, hms=true);
     } else {
         document.getElementById("duration").value = '';
     }
