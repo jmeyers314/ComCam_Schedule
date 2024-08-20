@@ -180,7 +180,7 @@ function formatTooltip(obs, moonIllumination) {
     const durationHours = obs.end_time - obs.start_time;
     const duration = formatTime(durationHours);
 
-    let out = `${obs.date}<br>`;
+    let out = `${obs.dayobs}<br>`;
     if (obs.obstype in obstypes) {
         out += `${obstypes[obs.obstype]['tooltip']}<br>`;
     }
@@ -216,7 +216,7 @@ function renderObservations() {
 
     observations.append("rect")
         .attr("x", d => customTimeScale(d.start_time) + padding)
-        .attr("y", d => dateScale(d.date) + dateScale.bandwidth() * 0.1)
+        .attr("y", d => dateScale(d.dayobs) + dateScale.bandwidth() * 0.1)
         .attr("width", d => customTimeScale(d.end_time) - customTimeScale(d.start_time) - padding * 2)
         .attr("height", dateScale.bandwidth() * 0.8)
         .attr("fill", d => obstypes[d.obstype].color)
@@ -226,7 +226,7 @@ function renderObservations() {
 
     observations.append("text")
         .attr("x", d => customTimeScale(d.start_time) + (customTimeScale(d.end_time) - customTimeScale(d.start_time)) / 2)
-        .attr("y", d => dateScale(d.date) + dateScale.bandwidth() * 0.1 + dateScale.bandwidth() * 0.4)
+        .attr("y", d => dateScale(d.dayobs) + dateScale.bandwidth() * 0.1 + dateScale.bandwidth() * 0.4)
         .attr("dy", ".35em")
         .attr("text-anchor", "middle")
         .attr("fill", "#FFFFFF")
@@ -237,7 +237,7 @@ function renderObservations() {
 
     observations.on("mouseover", function(event, d) {
         const tooltip = d3.select("#tooltip");
-        const moonDataForDate = filteredMoonData.find(moon => moon.date === d.date);
+        const moonDataForDate = filteredMoonData.find(moon => moon.dayobs === d.dayobs);  // Check this one
         tooltip.style("display", "block")
             .style("left", (event.pageX + 5) + "px")
             .style("top", (event.pageY + 5) + "px")
@@ -343,7 +343,7 @@ function renderObservations() {
                 // Select elements whose center is within the lasso rectangle
                 observations.classed("selected", function(d) {
                     const rectXCenter = customTimeScale(d.start_time) + (customTimeScale(d.end_time) - customTimeScale(d.start_time)) / 2;
-                    const rectYCenter = dateScale(d.date) + dateScale.bandwidth() / 2;
+                    const rectYCenter = dateScale(d.dayobs) + dateScale.bandwidth() / 2;
 
                     const isCurrentlySelected = d3.select(this).classed("selected");
                     const isWithinLasso = rectXCenter >= x0 && rectXCenter <= x1 && rectYCenter >= y0 && rectYCenter <= y1;
@@ -373,7 +373,7 @@ function renderObservations() {
                 const selectedData = selectedObservations.data()[0];
 
                 // Populate the form with the selected block's data
-                document.getElementById("editDate").value = selectedData.date;
+                document.getElementById("editDate").value = selectedData.dayobs;
                 document.getElementById("editStartTime").value = formatTime(selectedData.start_time);
                 document.getElementById("editEndTime").value = formatTime(selectedData.end_time);
                 document.getElementById("duration").value = formatTime(selectedData.end_time - selectedData.start_time);
@@ -397,7 +397,7 @@ function renderObservations() {
         .append("rect")
         .attr("class", "available-block")
         .attr("x", d => customTimeScale(d.start_time))
-        .attr("y", d => dateScale(d.date))
+        .attr("y", d => dateScale(d.dayobs))
         .attr("width", d => customTimeScale(d.end_time) - customTimeScale(d.start_time))
         .attr("height", dateScale.bandwidth())
         .attr("fill", "transparent") // Make the blocks invisible
@@ -416,7 +416,7 @@ function renderObservations() {
                 .attr("stroke-width", 3);
 
             // Handle form population for available blocks
-            document.getElementById("editDate").value = d.date;
+            document.getElementById("editDate").value = d.dayobs;
             document.getElementById("editStartTime").value = formatTime(d.start_time);
             document.getElementById("editEndTime").value = formatTime(d.end_time);
             document.getElementById("duration").value = formatTime(d.end_time - d.start_time);
@@ -466,7 +466,7 @@ function loadObservations() {
         // Filter data to exclude dates outside the specified range
         filteredTwilightData = twilightData.filter(d => dates.includes(d.dayobs));
         filteredMoonData = moonData.filter(d => dates.includes(d.dayobs));
-        filteredObservationData = observationData.filter(d => dates.includes(d.date));
+        filteredObservationData = observationData.filter(d => dates.includes(d.dayobs));
 
         initializeAvailableBlocks();
         pruneAvailableBlocks();
@@ -538,13 +538,13 @@ function initializeAvailableBlocks() {
     twilightData.forEach(d => {
         // Create blocks for each twilight period and night period
         const blocks = [
-            { date: d.dayobs, start_time: d.sunset, end_time: d.evening_6deg },
-            { date: d.dayobs, start_time: d.evening_6deg, end_time: d.evening_12deg },
-            { date: d.dayobs, start_time: d.evening_12deg, end_time: d.evening_18deg },
-            { date: d.dayobs, start_time: d.evening_18deg, end_time: d.morning_18deg }, // Night
-            { date: d.dayobs, start_time: d.morning_18deg, end_time: d.morning_12deg },
-            { date: d.dayobs, start_time: d.morning_12deg, end_time: d.morning_6deg },
-            { date: d.dayobs, start_time: d.morning_6deg, end_time: d.sunrise }
+            { dayobs: d.dayobs, start_time: d.sunset, end_time: d.evening_6deg },
+            { dayobs: d.dayobs, start_time: d.evening_6deg, end_time: d.evening_12deg },
+            { dayobs: d.dayobs, start_time: d.evening_12deg, end_time: d.evening_18deg },
+            { dayobs: d.dayobs, start_time: d.evening_18deg, end_time: d.morning_18deg }, // Night
+            { dayobs: d.dayobs, start_time: d.morning_18deg, end_time: d.morning_12deg },
+            { dayobs: d.dayobs, start_time: d.morning_12deg, end_time: d.morning_6deg },
+            { dayobs: d.dayobs, start_time: d.morning_6deg, end_time: d.sunrise }
         ];
 
         // Filter out any blocks that have no duration (e.g., if start_time equals end_time)
@@ -568,7 +568,7 @@ function pruneAvailableBlocks() {
             let tempBlocks = [];
 
             newBlocks.forEach(block => {
-                if (observation.date === block.date) { // They are on the same date
+            if (observation.dayobs === block.dayobs) { // They are on the same date
                     // Case 1: Observation completely covers the available block
                     if (observation.start_time <= block.start_time && observation.end_time >= block.end_time) {
                         // This available block is fully covered by the observation and should be removed.
@@ -651,7 +651,7 @@ d3.select("#fileInput").on("change", function() {
         reader.onload = function(e) {
             observationData = JSON.parse(e.target.result);
             filteredObservationData = observationData.filter(
-                d => dates.includes(d.date)
+                d => dates.includes(d.dayobs)
             );
             initializeAvailableBlocks();
             pruneAvailableBlocks();
@@ -692,7 +692,7 @@ function updateSelectedObservation() {
         const selectedData = selectedObservations.data()[0];
 
         // Update the selected block's data with the values from the form
-        selectedData.date = document.getElementById("editDate").value;
+        selectedData.dayobs = document.getElementById("editDate").value;
         selectedData.start_time = parseTime(document.getElementById("editStartTime").value);
         selectedData.end_time = parseTime(document.getElementById("editEndTime").value);
         selectedData.obstype = document.getElementById("editObsType").value;
@@ -735,7 +735,7 @@ document.addEventListener('keydown', function(event) {
 
             // Create the new observation block
             const newObservation = {
-                date: selectedAvailableBlock.date,
+                dayobs: selectedAvailableBlock.dayobs,
                 start_time: selectedAvailableBlock.start_time,
                 end_time: endTime,
                 obstype: "Survey",
@@ -770,7 +770,7 @@ document.addEventListener('keydown', function(event) {
                 .attr("stroke-width", 3);
 
             // Populate the form with the new observation block's data
-            document.getElementById("editDate").value = newObservation.date;
+            document.getElementById("editDate").value = newObservation.dayobs;
             document.getElementById("editStartTime").value = formatTime(newObservation.start_time);
             document.getElementById("editEndTime").value = formatTime(newObservation.end_time);
             document.getElementById("duration").value = formatTime(newObservation.end_time - newObservation.start_time);
@@ -845,7 +845,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Filter and add observation start and end times for the current date
         filteredObservationData.forEach(observation => {
-            if (observation.date === currentDate) {
+            if (observation.dayobs === currentDate) {
                 stoppingPoints.push(observation.start_time);
                 stoppingPoints.push(observation.end_time);
             }
@@ -1030,14 +1030,14 @@ function calculateFiltersUsedPerNight() {
     const filtersPerNight = {};
 
     filteredObservationData.forEach(observation => {
-        const { date, filters } = observation;
+        const { dayobs, filters } = observation;
 
-        if (!filtersPerNight[date]) {
-            filtersPerNight[date] = new Set();
+        if (!filtersPerNight[dayobs]) {
+            filtersPerNight[dayobs] = new Set();
         }
 
         filters.forEach(filter => {
-            filtersPerNight[date].add(filter);
+            filtersPerNight[dayobs].add(filter);
         });
     });
 
@@ -1059,11 +1059,11 @@ function renderLozenges(filtersPerNight) {
     // Clear previous lozenges
     lozengeSVG.selectAll("*").remove();
 
-    const dateKeys = Object.keys(filtersPerNight);
+    const dayobsKeys = Object.keys(filtersPerNight);
 
-    dateKeys.forEach((date) => {
-        const filters = Array.from(filtersPerNight[date]);
-        const yPosition = dateScale(date) + dateScale.bandwidth() * 0.1 + lozengeMargin.top;
+    dayobsKeys.forEach((dayobs) => {
+        const filters = Array.from(filtersPerNight[dayobs]);
+        const yPosition = dateScale(dayobs) + dateScale.bandwidth() * 0.1 + lozengeMargin.top;
 
         sortedFilters = filters.sort((a, b) => filterOrder.indexOf(a) - filterOrder.indexOf(b));
         sortedFilters.forEach((filter, filterIndex) => {
@@ -1158,7 +1158,7 @@ document.addEventListener("keydown", function(event) {
 
 function findLeftNeighbor(selectedData) {
     const allBlocks = [...filteredObservationData, ...availableBlockData]
-        .filter(obs => obs.date === selectedData.date)
+    .filter(obs => obs.dayobs === selectedData.dayobs)
         .sort((a, b) => a.start_time - b.start_time);
 
     const currentIndex = allBlocks.indexOf(selectedData);
@@ -1168,7 +1168,7 @@ function findLeftNeighbor(selectedData) {
 
 function findRightNeighbor(selectedData) {
     const allBlocks = [...filteredObservationData, ...availableBlockData]
-        .filter(obs => obs.date === selectedData.date)
+        .filter(obs => obs.dayobs === selectedData.dayobs)
         .sort((a, b) => a.start_time - b.start_time);
 
     const currentIndex = allBlocks.indexOf(selectedData);
@@ -1178,13 +1178,13 @@ function findRightNeighbor(selectedData) {
 
 function findVerticalNeighbor(selectedData, direction) {
     const currentCenter = (selectedData.start_time + selectedData.end_time) / 2;
-    const currentDateIndex = dates.indexOf(selectedData.date);
+    const currentDateIndex = dates.indexOf(selectedData.dayobs);
     const targetDate = dates[currentDateIndex + direction];
 
     if (!targetDate) return null; // No date to move to
 
     const allBlocksForTargetDate = [...filteredObservationData, ...availableBlockData]
-        .filter(obs => obs.date === targetDate);
+        .filter(obs => obs.dayobs === targetDate);
 
     if (allBlocksForTargetDate.length === 0) return null;
 
@@ -1234,7 +1234,7 @@ function highlightObservation(selectedBlock) {
             .attr("stroke-width", 3);
 
         // Update the form with the selected observation's data
-        document.getElementById("editDate").value = selectedBlock.date;
+        document.getElementById("editDate").value = selectedBlock.dayobs;
         document.getElementById("editStartTime").value = formatTime(selectedBlock.start_time);
         document.getElementById("editEndTime").value = formatTime(selectedBlock.end_time);
         document.getElementById("duration").value = formatTime(selectedBlock.end_time - selectedBlock.start_time);
@@ -1247,7 +1247,7 @@ function highlightObservation(selectedBlock) {
         toggleFormInputs(true);
     } else {
         // Handle case for available blocks
-        document.getElementById("editDate").value = selectedBlock.date;
+        document.getElementById("editDate").value = selectedBlock.dayobs;
         document.getElementById("editStartTime").value = formatTime(selectedBlock.start_time);
         document.getElementById("editEndTime").value = formatTime(selectedBlock.end_time);
         document.getElementById("duration").value = formatTime(selectedBlock.end_time - selectedBlock.start_time);
