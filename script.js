@@ -17,7 +17,7 @@ const g = svg.append("g")
 //  Time range for x-axis.  17:00 to 07:30
 const minTime = -5;
 const maxTime = 7.5;
-const customTimeScale = d3.scaleLinear()
+const timeScale = d3.scaleLinear()
     .domain([minTime, maxTime])
     .range([0, width]);
 
@@ -215,9 +215,9 @@ function renderObservations() {
         .attr("data-index", (d, i) => i);
 
     observations.append("rect")
-        .attr("x", d => customTimeScale(d.start_time) + padding)
+        .attr("x", d => timeScale(d.start_time) + padding)
         .attr("y", d => dateScale(d.dayobs) + dateScale.bandwidth() * 0.1)
-        .attr("width", d => customTimeScale(d.end_time) - customTimeScale(d.start_time) - padding * 2)
+        .attr("width", d => timeScale(d.end_time) - timeScale(d.start_time) - padding * 2)
         .attr("height", dateScale.bandwidth() * 0.8)
         .attr("fill", d => obstypes[d.obstype].color)
         .attr("opacity", d => obstypes[d.obstype].opacity)
@@ -225,7 +225,7 @@ function renderObservations() {
         .attr("ry", cornerRadius);
 
     observations.append("text")
-        .attr("x", d => customTimeScale(d.start_time) + (customTimeScale(d.end_time) - customTimeScale(d.start_time)) / 2)
+        .attr("x", d => timeScale(d.start_time) + (timeScale(d.end_time) - timeScale(d.start_time)) / 2)
         .attr("y", d => dateScale(d.dayobs) + dateScale.bandwidth() * 0.1 + dateScale.bandwidth() * 0.4)
         .attr("dy", ".35em")
         .attr("text-anchor", "middle")
@@ -342,7 +342,7 @@ function renderObservations() {
 
                 // Select elements whose center is within the lasso rectangle
                 observations.classed("selected", function(d) {
-                    const rectXCenter = customTimeScale(d.start_time) + (customTimeScale(d.end_time) - customTimeScale(d.start_time)) / 2;
+                    const rectXCenter = timeScale(d.start_time) + (timeScale(d.end_time) - timeScale(d.start_time)) / 2;
                     const rectYCenter = dateScale(d.dayobs) + dateScale.bandwidth() / 2;
 
                     const isCurrentlySelected = d3.select(this).classed("selected");
@@ -396,9 +396,9 @@ function renderObservations() {
         .enter()
         .append("rect")
         .attr("class", "available-block")
-        .attr("x", d => customTimeScale(d.start_time))
+        .attr("x", d => timeScale(d.start_time))
         .attr("y", d => dateScale(d.dayobs))
-        .attr("width", d => customTimeScale(d.end_time) - customTimeScale(d.start_time))
+        .attr("width", d => timeScale(d.end_time) - timeScale(d.start_time))
         .attr("height", dateScale.bandwidth())
         .attr("fill", "transparent") // Make the blocks invisible
         .attr("stroke", "none")
@@ -437,7 +437,7 @@ function renderObservations() {
 }
 
 function renderAxes() {
-    const xAxis = d3.axisBottom(customTimeScale).tickFormat(d => {
+    const xAxis = d3.axisBottom(timeScale).tickFormat(d => {
         const hours = Math.floor(d);
         const minutes = (d - hours) * 60;
         const date = new Date(1970, 0, 1, hours, minutes);
@@ -491,9 +491,9 @@ function loadObservations() {
                 .enter()
                 .append("rect")
                 .attr("class", "twilight")
-                .attr("x", d => customTimeScale(d.start))
+                .attr("x", d => timeScale(d.start))
                 .attr("y", d => dateScale(d.dayobs))
-                .attr("width", d => customTimeScale(d.end) - customTimeScale(d.start))
+                .attr("width", d => timeScale(d.end) - timeScale(d.start))
                 .attr("height", dateScale.bandwidth())
                 .attr("fill", d => d.fill);
         });
@@ -517,9 +517,9 @@ function loadObservations() {
             .enter()
             .append("rect")
             .attr("class", "moon")
-            .attr("x", d => customTimeScale(d.start))
+            .attr("x", d => timeScale(d.start))
             .attr("y", d => dateScale(d.dayobs))
-            .attr("width", d => customTimeScale(d.end)-customTimeScale(d.start))
+            .attr("width", d => timeScale(d.end)-timeScale(d.start))
             .attr("height", dateScale.bandwidth())
             .attr("fill", "grey")
             .attr("opacity", 0.5);
