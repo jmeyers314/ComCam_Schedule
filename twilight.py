@@ -18,8 +18,8 @@ RUBIN = Observer(
 
 cptz = pytz.timezone('America/Santiago')
 
-def twilight_for_day(date):
-    noon_cp = Time(date) + 15*u.hour
+def twilight_for_day(dayobs):
+    noon_cp = Time(dayobs) + 15*u.hour
     tmid = cptz.localize(
         datetime.combine(
             (noon_cp+1*u.d).datetime.date(),
@@ -29,7 +29,7 @@ def twilight_for_day(date):
     tmid = Time(tmid)
 
     out = {}
-    out['date'] = date
+    out['dayobs'] = dayobs
     for label, elev in [
         ('sunset', 0),
         ('evening_6deg', -6),
@@ -54,8 +54,8 @@ def twilight_for_day(date):
 
 
 data = []
-for date in tqdm(Time('2024-09-01') + np.arange(180)*u.day):
-    data.append(twilight_for_day(date.strftime('%Y-%m-%d')))
+for dayobs in tqdm(Time('2024-09-01') + np.arange(270)*u.day):
+    data.append(twilight_for_day(dayobs.strftime('%Y-%m-%d')))
 
 import json
 with open('twilight.json', 'w') as f:

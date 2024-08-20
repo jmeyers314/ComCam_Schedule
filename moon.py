@@ -17,15 +17,15 @@ RUBIN = Observer(
 cptz = pytz.timezone('America/Santiago')
 
 data = []
-for date in tqdm(Time('2024-09-01') + np.arange(180)*u.day):
-    noon_cp = Time(date) + 15*u.hour
+for dayobs in tqdm(Time('2024-09-01') + np.arange(270)*u.day):
+    noon_cp = Time(dayobs) + 15*u.hour
     prevrise = RUBIN.moon_rise_time(noon_cp, which='previous', horizon=0*u.deg)
     prevriseset = RUBIN.moon_set_time(prevrise, which='next', horizon=0*u.deg)
     nextrise = RUBIN.moon_rise_time(noon_cp, which='next', horizon=0*u.deg)
     nextriseset = RUBIN.moon_set_time(nextrise, which='next', horizon=0*u.deg)
     tmid = cptz.localize(
         datetime.combine(
-            (date+1*u.d).datetime.date(),
+            (dayobs+1*u.d).datetime.date(),
             time(0, 0, 0)
         )
     )
@@ -46,7 +46,7 @@ for date in tqdm(Time('2024-09-01') + np.arange(180)*u.day):
         del intervals[1]
 
     data.append({
-        'date': date.strftime('%Y-%m-%d'),
+        'dayobs': dayobs.strftime('%Y-%m-%d'),
         'moonintervals': intervals,
         'illumination': moon_illumination(tmid)
     })

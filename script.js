@@ -464,50 +464,50 @@ function loadObservations() {
         const [twilightData, moonData, observationData] = data;
 
         // Filter data to exclude dates outside the specified range
-        filteredTwilightData = twilightData.filter(d => dates.includes(d.date));
-        filteredMoonData = moonData.filter(d => dates.includes(d.date));
+        filteredTwilightData = twilightData.filter(d => dates.includes(d.dayobs));
+        filteredMoonData = moonData.filter(d => dates.includes(d.dayobs));
         filteredObservationData = observationData.filter(d => dates.includes(d.date));
 
         initializeAvailableBlocks();
         pruneAvailableBlocks();
 
         // Add twilight rectangles; only need to do this once.
-        filteredTwilightData.forEach(date => {
+        filteredTwilightData.forEach(d => {
             const twilightIntervals = [
-                { start: minTime, end: date.sunset, fill: sunStateColor.day, date: date.date },
-                { start: date.sunset, end: date.evening_6deg, fill: sunStateColor.twilight6, date: date.date },
-                { start: date.evening_6deg, end: date.evening_12deg, fill: sunStateColor.twilight12, date: date.date },
-                { start: date.evening_12deg, end: date.evening_18deg, fill: sunStateColor.twilight18, date: date.date },
-                { start: date.evening_18deg, end: date.morning_18deg, fill: sunStateColor.night, date: date.date },
-                { start: date.morning_18deg, end: date.morning_12deg, fill: sunStateColor.twilight18, date: date.date },
-                { start: date.morning_12deg, end: date.morning_6deg, fill: sunStateColor.twilight12, date: date.date },
-                { start: date.morning_6deg, end: date.sunrise, fill: sunStateColor.twilight6, date: date.date },
-                { start: date.sunrise, end: maxTime, fill: sunStateColor.day, date: date.date }
+                { start: minTime, end: d.sunset, fill: sunStateColor.day, dayobs: d.dayobs },
+                { start: d.sunset, end: d.evening_6deg, fill: sunStateColor.twilight6, dayobs: d.dayobs },
+                { start: d.evening_6deg, end: d.evening_12deg, fill: sunStateColor.twilight12, dayobs: d.dayobs },
+                { start: d.evening_12deg, end: d.evening_18deg, fill: sunStateColor.twilight18, dayobs: d.dayobs },
+                { start: d.evening_18deg, end: d.morning_18deg, fill: sunStateColor.night, dayobs: d.dayobs },
+                { start: d.morning_18deg, end: d.morning_12deg, fill: sunStateColor.twilight18, dayobs: d.dayobs },
+                { start: d.morning_12deg, end: d.morning_6deg, fill: sunStateColor.twilight12, dayobs: d.dayobs },
+                { start: d.morning_6deg, end: d.sunrise, fill: sunStateColor.twilight6, dayobs: d.dayobs },
+                { start: d.sunrise, end: maxTime, fill: sunStateColor.day, dayobs: d.dayobs }
             ];
 
             // Bind the data for each date and append rectangles
-            g.selectAll(".twilight-" + date.date)
+            g.selectAll(".twilight-" + d.dayobs)
                 .data(twilightIntervals)
                 .enter()
                 .append("rect")
                 .attr("class", "twilight")
                 .attr("x", d => customTimeScale(d.start))
-                .attr("y", d => dateScale(d.date))
+                .attr("y", d => dateScale(d.dayobs))
                 .attr("width", d => customTimeScale(d.end) - customTimeScale(d.start))
                 .attr("height", dateScale.bandwidth())
                 .attr("fill", d => d.fill);
         });
 
         // Moon rectangles; only needed once.
-        const flattenedMoonData = filteredMoonData.flatMap(date =>
-            date.moonintervals
+        const flattenedMoonData = filteredMoonData.flatMap(d =>
+            d.moonintervals
                 .map(interval => {
                     const start = Math.max(minTime, interval[0]);
                     const end = Math.min(maxTime, interval[1]);
                     return {
                         start,
                         end,
-                        date: date.date
+                        dayobs: d.dayobs
                     };
                 })
                 .filter(({ start, end }) => start < end)
@@ -518,7 +518,7 @@ function loadObservations() {
             .append("rect")
             .attr("class", "moon")
             .attr("x", d => customTimeScale(d.start))
-            .attr("y", d => dateScale(d.date))
+            .attr("y", d => dateScale(d.dayobs))
             .attr("width", d => customTimeScale(d.end)-customTimeScale(d.start))
             .attr("height", dateScale.bandwidth())
             .attr("fill", "grey")
@@ -535,16 +535,16 @@ function initializeAvailableBlocks() {
     let blockData = [];
     twilightData = filteredTwilightData;
 
-    twilightData.forEach(state => {
+    twilightData.forEach(d => {
         // Create blocks for each twilight period and night period
         const blocks = [
-            { date: state.date, start_time: state.sunset, end_time: state.evening_6deg },
-            { date: state.date, start_time: state.evening_6deg, end_time: state.evening_12deg },
-            { date: state.date, start_time: state.evening_12deg, end_time: state.evening_18deg },
-            { date: state.date, start_time: state.evening_18deg, end_time: state.morning_18deg }, // Night
-            { date: state.date, start_time: state.morning_18deg, end_time: state.morning_12deg },
-            { date: state.date, start_time: state.morning_12deg, end_time: state.morning_6deg },
-            { date: state.date, start_time: state.morning_6deg, end_time: state.sunrise }
+            { date: d.dayobs, start_time: d.sunset, end_time: d.evening_6deg },
+            { date: d.dayobs, start_time: d.evening_6deg, end_time: d.evening_12deg },
+            { date: d.dayobs, start_time: d.evening_12deg, end_time: d.evening_18deg },
+            { date: d.dayobs, start_time: d.evening_18deg, end_time: d.morning_18deg }, // Night
+            { date: d.dayobs, start_time: d.morning_18deg, end_time: d.morning_12deg },
+            { date: d.dayobs, start_time: d.morning_12deg, end_time: d.morning_6deg },
+            { date: d.dayobs, start_time: d.morning_6deg, end_time: d.sunrise }
         ];
 
         // Filter out any blocks that have no duration (e.g., if start_time equals end_time)
@@ -830,16 +830,16 @@ document.addEventListener("DOMContentLoaded", function() {
         const stoppingPoints = [];
 
         // Filter and add twilight edges for the current date
-        filteredTwilightData.forEach(twilight => {
-            if (twilight.date === currentDate) {
-                stoppingPoints.push(twilight.sunset);
-                stoppingPoints.push(twilight.evening_6deg);
-                stoppingPoints.push(twilight.evening_12deg);
-                stoppingPoints.push(twilight.evening_18deg);
-                stoppingPoints.push(twilight.morning_18deg);
-                stoppingPoints.push(twilight.morning_12deg);
-                stoppingPoints.push(twilight.morning_6deg);
-                stoppingPoints.push(twilight.sunrise);
+        filteredTwilightData.forEach(d => {
+            if (d.dayobs === currentDate) {
+                stoppingPoints.push(d.sunset);
+                stoppingPoints.push(d.evening_6deg);
+                stoppingPoints.push(d.evening_12deg);
+                stoppingPoints.push(d.evening_18deg);
+                stoppingPoints.push(d.morning_18deg);
+                stoppingPoints.push(d.morning_12deg);
+                stoppingPoints.push(d.morning_6deg);
+                stoppingPoints.push(d.sunrise);
             }
         });
 
