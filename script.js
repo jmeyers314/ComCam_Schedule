@@ -42,7 +42,7 @@ const sunStateColor = {
 
 const categoryColor = {
     "Calibration": "#FF0000",
-    "Prep": "#FF0000",
+    "Prep": "#FF00FF",
     "AOS transient": "#FFFF00",
     "AOS data": "#0000FF",
     "IQ": "#00FF00",
