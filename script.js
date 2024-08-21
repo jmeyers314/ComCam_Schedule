@@ -63,6 +63,14 @@ const obstypes = {
         "tooltip": "Get Ready",
         "category": "Prep",
     },
+    "Point": {
+        "tooltip": "Pointing model",
+        "category": "Prep",
+    },
+    "Trail": {
+        "tooltip": "Star trails",
+        "category": "Prep",
+    },
 
     "Twiflat": {
         "tooltip": "Twilight flats",
@@ -97,6 +105,22 @@ const obstypes = {
         "tooltip": "Focus sweeps",
         "category": "AOS transient",
     },
+    "Align": {
+        "tooltip": "Manual alignment",
+        "category": "AOS transient",
+    },
+    "Exptime": {
+        "tooltip": "Exposure time sweeps",
+        "category": "AOS transient",
+    },
+    "Loop": {
+        "tooltip": "Closed-loop optimization",
+        "category": "AOS transient",
+    },
+    "Kick": {
+        "tooltip": "Closed-loop kick tests",
+        "category": "AOS transient",
+    },
 
     "Sense": {
         "tooltip": "Sensitivity Matrix",
@@ -109,10 +133,6 @@ const obstypes = {
     "LUT": {
         "tooltip": "Look-up table sweeps",
         "category": "AOS data",
-    },
-    "Loop": {
-        "tooltip": "Closed-loop optimization",
-        "category": "AOS transient",
     },
     "Giant": {
         "tooltip": "Giant donuts",
@@ -163,12 +183,25 @@ function formatTime(secondsToMidnight, hms=false) {
     let minutes = Math.floor((secondsToMidnight - hours * 3600) / 60);
     let seconds = Math.round(secondsToMidnight % 60);
     if (hms) {
-        let out = ``;
-        if (hours > 0) {
-            out += `${hours}h`;
+        if (hours === 0 && minutes === 0 && seconds === 0) {
+            return `0s`;
         }
-        out += `${minutes}m${seconds}s`;
-        return out;
+        if (hours === 0 && minutes === 0) {
+            return `${seconds}s`;
+        }
+        if (hours === 0 && seconds === 0) {
+            return `${minutes}m`;
+        }
+        if (minutes === 0 && seconds === 0) {
+            return `${hours}h`;
+        }
+        if (hours === 0) {
+            return `${minutes}m${seconds}s`;
+        }
+        if (seconds === 0) {
+            return `${hours}h${minutes}m`;
+        }
+        return `${hours}h${minutes}m${seconds}s`;
     }
     let hourStr = String(hours).padStart(2, '0');
     let minuteStr = String(minutes).padStart(2, '0');
