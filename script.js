@@ -1,7 +1,13 @@
 // Keep these script-global
-let filteredTwilightData = [];
+let moonData = [];
 let filteredMoonData = [];
+
+let twilightData = [];
+let filteredTwilightData = [];
+
+let observationData = [];
 let filteredObservationData = [];
+
 let availableBlockData = [];
 
 const svg = d3.select("#mySVG");
@@ -23,11 +29,11 @@ const timeScale = d3.scaleLinear()
     .range([0, width]);
 
 // y-axis
-const dateStart = new Date("2024-10-01");
-const dateEnd = new Date("2024-12-01");
-const dateRange = d3.timeDay.range(dateStart, dateEnd);
-const dates = dateRange.map(d => d.toISOString().split("T")[0]);
-const dateScale = d3.scaleBand()
+let dateStart = new Date("2024-10-01");
+let dateEnd = new Date("2024-12-01");
+let dateRange = d3.timeDay.range(dateStart, dateEnd);
+let dates = dateRange.map(d => d.toISOString().split("T")[0]);
+let dateScale = d3.scaleBand()
     .domain(dates)
     .range([0, height])
     .padding(0.01);
@@ -74,6 +80,10 @@ const obstypes = {
 
     "Twiflat": {
         "tooltip": "Twilight flats",
+        "category": "Calibration",
+    },
+    "Domeflat": {
+        "tooltip": "Dome flats",
         "category": "Calibration",
     },
     "Bias": {
@@ -239,9 +249,6 @@ function formatTooltip(obs, moonIllumination) {
 function renderObservations() {
     const padding = 3; // Horizontal padding for the rectangles
     const cornerRadius = 3;
-    const dragThreshold = 5; // Threshold to distinguish between click and drag
-    let startPos = null;    // Store the start position of a drag
-    let lassoRect = null;   // Define lassoRect within the renderObservations function
 
     // Clear previous observations and available blocks
     g.selectAll(".observation").remove();
@@ -278,7 +285,7 @@ function renderObservations() {
 
     observations.on("mouseover", function(event, d) {
         const tooltip = d3.select("#tooltip");
-        const moonDataForDate = filteredMoonData.find(moon => moon.dayobs === d.dayobs);  // Check this one
+        const moonDataForDate = moonData.find(moon => moon.dayobs === d.dayobs);  // Check this one
         tooltip.style("display", "block")
             .style("left", (event.pageX + 5) + "px")
             .style("top", (event.pageY + 5) + "px")
@@ -293,7 +300,55 @@ function renderObservations() {
         d3.select("#tooltip").style("display", "none");
     });
 
+    // Render available blocks (invisible but selectable)
+    const availableBlocks = g.selectAll(".available-block")
+        .data(availableBlockData)
+        .enter()
+        .append("rect")
+        .attr("class", "available-block")
+        .attr("x", d => timeScale(d.start))
+        .attr("y", d => dateScale(d.dayobs))
+        .attr("width", d => timeScale(d.end) - timeScale(d.start))
+        .attr("height", dateScale.bandwidth())
+        .attr("fill", "transparent") // Make the blocks invisible
+        .attr("stroke", "none")
+        .attr("pointer-events", "all") // Ensure they can be clicked even if invisible
+        .on("click", function(event, d) {
+            d3.selectAll(".observation").classed("selected", false);
+            d3.selectAll(".available-block").classed("selected", false)
+                .attr("stroke", "none") // Remove highlighting from other available blocks
+                .attr("stroke-width", null);
+            d3.select(this).classed("selected", true);
+
+            // Highlight the selected available block
+            d3.select(this)
+                .attr("stroke", "yellow")
+                .attr("stroke-width", 3);
+
+            // Handle form population for available blocks
+            document.getElementById("editDate").value = d.dayobs;
+            document.getElementById("editStartTime").value = formatTime(d.start);
+            document.getElementById("editEndTime").value = formatTime(d.end);
+            document.getElementById("duration").value = formatTime(d.end - d.start, hms=true);
+            document.getElementById("editObsType").value = ""; // No type for available blocks
+            setFilterTags([]); // No filters for available blocks
+            document.getElementById("editNotes").value = ""; // No notes for available blocks
+
+            // Show the form
+            document.getElementById("editFormContainer").style.display = "block";
+            toggleFormInputs(false);
+        });
+
+    enableLasso();
+    renderLozenges(calculateFiltersUsedPerNight());
+}
+
+function enableLasso() {
+    const dragThreshold = 5; // Threshold to distinguish between click and drag
+    let startPos = null;    // Store the start position of a drag
+    let lassoRect = null;   // Define lassoRect within the renderObservations function
     // Lasso drag behavior for observation blocks
+    const observations = g.selectAll(".observation");
     const lassoDrag = d3.drag()
         .on("start", function(event) {
             startPos = d3.pointer(event, this); // Capture the start position
@@ -429,55 +484,13 @@ function renderObservations() {
                 // Hide the form if no or more than one item is selected
                 document.getElementById("editFormContainer").style.display = "none";
             }
-        }); // End of lassoDrag
-
-    // Render available blocks (invisible but selectable)
-    const availableBlocks = g.selectAll(".available-block")
-        .data(availableBlockData)
-        .enter()
-        .append("rect")
-        .attr("class", "available-block")
-        .attr("x", d => timeScale(d.start))
-        .attr("y", d => dateScale(d.dayobs))
-        .attr("width", d => timeScale(d.end) - timeScale(d.start))
-        .attr("height", dateScale.bandwidth())
-        .attr("fill", "transparent") // Make the blocks invisible
-        .attr("stroke", "none")
-        .attr("pointer-events", "all") // Ensure they can be clicked even if invisible
-        .on("click", function(event, d) {
-            d3.selectAll(".observation").classed("selected", false);
-            d3.selectAll(".available-block").classed("selected", false)
-                .attr("stroke", "none") // Remove highlighting from other available blocks
-                .attr("stroke-width", null);
-            d3.select(this).classed("selected", true);
-
-            // Highlight the selected available block
-            d3.select(this)
-                .attr("stroke", "yellow")
-                .attr("stroke-width", 3);
-
-            // Handle form population for available blocks
-            document.getElementById("editDate").value = d.dayobs;
-            document.getElementById("editStartTime").value = formatTime(d.start);
-            document.getElementById("editEndTime").value = formatTime(d.end);
-            document.getElementById("duration").value = formatTime(d.end - d.start, hms=true);
-            document.getElementById("editObsType").value = ""; // No type for available blocks
-            setFilterTags([]); // No filters for available blocks
-            document.getElementById("editNotes").value = ""; // No notes for available blocks
-
-            // Show the form
-            document.getElementById("editFormContainer").style.display = "block";
-            toggleFormInputs(false);
         });
-
-    // Apply the drag behavior to the SVG canvas
     svg.call(lassoDrag);
-
-    const filtersPerNight = calculateFiltersUsedPerNight();
-    renderLozenges(filtersPerNight);
 }
 
 function renderAxes() {
+    g.selectAll(".x.axis").remove();
+    g.selectAll(".y.axis").remove();
     const xAxis = d3.axisBottom(timeScale)
         .tickValues(d3.range(minTime, maxTime + 1, 3600))
         .tickFormat(d => {
@@ -498,89 +511,33 @@ function renderAxes() {
         .call(yAxis);
 }
 
-function loadObservations() {
+function loadData() {
     Promise.all([
         d3.json("twilight.json?t=" + new Date().getTime()),
         d3.json("moon.json?t=" + new Date().getTime()),
         d3.json("observation.json?t=" + new Date().getTime())
     ]).then(function(data) {
-        const [twilightData, moonData, observationData] = data;
+        [twilightData, moonData, observationData] = data;
 
-        // Filter data to exclude dates outside the specified range
-        filteredTwilightData = twilightData.filter(d => dates.includes(d.dayobs));
-        filteredMoonData = moonData.filter(d => dates.includes(d.dayobs));
-        filteredObservationData = observationData.filter(d => dates.includes(d.dayobs));
-
-        filteredTwilightData.forEach(d => {
+        // Convert HH:MM:SS strings to seconds from midnight
+        moonData.forEach(d => {
+            d.moonintervals = d.moonintervals.map(interval => interval.map(parseTime));
+        });
+        twilightData.forEach(d => {
             for (const k in d) {
                 if (k === "dayobs") continue;
                 d[k] = parseTime(d[k]);
             }
         });
-        filteredMoonData.forEach(d => {
-            d.moonintervals = d.moonintervals.map(interval => interval.map(parseTime));
-        });
-        filteredObservationData.forEach(d => {
+        observationData.forEach(d => {
             d.start = parseTime(d.start);
             d.end = parseTime(d.end);
         });
 
-        initializeAvailableBlocks();
-        pruneAvailableBlocks();
-
-        // Add twilight rectangles; only need to do this once.
-        filteredTwilightData.forEach(d => {
-            const twilightIntervals = [
-                { start: minTime, end: d.sunset, fill: sunStateColor.day, dayobs: d.dayobs },
-                { start: d.sunset, end: d.evening_6deg, fill: sunStateColor.twilight6, dayobs: d.dayobs },
-                { start: d.evening_6deg, end: d.evening_12deg, fill: sunStateColor.twilight12, dayobs: d.dayobs },
-                { start: d.evening_12deg, end: d.evening_18deg, fill: sunStateColor.twilight18, dayobs: d.dayobs },
-                { start: d.evening_18deg, end: d.morning_18deg, fill: sunStateColor.night, dayobs: d.dayobs },
-                { start: d.morning_18deg, end: d.morning_12deg, fill: sunStateColor.twilight18, dayobs: d.dayobs },
-                { start: d.morning_12deg, end: d.morning_6deg, fill: sunStateColor.twilight12, dayobs: d.dayobs },
-                { start: d.morning_6deg, end: d.sunrise, fill: sunStateColor.twilight6, dayobs: d.dayobs },
-                { start: d.sunrise, end: maxTime, fill: sunStateColor.day, dayobs: d.dayobs }
-            ];
-
-            // Bind the data for each date and append rectangles
-            g.selectAll(".twilight-" + d.dayobs)
-                .data(twilightIntervals)
-                .enter()
-                .append("rect")
-                .attr("class", "twilight")
-                .attr("x", d => timeScale(d.start))
-                .attr("y", d => dateScale(d.dayobs))
-                .attr("width", d => timeScale(d.end) - timeScale(d.start))
-                .attr("height", dateScale.bandwidth())
-                .attr("fill", d => d.fill);
-        });
-
-        // Moon rectangles; only needed once.
-        const flattenedMoonData = filteredMoonData.flatMap(d =>
-            d.moonintervals
-                .map(interval => {
-                    const start = Math.max(minTime, interval[0]);
-                    const end = Math.min(maxTime, interval[1]);
-                    return {
-                        start,
-                        end,
-                        dayobs: d.dayobs
-                    };
-                })
-                .filter(({ start, end }) => start < end)
-        );
-        g.selectAll(".moon")
-            .data(flattenedMoonData)
-            .enter()
-            .append("rect")
-            .attr("class", "moon")
-            .attr("x", d => timeScale(d.start))
-            .attr("y", d => dateScale(d.dayobs))
-            .attr("width", d => timeScale(d.end)-timeScale(d.start))
-            .attr("height", dateScale.bandwidth())
-            .attr("fill", "grey")
-            .attr("opacity", 0.5);
-
+        selectDataInDateRange();
+        computeAvailableBlocks();
+        renderTwilight();
+        renderMoon();
         renderObservations();
         renderAxes();
     }).catch(function(error) {
@@ -588,11 +545,77 @@ function loadObservations() {
     });
 }
 
-function initializeAvailableBlocks() {
-    let blockData = [];
-    twilightData = filteredTwilightData;
+function selectDataInDateRange() {
+    filteredObservationData = observationData.filter(d => dates.includes(d.dayobs));
+    filteredTwilightData = twilightData.filter(d => dates.includes(d.dayobs));
+    filteredMoonData = moonData.filter(d => dates.includes(d.dayobs));
+    computeAvailableBlocks();
+}
 
-    twilightData.forEach(d => {
+function renderTwilight() {
+    g.selectAll(".twilight").remove();
+    // Add twilight rectangles; only need to do this once.
+    filteredTwilightData.forEach(d => {
+        const twilightIntervals = [
+            { start: minTime, end: d.sunset, fill: sunStateColor.day, dayobs: d.dayobs },
+            { start: d.sunset, end: d.evening_6deg, fill: sunStateColor.twilight6, dayobs: d.dayobs },
+            { start: d.evening_6deg, end: d.evening_12deg, fill: sunStateColor.twilight12, dayobs: d.dayobs },
+            { start: d.evening_12deg, end: d.evening_18deg, fill: sunStateColor.twilight18, dayobs: d.dayobs },
+            { start: d.evening_18deg, end: d.morning_18deg, fill: sunStateColor.night, dayobs: d.dayobs },
+            { start: d.morning_18deg, end: d.morning_12deg, fill: sunStateColor.twilight18, dayobs: d.dayobs },
+            { start: d.morning_12deg, end: d.morning_6deg, fill: sunStateColor.twilight12, dayobs: d.dayobs },
+            { start: d.morning_6deg, end: d.sunrise, fill: sunStateColor.twilight6, dayobs: d.dayobs },
+            { start: d.sunrise, end: maxTime, fill: sunStateColor.day, dayobs: d.dayobs }
+        ];
+
+        // Bind the data for each date and append rectangles
+        g.selectAll(".twilight-" + d.dayobs)
+            .data(twilightIntervals)
+            .enter()
+            .append("rect")
+            .attr("class", "twilight")
+            .attr("x", d => timeScale(d.start))
+            .attr("y", d => dateScale(d.dayobs))
+            .attr("width", d => timeScale(d.end) - timeScale(d.start))
+            .attr("height", dateScale.bandwidth())
+            .attr("fill", d => d.fill);
+    });
+}
+
+function renderMoon() {
+    g.selectAll(".moon").remove();
+    // Moon rectangles; only needed once.
+    const flattenedMoonData = filteredMoonData.flatMap(d =>
+        d.moonintervals
+            .map(interval => {
+                const start = Math.max(minTime, interval[0]);
+                const end = Math.min(maxTime, interval[1]);
+                return {
+                    start,
+                    end,
+                    dayobs: d.dayobs
+                };
+            })
+            .filter(({ start, end }) => start < end)
+    );
+    g.selectAll(".moon")
+        .data(flattenedMoonData)
+        .enter()
+        .append("rect")
+        .attr("class", "moon")
+        .attr("x", d => timeScale(d.start))
+        .attr("y", d => dateScale(d.dayobs))
+        .attr("width", d => timeScale(d.end)-timeScale(d.start))
+        .attr("height", dateScale.bandwidth())
+        .attr("fill", "grey")
+        .attr("opacity", 0.5);
+}
+
+
+function computeAvailableBlocks() {
+    availableBlockData = [];
+
+    filteredTwilightData.forEach(d => {
         // Create blocks for each twilight period and night period
         const blocks = [
             { dayobs: d.dayobs, start: d.sunset, end: d.evening_6deg },
@@ -607,12 +630,11 @@ function initializeAvailableBlocks() {
         // Filter out any blocks that have no duration (e.g., if start equals end)
         blocks.forEach(block => {
             if (block.start < block.end) {
-                blockData.push(block);
+                availableBlockData.push(block);
             }
         });
     });
-
-    availableBlockData = blockData;
+    pruneAvailableBlocks();
 }
 
 function pruneAvailableBlocks() {
@@ -680,8 +702,6 @@ function pruneAvailableBlocks() {
     availableBlockData = prunedBlocks;
 }
 
-loadObservations();
-
 d3.select("#saveButton").on("click", function() {
     const updatedDataStr = JSON.stringify(filteredObservationData, null, 2);
     const dataUri = (
@@ -710,8 +730,7 @@ d3.select("#fileInput").on("change", function() {
             filteredObservationData = observationData.filter(
                 d => dates.includes(d.dayobs)
             );
-            initializeAvailableBlocks();
-            pruneAvailableBlocks();
+            computeAvailableBlocks();
             renderObservations();
         };
         reader.readAsText(file);
@@ -736,8 +755,7 @@ document.addEventListener("keydown", function(event) {
 
         // Remove selected observations from the SVG
         selectedObservations.remove();
-        initializeAvailableBlocks();
-        pruneAvailableBlocks();
+        computeAvailableBlocks();
         renderObservations();
     }
 });
@@ -760,8 +778,7 @@ function updateSelectedObservation() {
         const selectedIndex = filteredObservationData.indexOf(selectedData);
 
         // Re-render the observations and available blocks
-        initializeAvailableBlocks();
-        pruneAvailableBlocks();
+        computeAvailableBlocks();
         renderObservations();
 
         // Reapply the selection to the updated observation
@@ -943,6 +960,32 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("endTimeDown").addEventListener("click", function() {
         adjustTime(document.getElementById("editEndTime"), -adjustmentStep);
     });
+});
+
+const dateRangeInput = document.getElementById("editDateRangeInput");
+flatpickr(dateRangeInput, {
+    mode: "range",
+    dateFormat: "Y-m-d",
+    defaultDate: [
+        dateStart.toISOString().split("T")[0],
+        dateEnd.toISOString().split("T")[0]
+    ],
+    onChange: function(selectedDates, dateStr, instance) {
+        if (selectedDates.length !== 2) return;
+        const [startDate, endDate] = selectedDates;
+        dateStart = new Date(startDate);
+        dateEnd = new Date(endDate);
+        dateEnd.setDate(dateEnd.getDate() + 1); // Add one day to include the end date
+        dateRange = d3.timeDay.range(dateStart, dateEnd);
+        dates = dateRange.map(d => d.toISOString().split("T")[0]);
+        dateScale.domain(dates);
+        selectDataInDateRange();
+        computeAvailableBlocks();
+        renderTwilight();
+        renderMoon();
+        renderObservations();
+        renderAxes();
+    }
 });
 
 // Use Flatpickr for Date
@@ -1299,3 +1342,6 @@ function calculateAndDisplayDuration() {
 // Event listeners to update duration whenever start or end time changes
 document.getElementById("editStartTime").addEventListener("input", calculateAndDisplayDuration);
 document.getElementById("editEndTime").addEventListener("input", calculateAndDisplayDuration);
+
+// Entry point
+loadData();

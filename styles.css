@@ -148,9 +148,35 @@
     /* border: 1px solid #F00; */
 }
 
+#rightPanel {
+    display: flex;
+    flex-direction: column; /* Stack the calendar and buttons vertically */
+    align-items: flex-start;
+    padding-left: 10px;
+    width: 250px;
+    /* border: 1px solid #F00; */
+}
+
+#dateRangeContainer {
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    /* display: none; */
+    align-self: flex-start;
+}
+
+#editDateRangeInput {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 200px;
+    height: 30px;
+}
+
 #editFormContainer {
-    margin-top: 20px;
-    margin-left: 20px; /* Space between the left panel and the form */
+    margin-top: 10px;
+    margin-left: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;

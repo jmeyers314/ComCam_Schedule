@@ -23,80 +23,92 @@
             </div>
         </div>
         <div id="filterLozengesContainer" style="margin-left: -10px; width: 100px;">
-        <!-- <div id="filterLozengesContainer"> -->
             <svg id="lozengesSVG" width="50" height="800"></svg>
         </div>
+        <div id="rightPanel">
+            <div id="dateRangeContainer">
+                <div>
+                    <label for="editDateRangeInput">Date Range:</label>
+                    <input type="text" id="editDateRangeInput" name="editDateRange">
+                </div>
+            </div>
             <div id="editFormContainer">
-            <h3>Observation</h3>
-            <form id="editForm">
-                <label for="editDate">Date:&nbsp</label>
-                <input type="text" id="editDate" name="date"><br><br>
+                <h3>Observation</h3>
+                <form id="editForm">
+                    <label for="editDate">Date:&nbsp</label>
+                    <input type="text" id="editDate" name="date"><br><br>
 
-                <div class="time-container">
-                    <label for="editStartTime">Start:&nbsp</label>
-                    <input type="text" id="editStartTime" name="start_time">
-                    <div class="time-buttons">
-                        <button type="button" id="startTimeUp">▲</button>
-                        <button type="button" id="startTimeDown">▼</button>
+                    <div class="time-container">
+                        <label for="editStartTime">Start:&nbsp</label>
+                        <input type="text" id="editStartTime" name="start_time">
+                        <div class="time-buttons">
+                            <button type="button" id="startTimeUp">▲</button>
+                            <button type="button" id="startTimeDown">▼</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="time-container">
-                    <label for="editEndTime">End:&nbsp</label>
-                    <input type="text" id="editEndTime" name="end_time">
-                    <div class="time-buttons">
-                        <button type="button" id="endTimeUp">▲</button>
-                        <button type="button" id="endTimeDown">▼</button>
+                    <div class="time-container">
+                        <label for="editEndTime">End:&nbsp</label>
+                        <input type="text" id="editEndTime" name="end_time">
+                        <div class="time-buttons">
+                            <button type="button" id="endTimeUp">▲</button>
+                            <button type="button" id="endTimeDown">▼</button>
+                        </div>
                     </div>
-                </div>
 
-                <label for="duration">Duration:</label>
-                <output id="duration" name="duration"></output><br><br>
+                    <label for="duration">Duration:</label>
+                    <output id="duration" name="duration"></output><br><br>
 
-                <label for="editObsType">ObsType:</label>
-                <select id="editObsType" name="obstype">
-                    <option value="Prep">Prep</option>
+                    <label for="editObsType">ObsType:</label>
+                    <select id="editObsType" name="obstype">
+                        <option value="Prep">Prep</option>
+                        <option value="Point">Point</option>
+                        <option value="Trail">Trail</option>
 
-                    <option value="Twiflat">Twiflat</option>
-                    <option value="Domeflat">Domeflat</option>
-                    <option value="Bias">Bias</option>
-                    <option value="Dark">Dark</option>
-                    <option value="Bright">Bright</option>
-                    <option value="Pinhole">Pinhole</option>
+                        <option value="Twiflat">Twiflat</option>
+                        <option value="Domeflat">Domeflat</option>
+                        <option value="Bias">Bias</option>
+                        <option value="Dark">Dark</option>
+                        <option value="Bright">Bright</option>
+                        <option value="Pinhole">Pinhole</option>
 
-                    <option value="Dome slit">Dome slit</option>
-                    <option value="M1M3 cover">M1M3 cover</option>
-                    <option value="Focus">Focus</option>
+                        <option value="Dome slit">Dome slit</option>
+                        <option value="M1M3 cover">M1M3 cover</option>
+                        <option value="Focus">Focus</option>
+                        <option value="Align">Align</option>
+                        <option value="Exptime">Exptime</option>
+                        <option value="Loop">Loop</option>
+                        <option value="Kick">Kick</option>
 
-                    <option value="Sense">Sense</option>
-                    <option value="Ref">Ref</option>
-                    <option value="LUT">LUT</option>
-                    <option value="Loop">Loop</option>
-                    <option value="Giant">Giant</option>
+                        <option value="Sense">Sense</option>
+                        <option value="Ref">Ref</option>
+                        <option value="LUT">LUT</option>
+                        <option value="Giant">Giant</option>
 
-                    <option value="Guide">Guide</option>
-                    <option value="Stutter">Stutter</option>
-                    <option value="Streak">Streak</option>
-                    <option value="MOSS">MOSS</option>
+                        <option value="Guide">Guide</option>
+                        <option value="Stutter">Stutter</option>
+                        <option value="Streak">Streak</option>
+                        <option value="MOSS">MOSS</option>
 
-                    <option value="DD*F">DD*F</option>
-                    <option value="Deep">Deep</option>
-                    <option value="Survey">Survey</option>
-                </select><br><br>
+                        <option value="DD*F">DD*F</option>
+                        <option value="Deep">Deep</option>
+                        <option value="Survey">Survey</option>
+                    </select><br><br>
 
-                <label for="filterTags">Filters:</label>
-                <select class="form-control" data-trigger name="filterTags" id="filterTags" multiple>
-                    <option value="u">u</option>
-                    <option value="g">g</option>
-                    <option value="r">r</option>
-                    <option value="i">i</option>
-                    <option value="z">z</option>
-                    <option value="y">y</option>
-                </select><br><br>
+                    <label for="filterTags">Filters:</label>
+                    <select class="form-control" data-trigger name="filterTags" id="filterTags" multiple>
+                        <option value="u">u</option>
+                        <option value="g">g</option>
+                        <option value="r">r</option>
+                        <option value="i">i</option>
+                        <option value="z">z</option>
+                        <option value="y">y</option>
+                    </select><br><br>
 
-                <label for="editNotes">Notes:</label>
-                <textarea id="editNotes" name="notes" maxlength="500" placeholder="Enter notes here..."></textarea><br><br>
-            </form>
+                    <label for="editNotes">Notes:</label>
+                    <textarea id="editNotes" name="notes" maxlength="500" placeholder="Enter notes here..."></textarea><br><br>
+                </form>
+            </div>
         </div>
     </div>
     <div id="tooltip" class="tooltip"></div>
