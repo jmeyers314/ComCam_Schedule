@@ -866,6 +866,7 @@ document.addEventListener('keydown', function(event) {
 
             // Show the edit form
             document.getElementById("editFormContainer").style.display = "block";
+            document.getElementById("editObsType").focus();
         }
     }
 });
