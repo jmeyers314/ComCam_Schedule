@@ -748,6 +748,14 @@ document.addEventListener("keydown", function(event) {
             d => +d.getAttribute("data-index")
         );
 
+        // Get the selected elements from filteredObservationData
+        const dataToDelete = indicesToDelete.map(i => filteredObservationData[i]);
+
+        // Update observationData by removing the selected observations
+        observationData = observationData.filter(
+            obs => !dataToDelete.includes(obs)
+        );
+
         // Filter out the selected observations
         filteredObservationData = filteredObservationData.filter(
             (obs, i) => !indicesToDelete.includes(i)
@@ -817,7 +825,8 @@ document.addEventListener('keydown', function(event) {
             };
 
             // Add the new observation to the filteredObservationData
-            filteredObservationData.push(newObservation);
+            observationData.push(newObservation);
+            selectDataInDateRange();
 
             // Update availableBlockData by removing or truncating the selected available block
             if (endTime === selectedAvailableBlock.end) {
@@ -979,6 +988,7 @@ flatpickr(dateRangeInput, {
         dateRange = d3.timeDay.range(dateStart, dateEnd);
         dates = dateRange.map(d => d.toISOString().split("T")[0]);
         dateScale.domain(dates);
+        document.getElementById("editFormContainer").style.display = "none";
         selectDataInDateRange();
         computeAvailableBlocks();
         renderTwilight();
