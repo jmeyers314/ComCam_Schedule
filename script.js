@@ -112,6 +112,10 @@ const obstypes = {
         "category": "AOS transient",
     },
     "Focus": {
+        "tooltip": "Donut focus",
+        "category": "AOS transient",
+    },
+    "Sweep": {
         "tooltip": "Focus sweeps",
         "category": "AOS transient",
     },
