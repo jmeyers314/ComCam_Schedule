@@ -119,6 +119,10 @@ const obstypes = {
         "tooltip": "Manual alignment",
         "category": "AOS transient",
     },
+    "WET-001": {
+        "tooltip": "Wavefront verification",
+        "category": "AOS transient",
+    },
     "Exptime": {
         "tooltip": "Exposure time sweeps",
         "category": "AOS transient",
