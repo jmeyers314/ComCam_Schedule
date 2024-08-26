@@ -711,7 +711,12 @@ function pruneAvailableBlocks() {
 }
 
 d3.select("#saveButton").on("click", function() {
-    const updatedDataStr = JSON.stringify(filteredObservationData, null, 2);
+    obsCopy = JSON.parse(JSON.stringify(observationData));
+    obsCopy.forEach(d => {
+        d.start = formatTime(d.start);
+        d.end = formatTime(d.end);
+    });
+    const updatedDataStr = JSON.stringify(obsCopy, null, 2);
     const dataUri = (
         'data:application/json;charset=utf-8,' +
         encodeURIComponent(updatedDataStr)
