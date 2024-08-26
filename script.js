@@ -306,6 +306,20 @@ function renderObservations() {
             .style("top", (event.pageY + 5) + "px");
     }).on("mouseout", function() {
         d3.select("#tooltip").style("display", "none");
+    }).on("dblclick", function() {
+        // Select all observations with the same type
+        const selectedType = d3.select(this).data()[0].type;
+        d3.selectAll(".observation")
+            .filter(d => d.type === selectedType)
+            .classed("selected", true)
+            .select("rect")
+            .attr("stroke", "white")
+            .attr("stroke-width", 3);
+        // Toggle the form visibility
+        document.getElementById("editFormContainer").style.display = "none";
+        toggleFormInputs(false);
+
+        // console.log("Double-clicked on an observation block with type: ", selectedType);
     });
 
     // Render available blocks (invisible but selectable)
