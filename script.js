@@ -29,8 +29,8 @@ const timeScale = d3.scaleLinear()
     .range([0, width]);
 
 // y-axis
-let dateStart = new Date("2024-10-01");
-let dateEnd = new Date("2024-12-01");
+let dateStart = new Date("2024-10-13");
+let dateEnd = new Date("2024-11-10");
 let dateRange = d3.timeDay.range(dateStart, dateEnd);
 let dates = dateRange.map(d => d.toISOString().split("T")[0]);
 let dateScale = d3.scaleBand()
