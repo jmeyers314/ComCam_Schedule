@@ -1,285 +1,469 @@
 [
   {
-    "dayobs": "2024-10-01",
-    "start": "19:40:52",
-    "end": "21:05:37",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-01",
-    "start": "05:58:31",
-    "end": "06:55:16",
-    "type": "Twiflat",
+    "dayobs": "2024-10-14",
+    "start": "20:46:16",
+    "end": "21:46:16",
+    "type": "Align",
     "filters": [
       "i"
     ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-02",
-    "start": "19:41:28",
-    "end": "21:06:20",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-02",
-    "start": "05:57:10",
-    "end": "06:54:01",
-    "type": "Twiflat",
-    "filters": [
-      "r"
-    ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-03",
-    "start": "19:42:04",
-    "end": "21:07:04",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-03",
-    "start": "05:55:50",
-    "end": "06:52:47",
-    "type": "Twiflat",
-    "filters": [
-      "g"
-    ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-04",
-    "start": "19:42:40",
-    "end": "21:07:48",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-04",
-    "start": "05:54:30",
-    "end": "06:51:33",
-    "type": "Twiflat",
-    "filters": [
-      "z"
-    ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-05",
-    "start": "19:43:16",
-    "end": "21:08:33",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-05",
-    "start": "05:53:10",
-    "end": "06:50:20",
-    "type": "Twiflat",
-    "filters": [
-      "y"
-    ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-06",
-    "start": "19:43:53",
-    "end": "21:09:18",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-06",
-    "start": "05:51:49",
-    "end": "06:49:07",
-    "type": "Twiflat",
-    "filters": [
-      "u"
-    ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-07",
-    "start": "19:44:30",
-    "end": "21:10:04",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-07",
-    "start": "05:50:29",
-    "end": "06:47:54",
-    "type": "Twiflat",
-    "filters": [
-      "r"
-    ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-08",
-    "start": "19:45:08",
-    "end": "21:10:51",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-08",
-    "start": "05:49:09",
-    "end": "06:46:41",
-    "type": "Twiflat",
-    "filters": [
-      "i"
-    ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-09",
-    "start": "19:45:46",
-    "end": "21:11:38",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-09",
-    "start": "05:47:50",
-    "end": "06:45:30",
-    "type": "Twiflat",
-    "filters": [
-      "i"
-    ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-10",
-    "start": "19:46:24",
-    "end": "21:12:27",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-10",
-    "start": "05:46:30",
-    "end": "06:44:18",
-    "type": "Twiflat",
-    "filters": [
-      "i"
-    ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-11",
-    "start": "19:47:02",
-    "end": "21:13:16",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-11",
-    "start": "05:45:12",
-    "end": "06:43:07",
-    "type": "Twiflat",
-    "filters": [
-      "i"
-    ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-12",
-    "start": "19:47:41",
-    "end": "21:14:05",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-12",
-    "start": "05:43:53",
-    "end": "06:41:57",
-    "type": "Twiflat",
-    "filters": [
-      "u"
-    ],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-13",
-    "start": "19:48:20",
-    "end": "21:14:56",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-13",
-    "start": "05:42:35",
-    "end": "06:40:48",
-    "type": "Twiflat",
-    "filters": [
-      "g"
-    ],
-    "notes": ""
+    "notes": "ASCT-001.  Manual alignment.\nEnsure we can find intra-focal.\nCenter the shadow.\n\n"
   },
   {
     "dayobs": "2024-10-14",
-    "start": "19:49:00",
-    "end": "21:15:47",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
+    "start": "21:46:16",
+    "end": "22:46:16",
+    "type": "Dome slit",
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-009.\n"
   },
   {
     "dayobs": "2024-10-14",
-    "start": "05:41:16",
+    "start": "22:46:16",
+    "end": "23:46:16",
+    "type": "M1M3 cover",
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-010."
+  },
+  {
+    "dayobs": "2024-10-14",
+    "start": "23:46:16",
+    "end": "00:46:16",
+    "type": "Sweep",
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-002."
+  },
+  {
+    "dayobs": "2024-10-14",
+    "start": "00:46:16",
+    "end": "01:46:16",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-003"
+  },
+  {
+    "dayobs": "2024-10-14",
+    "start": "01:46:16",
+    "end": "02:46:16",
+    "type": "Point",
+    "filters": [
+      "i"
+    ],
+    "notes": "Tiago"
+  },
+  {
+    "dayobs": "2024-10-14",
+    "start": "02:46:16",
+    "end": "06:10:47",
+    "type": "Sense",
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-004.  Aim for ~7 non-degenerate hexapod modes."
+  },
+  {
+    "dayobs": "2024-10-14",
+    "start": "06:10:47",
     "end": "06:39:38",
     "type": "Twiflat",
     "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-15",
+    "start": "20:47:02",
+    "end": "21:47:02",
+    "type": "Sweep",
+    "filters": [
       "z"
     ],
     "notes": ""
   },
   {
     "dayobs": "2024-10-15",
-    "start": "19:49:39",
-    "end": "21:16:38",
-    "type": "Prep",
-    "filters": [],
+    "start": "21:47:02",
+    "end": "22:47:02",
+    "type": "Focus",
+    "filters": [
+      "z"
+    ],
     "notes": ""
   },
   {
     "dayobs": "2024-10-15",
-    "start": "05:39:59",
-    "end": "06:38:30",
-    "type": "Twiflat",
+    "start": "22:47:02",
+    "end": "23:47:02",
+    "type": "Point",
     "filters": [
+      "z"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-15",
+    "start": "23:47:02",
+    "end": "00:47:02",
+    "type": "Trail",
+    "filters": [
+      "z"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-15",
+    "start": "00:47:02",
+    "end": "01:47:02",
+    "type": "Giant",
+    "filters": [
+      "i",
+      "z",
       "y"
     ],
     "notes": ""
   },
   {
-    "dayobs": "2024-10-16",
-    "start": "19:50:20",
-    "end": "21:17:31",
-    "type": "Prep",
-    "filters": [],
+    "dayobs": "2024-10-15",
+    "start": "01:47:02",
+    "end": "06:09:35",
+    "type": "Sense",
+    "filters": [
+      "i"
+    ],
+    "notes": "ASCT-004.  Finish hexapod.  Aim for 5 M1M3 modes.\n"
+  },
+  {
+    "dayobs": "2024-10-15",
+    "start": "06:09:35",
+    "end": "06:38:30",
+    "type": "Twiflat",
+    "filters": [
+      "z"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-14",
+    "start": "20:17:24",
+    "end": "20:46:16",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
     "notes": ""
   },
   {
     "dayobs": "2024-10-16",
-    "start": "05:38:41",
+    "start": "20:47:49",
+    "end": "21:17:49",
+    "type": "Sweep",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-16",
+    "start": "21:17:49",
+    "end": "21:47:49",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-17",
+    "start": "20:48:37",
+    "end": "21:18:37",
+    "type": "Sweep",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-17",
+    "start": "21:18:37",
+    "end": "21:48:37",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-18",
+    "start": "20:49:25",
+    "end": "21:19:25",
+    "type": "Sweep",
+    "filters": [
+      "g",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-18",
+    "start": "21:19:25",
+    "end": "21:49:25",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-19",
+    "start": "20:50:14",
+    "end": "21:20:14",
+    "type": "Focus",
+    "filters": [],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-20",
+    "start": "20:51:03",
+    "end": "21:21:08",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-21",
+    "start": "20:51:53",
+    "end": "21:22:04",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-22",
+    "start": "20:52:44",
+    "end": "21:23:01",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-23",
+    "start": "20:53:35",
+    "end": "21:23:58",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-24",
+    "start": "20:54:27",
+    "end": "21:24:57",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-25",
+    "start": "20:55:20",
+    "end": "21:25:56",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-26",
+    "start": "20:56:13",
+    "end": "21:26:55",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-27",
+    "start": "20:57:06",
+    "end": "21:27:55",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-28",
+    "start": "20:58:01",
+    "end": "21:28:56",
+    "type": "Focus",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-15",
+    "start": "20:18:07",
+    "end": "20:47:02",
+    "type": "Twiflat",
+    "filters": [
+      "z"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-16",
+    "start": "20:18:50",
+    "end": "20:47:49",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-17",
+    "start": "20:19:34",
+    "end": "20:48:37",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-18",
+    "start": "20:20:18",
+    "end": "20:49:25",
+    "type": "Twiflat",
+    "filters": [
+      "g"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-19",
+    "start": "20:21:02",
+    "end": "20:50:14",
+    "type": "Twiflat",
+    "filters": [
+      "g"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-20",
+    "start": "20:21:47",
+    "end": "20:51:03",
+    "type": "Twiflat",
+    "filters": [
+      "g"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-21",
+    "start": "20:22:33",
+    "end": "20:51:53",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-22",
+    "start": "20:23:19",
+    "end": "20:52:44",
+    "type": "Twiflat",
+    "filters": [
+      "u",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-23",
+    "start": "20:24:06",
+    "end": "20:53:35",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-24",
+    "start": "20:24:53",
+    "end": "20:54:27",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-25",
+    "start": "20:25:41",
+    "end": "20:55:20",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-26",
+    "start": "20:26:29",
+    "end": "20:56:13",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-27",
+    "start": "20:27:18",
+    "end": "20:57:06",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-28",
+    "start": "20:28:07",
+    "end": "20:58:01",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-16",
+    "start": "06:08:23",
     "end": "06:37:22",
     "type": "Twiflat",
     "filters": [
@@ -289,47 +473,27 @@
   },
   {
     "dayobs": "2024-10-17",
-    "start": "19:51:00",
-    "end": "21:18:23",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-17",
-    "start": "05:37:25",
+    "start": "06:07:12",
     "end": "06:36:15",
     "type": "Twiflat",
-    "filters": [],
+    "filters": [
+      "y"
+    ],
     "notes": ""
   },
   {
     "dayobs": "2024-10-18",
-    "start": "19:51:41",
-    "end": "21:19:17",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-18",
-    "start": "05:36:09",
+    "start": "06:06:01",
     "end": "06:35:08",
     "type": "Twiflat",
-    "filters": [],
+    "filters": [
+      "i"
+    ],
     "notes": ""
   },
   {
     "dayobs": "2024-10-19",
-    "start": "19:52:23",
-    "end": "21:20:11",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-19",
-    "start": "05:34:53",
+    "start": "06:04:52",
     "end": "06:34:03",
     "type": "Twiflat",
     "filters": [],
@@ -337,618 +501,290 @@
   },
   {
     "dayobs": "2024-10-20",
-    "start": "19:53:05",
-    "end": "21:21:07",
-    "type": "Prep",
-    "filters": [],
+    "start": "06:03:43",
+    "end": "06:32:58",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-21",
+    "start": "06:02:35",
+    "end": "06:31:54",
+    "type": "Twiflat",
+    "filters": [
+      "r",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-22",
+    "start": "06:01:27",
+    "end": "06:30:51",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-23",
+    "start": "06:00:20",
+    "end": "06:29:49",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-24",
+    "start": "05:59:14",
+    "end": "06:28:48",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-25",
+    "start": "05:58:09",
+    "end": "06:27:47",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-26",
+    "start": "05:57:05",
+    "end": "06:26:48",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-27",
+    "start": "05:56:02",
+    "end": "06:25:50",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-28",
+    "start": "05:55:00",
+    "end": "06:24:53",
+    "type": "Twiflat",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-16",
+    "start": "21:47:49",
+    "end": "23:47:49",
+    "type": "WET-001",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-17",
+    "start": "21:48:37",
+    "end": "23:18:37",
+    "type": "WET-001",
+    "filters": [
+      "i"
+    ],
     "notes": ""
   },
   {
     "dayobs": "2024-10-20",
-    "start": "05:33:39",
-    "end": "06:32:58",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-21",
-    "start": "19:53:47",
-    "end": "21:22:03",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-21",
-    "start": "05:32:24",
-    "end": "06:31:54",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-22",
-    "start": "19:54:30",
-    "end": "21:23:00",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-22",
-    "start": "05:31:10",
-    "end": "06:30:51",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-23",
-    "start": "19:55:13",
-    "end": "21:23:57",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-23",
-    "start": "05:29:57",
-    "end": "06:29:49",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-24",
-    "start": "19:55:57",
-    "end": "21:24:56",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-24",
-    "start": "05:28:45",
-    "end": "06:28:48",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-25",
-    "start": "19:56:41",
-    "end": "21:25:55",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-25",
-    "start": "05:27:33",
-    "end": "06:27:47",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-26",
-    "start": "19:57:26",
-    "end": "21:26:54",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-26",
-    "start": "05:26:23",
-    "end": "06:26:48",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-27",
-    "start": "19:58:11",
-    "end": "21:27:54",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-27",
-    "start": "05:25:13",
-    "end": "06:25:50",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-28",
-    "start": "19:58:56",
-    "end": "21:28:55",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-28",
-    "start": "05:24:05",
-    "end": "06:24:53",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-29",
-    "start": "19:59:42",
-    "end": "21:29:56",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-29",
-    "start": "05:22:57",
-    "end": "06:23:57",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-30",
-    "start": "20:00:28",
-    "end": "21:30:58",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-30",
-    "start": "05:21:50",
-    "end": "06:23:02",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-31",
-    "start": "20:01:15",
-    "end": "21:32:01",
-    "type": "Prep",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-31",
-    "start": "05:20:43",
-    "end": "06:22:09",
-    "type": "Twiflat",
-    "filters": [],
-    "notes": ""
-  },
-  {
-    "dayobs": "2024-10-01",
-    "start": "22:06:00",
-    "end": "23:06:00",
-    "type": "Dome slit",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-009.\nStart in middle of slit.  Increase az until occulted (with dome frozen).\nRotator at 0 deg.\n(Are we occulted at el=90?)\nWhen we find an edge, rotate the camera.\n\n"
-  },
-  {
-    "dayobs": "2024-10-01",
-    "start": "23:06:00",
-    "end": "00:06:00",
-    "type": "M1M3 cover",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-010\nSame, but with mirror cover petals.\n"
-  },
-  {
-    "dayobs": "2024-10-01",
-    "start": "00:06:00",
-    "end": "01:07:59",
-    "type": "Focus",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-002\nboth hexapods (10 dof)\n"
-  },
-  {
-    "dayobs": "2024-10-01",
-    "start": "02:08:59",
-    "end": "05:05:59",
-    "type": "Sense",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-004\n~10 dof (hexapods)\ndon't engage rotator this time.\n"
-  },
-  {
-    "dayobs": "2024-10-01",
-    "start": "05:05:37",
-    "end": "05:58:31",
-    "type": "Ref",
-    "filters": [
-      "i"
-    ],
-    "notes": "WET-010\n~80 Images"
-  },
-  {
-    "dayobs": "2024-10-02",
-    "start": "21:06:20",
-    "end": "22:06:20",
-    "type": "Focus",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-02",
-    "start": "23:52:00",
-    "end": "05:04:59",
-    "type": "Sense",
-    "filters": [
-      "r",
-      "i"
-    ],
-    "notes": "ASCT-004\n~15 dof\nat some point, start engaging the rotator during sweep.\n"
-  },
-  {
-    "dayobs": "2024-10-02",
-    "start": "05:06:20",
-    "end": "05:57:10",
-    "type": "Ref",
-    "filters": [
-      "r"
-    ],
-    "notes": "WET-010\n"
-  },
-  {
-    "dayobs": "2024-10-03",
-    "start": "21:07:04",
-    "end": "22:07:04",
-    "type": "Focus",
-    "filters": [
-      "g"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-03",
-    "start": "22:07:04",
-    "end": "05:07:04",
-    "type": "Sense",
+    "start": "21:21:08",
+    "end": "22:21:08",
+    "type": "Giant",
     "filters": [
       "g",
-      "i"
-    ],
-    "notes": "ASCT-004\n~15 dof"
-  },
-  {
-    "dayobs": "2024-10-03",
-    "start": "05:07:04",
-    "end": "05:55:50",
-    "type": "Ref",
-    "filters": [
-      "g"
-    ],
-    "notes": "WET-010\n"
-  },
-  {
-    "dayobs": "2024-10-04",
-    "start": "21:07:48",
-    "end": "22:07:48",
-    "type": "Focus",
-    "filters": [
-      "z"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-04",
-    "start": "22:07:48",
-    "end": "05:07:48",
-    "type": "Sense",
-    "filters": [
-      "i",
-      "z"
-    ],
-    "notes": "ASCT-004\n~15 dof"
-  },
-  {
-    "dayobs": "2024-10-04",
-    "start": "05:07:48",
-    "end": "05:54:30",
-    "type": "Ref",
-    "filters": [
-      "z"
-    ],
-    "notes": "WET-010\n"
-  },
-  {
-    "dayobs": "2024-10-05",
-    "start": "21:08:33",
-    "end": "22:08:33",
-    "type": "Focus",
-    "filters": [
-      "y"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-05",
-    "start": "22:08:33",
-    "end": "05:08:33",
-    "type": "Sense",
-    "filters": [
-      "i",
-      "y"
-    ],
-    "notes": "ASCT-004\n~15 dof"
-  },
-  {
-    "dayobs": "2024-10-05",
-    "start": "05:08:33",
-    "end": "05:53:10",
-    "type": "Ref",
-    "filters": [
-      "y"
-    ],
-    "notes": "WET-010\n"
-  },
-  {
-    "dayobs": "2024-10-06",
-    "start": "21:09:18",
-    "end": "21:39:18",
-    "type": "Focus",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-06",
-    "start": "23:40:00",
-    "end": "05:09:00",
-    "type": "LUT",
-    "filters": [
-      "i"
-    ],
-    "notes": "LUTT-003\n\nOnly if faster than 1% slewing.\n"
-  },
-  {
-    "dayobs": "2024-10-06",
-    "start": "05:09:18",
-    "end": "05:51:49",
-    "type": "Ref",
-    "filters": [
-      "u"
-    ],
-    "notes": "WET-010\n"
-  },
-  {
-    "dayobs": "2024-10-07",
-    "start": "21:10:04",
-    "end": "21:40:04",
-    "type": "Focus",
-    "filters": [
-      "r"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-07",
-    "start": "21:40:04",
-    "end": "05:10:04",
-    "type": "LUT",
-    "filters": [
       "r",
-      "i"
-    ],
-    "notes": "LUTT-004"
-  },
-  {
-    "dayobs": "2024-10-07",
-    "start": "05:10:04",
-    "end": "05:50:29",
-    "type": "Ref",
-    "filters": [
-      "r"
-    ],
-    "notes": "WET-010\n"
-  },
-  {
-    "dayobs": "2024-10-08",
-    "start": "21:10:51",
-    "end": "21:40:51",
-    "type": "Focus",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-08",
-    "start": "21:40:51",
-    "end": "05:10:51",
-    "type": "LUT",
-    "filters": [
-      "i"
-    ],
-    "notes": "LUTT-003"
-  },
-  {
-    "dayobs": "2024-10-08",
-    "start": "05:10:51",
-    "end": "05:49:09",
-    "type": "Ref",
-    "filters": [
-      "i"
-    ],
-    "notes": "WET-010\n"
-  },
-  {
-    "dayobs": "2024-10-09",
-    "start": "21:11:38",
-    "end": "21:41:38",
-    "type": "Focus",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-09",
-    "start": "21:41:38",
-    "end": "05:11:38",
-    "type": "LUT",
-    "filters": [
-      "i"
-    ],
-    "notes": "LUTT-004"
-  },
-  {
-    "dayobs": "2024-10-09",
-    "start": "05:11:38",
-    "end": "05:47:50",
-    "type": "Ref",
-    "filters": [
-      "i"
-    ],
-    "notes": "WET-010\n"
-  },
-  {
-    "dayobs": "2024-10-10",
-    "start": "21:12:27",
-    "end": "21:42:27",
-    "type": "Focus",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-10",
-    "start": "21:42:27",
-    "end": "05:12:27",
-    "type": "LUT",
-    "filters": [
-      "i"
-    ],
-    "notes": "LUTT-005"
-  },
-  {
-    "dayobs": "2024-10-10",
-    "start": "05:12:27",
-    "end": "05:46:30",
-    "type": "Ref",
-    "filters": [
-      "i"
-    ],
-    "notes": "WET-010\n"
-  },
-  {
-    "dayobs": "2024-10-11",
-    "start": "21:13:16",
-    "end": "21:43:16",
-    "type": "Focus",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-11",
-    "start": "21:43:16",
-    "end": "05:13:16",
-    "type": "LUT",
-    "filters": [
-      "i"
-    ],
-    "notes": "LUTT-003"
-  },
-  {
-    "dayobs": "2024-10-11",
-    "start": "05:13:16",
-    "end": "05:45:12",
-    "type": "Ref",
-    "filters": [
-      "i"
-    ],
-    "notes": "WET-010\n"
-  },
-  {
-    "dayobs": "2024-10-12",
-    "start": "21:14:05",
-    "end": "21:44:05",
-    "type": "Focus",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-12",
-    "start": "21:44:05",
-    "end": "01:14:05",
-    "type": "Guide",
-    "filters": [
       "i"
     ],
     "notes": ""
   },
   {
-    "dayobs": "2024-10-12",
-    "start": "01:14:05",
-    "end": "03:14:05",
+    "dayobs": "2024-10-21",
+    "start": "21:22:04",
+    "end": "22:22:04",
     "type": "Giant",
     "filters": [
       "u",
       "r",
       "i"
     ],
-    "notes": "WET-005"
+    "notes": ""
   },
   {
-    "dayobs": "2024-10-12",
-    "start": "03:14:05",
-    "end": "05:43:53",
-    "type": "Survey",
+    "dayobs": "2024-10-19",
+    "start": "21:20:14",
+    "end": "00:20:14",
+    "type": "Guide",
     "filters": [
-      "u",
+      "g",
+      "r",
       "i"
     ],
     "notes": ""
   },
   {
-    "dayobs": "2024-10-13",
-    "start": "21:14:56",
-    "end": "21:44:56",
-    "type": "Focus",
+    "dayobs": "2024-10-18",
+    "start": "21:49:25",
+    "end": "22:49:25",
+    "type": "WET-001",
     "filters": [
       "i"
     ],
-    "notes": "ASCT-002"
+    "notes": ""
   },
   {
-    "dayobs": "2024-10-13",
-    "start": "21:44:56",
-    "end": "03:14:56",
-    "type": "Loop",
+    "dayobs": "2024-10-16",
+    "start": "01:47:49",
+    "end": "06:08:23",
+    "type": "Sense",
     "filters": [
       "i"
     ],
-    "notes": "CLT-002\nMove this earlier so can debug sooner?  Prefer over \"just data-taking\" like LUT?\nStart by setting gain very small, try to derive gain with standard procedures.\n"
+    "notes": ""
   },
   {
-    "dayobs": "2024-10-13",
-    "start": "03:14:56",
-    "end": "05:42:35",
+    "dayobs": "2024-10-22",
+    "start": "21:23:01",
+    "end": "23:53:01",
+    "type": "LUT",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-23",
+    "start": "21:23:58",
+    "end": "23:53:58",
+    "type": "LUT",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-17",
+    "start": "01:48:37",
+    "end": "06:07:12",
+    "type": "Sense",
+    "filters": [
+      "i",
+      "y"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-18",
+    "start": "22:49:25",
+    "end": "23:49:25",
+    "type": "Point",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-20",
+    "start": "22:21:08",
+    "end": "23:21:08",
+    "type": "Point",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-23",
+    "start": "23:53:58",
+    "end": "00:53:58",
+    "type": "Point",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-16",
+    "start": "23:47:49",
+    "end": "00:47:49",
+    "type": "Kick",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-16",
+    "start": "00:47:49",
+    "end": "01:47:49",
+    "type": "Ref",
+    "filters": [
+      "i",
+      "z"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-17",
+    "start": "23:18:37",
+    "end": "00:48:37",
+    "type": "Kick",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-17",
+    "start": "00:48:37",
+    "end": "01:48:37",
+    "type": "Ref",
+    "filters": [
+      "i",
+      "y"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-27",
+    "start": "23:56:02",
+    "end": "05:56:02",
+    "type": "Survey",
+    "filters": [
+      "u",
+      "r",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-28",
+    "start": "23:55:00",
+    "end": "05:55:00",
     "type": "Survey",
     "filters": [
       "g",
@@ -958,159 +794,342 @@
     "notes": ""
   },
   {
-    "dayobs": "2024-10-14",
-    "start": "21:15:47",
-    "end": "21:45:47",
-    "type": "Focus",
+    "dayobs": "2024-10-26",
+    "start": "00:57:05",
+    "end": "05:57:05",
+    "type": "Survey",
     "filters": [
+      "u",
+      "r",
       "i"
     ],
-    "notes": "ASCT-002"
+    "notes": ""
   },
   {
-    "dayobs": "2024-10-14",
-    "start": "21:45:47",
-    "end": "03:15:47",
-    "type": "Loop",
+    "dayobs": "2024-10-25",
+    "start": "00:58:09",
+    "end": "05:58:09",
+    "type": "Survey",
     "filters": [
+      "g",
+      "r",
       "i"
     ],
-    "notes": "CLT-002"
+    "notes": ""
   },
   {
-    "dayobs": "2024-10-14",
-    "start": "03:15:47",
-    "end": "05:41:16",
+    "dayobs": "2024-10-24",
+    "start": "03:29:14",
+    "end": "05:59:14",
+    "type": "Survey",
+    "filters": [
+      "r",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-23",
+    "start": "03:30:20",
+    "end": "06:00:20",
     "type": "Survey",
     "filters": [
       "i",
-      "z",
       "y"
     ],
     "notes": ""
   },
   {
-    "dayobs": "2024-10-15",
-    "start": "21:16:38",
-    "end": "21:46:38",
-    "type": "Focus",
-    "filters": [
-      "i"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-15",
-    "start": "21:46:38",
-    "end": "03:16:38",
-    "type": "Loop",
-    "filters": [
-      "i"
-    ],
-    "notes": "CLT-002"
-  },
-  {
-    "dayobs": "2024-10-15",
-    "start": "03:16:38",
-    "end": "05:39:59",
+    "dayobs": "2024-10-22",
+    "start": "03:31:27",
+    "end": "06:01:27",
     "type": "Survey",
     "filters": [
+      "r",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-21",
+    "start": "03:32:35",
+    "end": "06:02:35",
+    "type": "Survey",
+    "filters": [
+      "r",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-24",
+    "start": "23:54:57",
+    "end": "00:54:57",
+    "type": "Ref",
+    "filters": [
+      "g",
+      "r",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-23",
+    "start": "00:53:58",
+    "end": "01:53:58",
+    "type": "Ref",
+    "filters": [
+      "u",
       "i",
-      "z",
       "y"
     ],
     "notes": ""
   },
   {
-    "dayobs": "2024-10-16",
-    "start": "21:17:31",
-    "end": "21:47:31",
-    "type": "Focus",
+    "dayobs": "2024-10-18",
+    "start": "01:51:09",
+    "end": "06:06:01",
+    "type": "Sense",
     "filters": [
-      "z"
-    ],
-    "notes": "ASCT-002"
-  },
-  {
-    "dayobs": "2024-10-16",
-    "start": "22:48:00",
-    "end": "03:17:59",
-    "type": "Loop",
-    "filters": [
-      "z"
-    ],
-    "notes": "CLT-002"
-  },
-  {
-    "dayobs": "2024-10-16",
-    "start": "03:17:31",
-    "end": "05:38:41",
-    "type": "Survey",
-    "filters": [
-      "i",
-      "z",
-      "y"
+      "r",
+      "i"
     ],
     "notes": ""
   },
   {
-    "dayobs": "2024-10-01",
-    "start": "21:06:00",
-    "end": "22:06:00",
-    "type": "Align",
+    "dayobs": "2024-10-19",
+    "start": "01:49:53",
+    "end": "06:04:52",
+    "type": "Sense",
+    "filters": [
+      "g",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-18",
+    "start": "23:49:25",
+    "end": "01:51:09",
+    "type": "Kick",
     "filters": [
       "i"
     ],
-    "notes": "Make sure we're intrafocal.\nNear zenith.\n\n"
+    "notes": ""
   },
   {
-    "dayobs": "2024-10-01",
-    "start": "01:07:59",
-    "end": "02:07:59",
-    "type": "Point",
+    "dayobs": "2024-10-19",
+    "start": "00:20:14",
+    "end": "01:49:53",
+    "type": "WET-001",
     "filters": [
       "i"
     ],
-    "notes": "Pointing model verification.\n"
+    "notes": ""
   },
   {
-    "dayobs": "2024-10-02",
-    "start": "22:06:00",
-    "end": "22:52:00",
+    "dayobs": "2024-10-28",
+    "start": "21:28:56",
+    "end": "23:55:00",
+    "type": "Kick",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-27",
+    "start": "21:27:55",
+    "end": "23:56:02",
+    "type": "Kick",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-20",
+    "start": "00:21:08",
+    "end": "01:21:08",
     "type": "Exptime",
     "filters": [
       "i"
     ],
-    "notes": "Exposure time test.\n"
+    "notes": ""
   },
   {
-    "dayobs": "2024-10-02",
-    "start": "22:52:00",
-    "end": "23:52:00",
-    "type": "Trail",
-    "filters": [
-      "i"
-    ],
-    "notes": "Disengage rotator test.  (find optic axis at center of trail arcs).\n"
-  },
-  {
-    "dayobs": "2024-10-06",
-    "start": "21:38:59",
-    "end": "23:40:00",
-    "type": "Sense",
-    "filters": [
-      "i"
-    ],
-    "notes": "WET-001\nrandom directions in dof space.\nalso most-degenerate directions.\nRepeat with different moons/time-of-night/elevation/rotator/filter/wind?.\n\n\n\n"
-  },
-  {
-    "dayobs": "2024-10-16",
-    "start": "21:48:00",
-    "end": "22:48:00",
+    "dayobs": "2024-10-25",
+    "start": "21:25:56",
+    "end": "23:25:56",
     "type": "Loop",
     "filters": [
       "i"
     ],
-    "notes": "Kick the robot dog.\nRepeat this one in different conditions too.\n"
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-26",
+    "start": "21:26:55",
+    "end": "23:26:55",
+    "type": "Loop",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-24",
+    "start": "21:24:57",
+    "end": "23:54:57",
+    "type": "LUT",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-21",
+    "start": "22:22:04",
+    "end": "23:22:04",
+    "type": "Sense",
+    "filters": [
+      "u"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-22",
+    "start": "23:53:01",
+    "end": "00:53:01",
+    "type": "Streak",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-20",
+    "start": "01:21:08",
+    "end": "03:21:08",
+    "type": "WET-001",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-21",
+    "start": "23:22:04",
+    "end": "01:22:04",
+    "type": "WET-001",
+    "filters": [
+      "u",
+      "r",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-20",
+    "start": "03:21:08",
+    "end": "04:21:08",
+    "type": "Bright",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-20",
+    "start": "04:21:08",
+    "end": "06:03:43",
+    "type": "Sense",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-21",
+    "start": "01:22:04",
+    "end": "03:32:35",
+    "type": "Kick",
+    "filters": [
+      "r",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-25",
+    "start": "23:25:56",
+    "end": "00:58:09",
+    "type": "LUT",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-26",
+    "start": "23:26:55",
+    "end": "00:57:05",
+    "type": "LUT",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-24",
+    "start": "00:54:57",
+    "end": "03:29:14",
+    "type": "Kick",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-22",
+    "start": "00:53:01",
+    "end": "02:08:01",
+    "type": "WET-001",
+    "filters": [
+      "u",
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-22",
+    "start": "02:08:01",
+    "end": "03:31:27",
+    "type": "Kick",
+    "filters": [
+      "i"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-23",
+    "start": "01:53:58",
+    "end": "03:30:20",
+    "type": "Kick",
+    "filters": [
+      "i",
+      "y"
+    ],
+    "notes": ""
+  },
+  {
+    "dayobs": "2024-10-20",
+    "start": "23:21:08",
+    "end": "00:21:08",
+    "type": "Stutter",
+    "filters": [
+      "g"
+    ],
+    "notes": ""
   }
 ]
