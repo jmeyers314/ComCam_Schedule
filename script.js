@@ -756,6 +756,10 @@ d3.select("#fileInput").on("change", function() {
         const reader = new FileReader();
         reader.onload = function(e) {
             observationData = JSON.parse(e.target.result);
+            observationData.forEach(d => {
+                d.start = parseTime(d.start);
+                d.end = parseTime(d.end);
+            });
             filteredObservationData = observationData.filter(
                 d => dates.includes(d.dayobs)
             );
