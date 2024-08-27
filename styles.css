@@ -184,6 +184,14 @@
     align-self: flex-start;
 }
 
+#summaryFormContainer {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
 #buttons {
     margin-top: 10px;
 }

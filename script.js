@@ -316,7 +316,7 @@ function renderObservations() {
             .attr("stroke", "white")
             .attr("stroke-width", 3);
         // Toggle the form visibility
-        document.getElementById("editFormContainer").style.display = "none";
+        displayForm("summary");
         toggleFormInputs(false);
 
         // console.log("Double-clicked on an observation block with type: ", selectedType);
@@ -357,7 +357,7 @@ function renderObservations() {
             document.getElementById("editNotes").value = ""; // No notes for available blocks
 
             // Show the form
-            document.getElementById("editFormContainer").style.display = "block";
+            displayForm("edit");
             toggleFormInputs(false);
         });
 
@@ -500,11 +500,13 @@ function enableLasso() {
                 document.getElementById("editNotes").value = selectedData.notes || "";
 
                 // Show the form
-                document.getElementById("editFormContainer").style.display = "block";
+                displayForm("edit");
                 toggleFormInputs(true);
+            } else if (selectedObservations.size() > 1) {
+                displayForm("summary");
+                toggleFormInputs(false);
             } else {
-                // Hide the form if no or more than one item is selected
-                document.getElementById("editFormContainer").style.display = "none";
+                displayForm("none");
             }
         });
     svg.call(lassoDrag);
@@ -888,11 +890,8 @@ document.addEventListener('keydown', function(event) {
             setFilterTags(newObservation.filters);
             document.getElementById("editNotes").value = newObservation.notes || "";
 
-            // Enable the form
+            displayForm("edit");
             toggleFormInputs(true);
-
-            // Show the edit form
-            document.getElementById("editFormContainer").style.display = "block";
             document.getElementById("editObsType").focus();
         }
     }
@@ -1016,7 +1015,7 @@ flatpickr(dateRangeInput, {
         dateRange = d3.timeDay.range(dateStart, dateEnd);
         dates = dateRange.map(d => d.toISOString().split("T")[0]);
         dateScale.domain(dates);
-        document.getElementById("editFormContainer").style.display = "none";
+        displayForm();
         selectDataInDateRange();
         computeAvailableBlocks();
         renderTwilight();
@@ -1127,6 +1126,43 @@ function toggleFormInputs(enabled) {
     const filterTagsDropdown = document.querySelector('.choices__inner');
     if (filterTagsDropdown) {
         filterTagsDropdown.classList.toggle('disabled', !enabled);
+    }
+}
+
+function displayForm(form=null) {
+    if (form === "summary") {
+        document.getElementById("editFormContainer").style.display = "none";
+        document.getElementById("summaryFormContainer").style.display = "block";
+        // Compute the number of blocks and durations for each filter of the selected blocks
+        const selectedObservations = d3.selectAll(".observation.selected").data();
+        const filterStats = {
+            'u': { count: 0, duration: 0 },
+            'g': { count: 0, duration: 0 },
+            'r': { count: 0, duration: 0 },
+            'i': { count: 0, duration: 0 },
+            'z': { count: 0, duration: 0 },
+            'y': { count: 0, duration: 0 }
+        };
+        selectedObservations.forEach(observation => {
+            const nfilter = observation.filters.length;
+            observation.filters.forEach(filter => {
+                filterStats[filter].count += 1;
+                filterStats[filter].duration += (observation.end - observation.start)/nfilter;
+            });
+        });
+        document.getElementById("uSumm").value = `${formatTime(filterStats['u'].duration, hms=true)}  (${filterStats['u'].count} blocks)`;
+        document.getElementById("gSumm").value = `${formatTime(filterStats['g'].duration, hms=true)}  (${filterStats['g'].count} blocks)`;
+        document.getElementById("rSumm").value = `${formatTime(filterStats['r'].duration, hms=true)}  (${filterStats['r'].count} blocks)`;
+        document.getElementById("iSumm").value = `${formatTime(filterStats['i'].duration, hms=true)}  (${filterStats['i'].count} blocks)`;
+        document.getElementById("zSumm").value = `${formatTime(filterStats['z'].duration, hms=true)}  (${filterStats['z'].count} blocks)`;
+        document.getElementById("ySumm").value = `${formatTime(filterStats['y'].duration, hms=true)}  (${filterStats['y'].count} blocks)`;
+        document.getElementById("totalSumm").value = `${formatTime(selectedObservations.reduce((acc, obs) => acc + obs.end - obs.start, 0), hms=true)}  (${selectedObservations.length} blocks)`;
+    } else if (form === "edit") {
+        document.getElementById("summaryFormContainer").style.display = "none";
+        document.getElementById("editFormContainer").style.display = "block";
+    } else {
+        document.getElementById("editFormContainer").style.display = "none";
+        document.getElementById("summaryFormContainer").style.display = "none";
     }
 }
 
@@ -1347,7 +1383,7 @@ function highlightObservation(selectedBlock) {
         document.getElementById("editNotes").value = selectedBlock.notes || "";
 
         // Show the form and enable inputs
-        document.getElementById("editFormContainer").style.display = "block";
+        displayForm("edit");
         toggleFormInputs(true);
     } else {
         // Handle case for available blocks
@@ -1360,7 +1396,7 @@ function highlightObservation(selectedBlock) {
         document.getElementById("editNotes").value = ""; // No notes for available blocks
 
         // Show the form but disable inputs
-        document.getElementById("editFormContainer").style.display = "block";
+        displayForm("edit");
         toggleFormInputs(false);
     }
 }
