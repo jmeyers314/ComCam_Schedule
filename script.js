@@ -174,6 +174,10 @@ const obstypes = {
         "category": "IQ",
     },
 
+    "Pipeline": {
+        "tooltip": "Pipeline verification",
+        "category": "Science",
+    },
     "DD*F": {
         "tooltip": "Dense dithered star fields",
         "category": "Science",
