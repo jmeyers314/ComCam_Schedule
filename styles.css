@@ -5,7 +5,9 @@
     --color-i: #CCBB44;
     --color-z: #EE6677;
     --color-y: #AA3377;
+    --color-ph: #222222;
 }
+
 .choices__list--dropdown .choices__list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjust minmax to fit your design */
@@ -49,6 +51,10 @@
     background-color: var(--color-y);
 }
 
+.choices__list--dropdown .choices__item--choice[data-value="ph"] {
+    background-color: var(--color-ph);
+}
+
 .choices__list--dropdown .choices__item--choice.is-highlighted[data-value="u"] {
     background-color: var(--color-u);
 }
@@ -71,6 +77,10 @@
 
 .choices__list--dropdown .choices__item--choice.is-highlighted[data-value="y"] {
     background-color: var(--color-y) !important;
+}
+
+.choices__list--dropdown .choices__item--choice.is-highlighted[data-value="ph"] {
+    background-color: var(--color-ph) !important;
 }
 
 .choices__list--dropdown .choices__item--choice.is-highlighted {
@@ -109,6 +119,10 @@
 
 .choices__item[data-value="y"] {
     background-color: var(--color-y);
+}
+
+.choices__item[data-value="ph"] {
+    background-color: var(--color-ph);
 }
 
 /* Hide the 'Press to select' text */

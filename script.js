@@ -854,7 +854,7 @@ document.addEventListener('keydown', function(event) {
                 start: selectedAvailableBlock.start,
                 end: endTime,
                 type: "Survey",
-                filters: ['i']
+                filters: ['r']
             };
 
             // Add the new observation to the filteredObservationData
@@ -1079,7 +1079,7 @@ endTimeInput.addEventListener("focus", function () {
 });
 
 // Initialize Choices.js for the multi-select filters
-const filterOrder = ['u', 'g', 'r', 'i', 'z', 'y'];
+const filterOrder = ['u', 'g', 'r', 'i', 'z', 'y', 'ph'];
 const filterTags = new Choices('#filterTags', {
     removeItemButton: true,
     maxItemCount: 3,  // Limit the number of selections to 3
@@ -1145,7 +1145,8 @@ function displayForm(form=null) {
             'r': { count: 0, duration: 0 },
             'i': { count: 0, duration: 0 },
             'z': { count: 0, duration: 0 },
-            'y': { count: 0, duration: 0 }
+            'y': { count: 0, duration: 0 },
+            'ph': { count: 0, duration: 0 }
         };
         selectedObservations.forEach(observation => {
             const nfilter = observation.filters.length;
@@ -1160,6 +1161,7 @@ function displayForm(form=null) {
         document.getElementById("iSumm").value = `${formatTime(filterStats['i'].duration, hms=true)}  (${filterStats['i'].count} blocks)`;
         document.getElementById("zSumm").value = `${formatTime(filterStats['z'].duration, hms=true)}  (${filterStats['z'].count} blocks)`;
         document.getElementById("ySumm").value = `${formatTime(filterStats['y'].duration, hms=true)}  (${filterStats['y'].count} blocks)`;
+        document.getElementById("phSumm").value = `${formatTime(filterStats['ph'].duration, hms=true)}  (${filterStats['ph'].count} blocks)`;
         document.getElementById("totalSumm").value = `${formatTime(selectedObservations.reduce((acc, obs) => acc + obs.end - obs.start, 0), hms=true)}  (${selectedObservations.length} blocks)`;
     } else if (form === "edit") {
         document.getElementById("summaryFormContainer").style.display = "none";
@@ -1240,7 +1242,8 @@ function getFilterColor(filter) {
         'r': 'var(--color-r)',
         'i': 'var(--color-i)',
         'z': 'var(--color-z)',
-        'y': 'var(--color-y)'
+        'y': 'var(--color-y)',
+        'PH': 'var(--color-ph)'
     };
     return colorMap[filter] || '#000000';  // Fallback to black if filter not found
 }
