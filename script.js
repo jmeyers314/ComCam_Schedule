@@ -384,16 +384,17 @@ function renderPastObservations() {
         .data(filteredPastObservationData)
         .enter()
         .append("g")
-        .attr("class", "past-observation");
+        .attr("class", "past-observation")
+        .attr("data-index", (d, i) => i);
 
     pastObservations.append("rect")
         .attr("x", d => timeScale(d.start) + padding)
         .attr("y", d => dateScale(d.dayobs) + dateScale.bandwidth() * 0.1)
         .attr("width", d => timeScale(d.end) - timeScale(d.start) - padding * 2)
         .attr("height", dateScale.bandwidth() * 0.8)
-        .attr("fill", d => "#FFFFFF")
+        .attr("fill", d => "#00FF00")
         // .attr("fill", d => obstypes[d.type].color)
-        .attr("opacity", 0.8)  // Use different opacity or color for past observations
+        .attr("opacity", 0.5)  // Use different opacity or color for past observations
         .attr("rx", cornerRadius)
         .attr("ry", cornerRadius);
 
@@ -404,8 +405,32 @@ function renderPastObservations() {
         .attr("text-anchor", "middle")
         .attr("fill", "#FFFFFF")
         .style("font-family", "monospace")
-        .style("font-size", "10px")
+        .style("font-size", "8px")
         .text(d => d.type);
+
+    pastObservations.on("click", function(event, d) {
+        d3.selectAll(".observation").classed("selected", false);
+        d3.selectAll(".available-block").classed("selected", false);
+        d3.selectAll(".past-observation").classed("selected", false);
+
+        d3.select(this).classed("selected", true)
+            .select("rect")
+            .attr("stroke", "white")
+            .attr("stroke-width", 3);
+
+        // Show form but disable all inputs
+        document.getElementById("editDate").value = d.dayobs;
+        document.getElementById("editStartTime").value = formatTime(d.start);
+        document.getElementById("editEndTime").value = formatTime(d.end);
+        document.getElementById("duration").value = formatTime(d.end - d.start, hms=true);
+        document.getElementById("editObsType").value = d.type;
+        setFilterTags(d.filters);
+        document.getElementById("editNotes").value = d.notes || "";
+
+        displayForm("edit");
+        toggleFormInputs(false); // Disable form inputs when a past observation is selected
+    });
+
 }
 
 function enableLasso() {
@@ -494,6 +519,10 @@ function enableLasso() {
                     .attr("stroke-width", function(d) {
                         return d3.select(this.parentNode).classed("selected") ? 3 : null;
                     });
+                d3.selectAll(".past-observation").classed("selected", false)
+                .select("rect")
+                .attr("stroke", "none")
+                .attr("stroke-width", null);
             } else {
                 // Handle the lasso selection logic as before
                 const x0 = parseFloat(lassoRect.attr("x"));
@@ -521,6 +550,11 @@ function enableLasso() {
                     .attr("stroke-width", function(d) {
                         return d3.select(this.parentNode).classed("selected") ? 3 : null;
                     });
+
+                d3.selectAll(".past-observation").classed("selected", false)
+                .select("rect")
+                .attr("stroke", "none")
+                .attr("stroke-width", null);
 
                 // Remove the lasso rectangle after selection
                 lassoRect.remove();
