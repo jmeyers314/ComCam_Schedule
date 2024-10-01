@@ -8,6 +8,9 @@ let filteredTwilightData = [];
 let observationData = [];
 let filteredObservationData = [];
 
+let pastObservationData = [];
+let filteredPastObservationData = [];
+
 let availableBlockData = [];
 
 const svg = d3.select("#mySVG");
@@ -20,17 +23,17 @@ const g = svg.append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
 // x-axis
-//  Time range for x-axis.  17:00 to 07:30
+//  Time range for x-axis.  17:00 to 08:00
 //  Use seconds from midnight.
 const minTime = -5*3600;
-const maxTime = 7.5*3600;
+const maxTime = 8.0*3600;
 const timeScale = d3.scaleLinear()
     .domain([minTime, maxTime])
     .range([0, width]);
 
 // y-axis
-let dateStart = new Date("2024-10-13");
-let dateEnd = new Date("2024-11-10");
+let dateStart = new Date("2024-09-09");
+let dateEnd = new Date("2024-10-31");
 let dateRange = d3.timeDay.range(dateStart, dateEnd);
 let dates = dateRange.map(d => d.toISOString().split("T")[0]);
 let dateScale = d3.scaleBand()
@@ -369,6 +372,88 @@ function renderObservations() {
     renderLozenges(calculateFiltersUsedPerNight());
 }
 
+function renderPastObservations() {
+    const padding = 1;
+    const cornerRadius = 1;
+
+    // Clear previous past observations
+    g.selectAll(".past-observation").remove();
+
+    // Render past observations
+    const pastObservations = g.selectAll(".past-observation")
+        .data(filteredPastObservationData)
+        .enter()
+        .append("g")
+        .attr("class", "past-observation")
+        .attr("data-index", (d, i) => i);
+
+    pastObservations.append("rect")
+        .attr("x", d => timeScale(d.start) + padding)
+        .attr("y", d => dateScale(d.dayobs) + dateScale.bandwidth() * 0.1)
+        .attr("width", d => timeScale(d.end) - timeScale(d.start) - padding * 2)
+        .attr("height", dateScale.bandwidth() * 0.8)
+        .attr("fill", d => "#00FF00")
+        // .attr("fill", d => obstypes[d.type].color)
+        .attr("opacity", 0.5)  // Use different opacity or color for past observations
+        .attr("rx", cornerRadius)
+        .attr("ry", cornerRadius);
+
+    pastObservations.append("text")
+        .attr("x", d => timeScale(d.start) + (timeScale(d.end) - timeScale(d.start)) / 2)
+        .attr("y", d => dateScale(d.dayobs) + dateScale.bandwidth() * 0.4)
+        .attr("dy", ".35em")
+        .attr("text-anchor", "middle")
+        .attr("fill", "#FFFFFF")
+        .style("font-family", "monospace")
+        .style("font-size", "8px")
+        .text(d => d.type);
+
+    pastObservations.on("click", function(event, d) {
+        d3.selectAll(".observation").classed("selected", false);
+        d3.selectAll(".available-block").classed("selected", false);
+        d3.selectAll(".past-observation").classed("selected", false);
+
+        d3.select(this).classed("selected", true)
+            .select("rect")
+            .attr("stroke", "white")
+            .attr("stroke-width", 3);
+
+        // Show form but disable all inputs
+        document.getElementById("editDate").value = d.dayobs;
+        document.getElementById("editStartTime").value = formatTime(d.start);
+        document.getElementById("editEndTime").value = formatTime(d.end);
+        document.getElementById("duration").value = formatTime(d.end - d.start, hms=true);
+        document.getElementById("editObsType").value = d.type;
+        // If the type is not in obstypes, append the type to the notes
+        const obsTypeExists = d.type in obstypes;
+        const currentNotes = d.notes || "";
+        const typeNote = obsTypeExists ? "" : `Type: ${d.type}\n`;
+
+        // Update the notes field
+        document.getElementById("editNotes").value = typeNote + currentNotes;
+        setFilterTags(d.filters);
+
+        displayForm("edit");
+        toggleFormInputs(false); // Disable form inputs when a past observation is selected
+    });
+
+    pastObservations.on("dblclick", function(event, d) {
+        // Select all past observations with the same type
+        const selectedType = d.type;
+        d3.selectAll(".past-observation")
+            .filter(obs => obs.type === selectedType)
+            .classed("selected", true)
+            .select("rect")
+            .attr("stroke", "white")
+            .attr("stroke-width", 3);
+
+        // Show form in summary mode or keep it as non-editable
+        displayForm("summary");
+        toggleFormInputs(false);  // Keep the form non-editable for past observations
+    });
+
+}
+
 function enableLasso() {
     const dragThreshold = 5; // Threshold to distinguish between click and drag
     let startPos = null;    // Store the start position of a drag
@@ -455,6 +540,10 @@ function enableLasso() {
                     .attr("stroke-width", function(d) {
                         return d3.select(this.parentNode).classed("selected") ? 3 : null;
                     });
+                d3.selectAll(".past-observation").classed("selected", false)
+                .select("rect")
+                .attr("stroke", "none")
+                .attr("stroke-width", null);
             } else {
                 // Handle the lasso selection logic as before
                 const x0 = parseFloat(lassoRect.attr("x"));
@@ -482,6 +571,11 @@ function enableLasso() {
                     .attr("stroke-width", function(d) {
                         return d3.select(this.parentNode).classed("selected") ? 3 : null;
                     });
+
+                d3.selectAll(".past-observation").classed("selected", false)
+                .select("rect")
+                .attr("stroke", "none")
+                .attr("stroke-width", null);
 
                 // Remove the lasso rectangle after selection
                 lassoRect.remove();
@@ -543,9 +637,10 @@ function loadData() {
     Promise.all([
         d3.json("twilight.json?t=" + new Date().getTime()),
         d3.json("moon.json?t=" + new Date().getTime()),
-        d3.json("observation.json?t=" + new Date().getTime())
+        d3.json("observation.json?t=" + new Date().getTime()),
+        d3.json("past.json?t=" + new Date().getTime())
     ]).then(function(data) {
-        [twilightData, moonData, observationData] = data;
+        [twilightData, moonData, observationData, pastObservationData] = data;
 
         // Convert HH:MM:SS strings to seconds from midnight
         moonData.forEach(d => {
@@ -561,12 +656,17 @@ function loadData() {
             d.start = parseTime(d.start);
             d.end = parseTime(d.end);
         });
+        pastObservationData.forEach(d => {
+            d.start = parseTime(d.start);
+            d.end = parseTime(d.end);
+        });
 
         selectDataInDateRange();
         computeAvailableBlocks();
         renderTwilight();
         renderMoon();
         renderObservations();
+        renderPastObservations();
         renderAxes();
     }).catch(function(error) {
         console.error("Error loading the JSON data: ", error);
@@ -574,9 +674,10 @@ function loadData() {
 }
 
 function selectDataInDateRange() {
-    filteredObservationData = observationData.filter(d => dates.includes(d.dayobs));
     filteredTwilightData = twilightData.filter(d => dates.includes(d.dayobs));
     filteredMoonData = moonData.filter(d => dates.includes(d.dayobs));
+    filteredObservationData = observationData.filter(d => dates.includes(d.dayobs));
+    filteredPastObservationData = pastObservationData.filter(d => dates.includes(d.dayobs));  // Add this
     computeAvailableBlocks();
 }
 
@@ -644,6 +745,12 @@ function computeAvailableBlocks() {
     availableBlockData = [];
 
     filteredTwilightData.forEach(d => {
+        // Skip dates that have past observations
+        const hasPastObservations = filteredPastObservationData.some(p => p.dayobs >= d.dayobs);
+        if (hasPastObservations) {
+            return; // Skip this date for future scheduling
+        }
+
         // Create blocks for each twilight period and night period
         const blocks = [
             { dayobs: d.dayobs, start: d.sunset, end: d.evening_6deg },
@@ -769,6 +876,7 @@ d3.select("#fileInput").on("change", function() {
             );
             computeAvailableBlocks();
             renderObservations();
+            renderPastObservations();
         };
         reader.readAsText(file);
     }
@@ -802,6 +910,7 @@ document.addEventListener("keydown", function(event) {
         selectedObservations.remove();
         computeAvailableBlocks();
         renderObservations();
+        renderPastObservations();
     }
 });
 
@@ -825,6 +934,7 @@ function updateSelectedObservation() {
         // Re-render the observations and available blocks
         computeAvailableBlocks();
         renderObservations();
+        renderPastObservations();
 
         // Reapply the selection to the updated observation
         d3.selectAll(".observation")
@@ -876,6 +986,7 @@ document.addEventListener('keydown', function(event) {
 
             // Re-render the observations and available blocks
             renderObservations();
+            renderPastObservations();
 
             // Unselect the available block
             d3.selectAll(".available-block.selected").classed("selected", false);
@@ -1029,6 +1140,7 @@ flatpickr(dateRangeInput, {
         renderTwilight();
         renderMoon();
         renderObservations();
+        renderPastObservations();
         renderAxes();
     }
 });
