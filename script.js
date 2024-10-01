@@ -690,6 +690,12 @@ function computeAvailableBlocks() {
     availableBlockData = [];
 
     filteredTwilightData.forEach(d => {
+        // Skip dates that have past observations
+        const hasPastObservations = filteredPastObservationData.some(p => p.dayobs >= d.dayobs);
+        if (hasPastObservations) {
+            return; // Skip this date for future scheduling
+        }
+
         // Create blocks for each twilight period and night period
         const blocks = [
             { dayobs: d.dayobs, start: d.sunset, end: d.evening_6deg },
