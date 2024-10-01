@@ -424,8 +424,14 @@ function renderPastObservations() {
         document.getElementById("editEndTime").value = formatTime(d.end);
         document.getElementById("duration").value = formatTime(d.end - d.start, hms=true);
         document.getElementById("editObsType").value = d.type;
+        // If the type is not in obstypes, append the type to the notes
+        const obsTypeExists = d.type in obstypes;
+        const currentNotes = d.notes || "";
+        const typeNote = obsTypeExists ? "" : `Type: ${d.type}\n`;
+
+        // Update the notes field
+        document.getElementById("editNotes").value = typeNote + currentNotes;
         setFilterTags(d.filters);
-        document.getElementById("editNotes").value = d.notes || "";
 
         displayForm("edit");
         toggleFormInputs(false); // Disable form inputs when a past observation is selected
