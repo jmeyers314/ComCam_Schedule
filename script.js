@@ -437,6 +437,21 @@ function renderPastObservations() {
         toggleFormInputs(false); // Disable form inputs when a past observation is selected
     });
 
+    pastObservations.on("dblclick", function(event, d) {
+        // Select all past observations with the same type
+        const selectedType = d.type;
+        d3.selectAll(".past-observation")
+            .filter(obs => obs.type === selectedType)
+            .classed("selected", true)
+            .select("rect")
+            .attr("stroke", "white")
+            .attr("stroke-width", 3);
+
+        // Show form in summary mode or keep it as non-editable
+        displayForm("summary");
+        toggleFormInputs(false);  // Keep the form non-editable for past observations
+    });
+
 }
 
 function enableLasso() {
