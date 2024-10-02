@@ -1253,8 +1253,10 @@ function displayForm(form=null) {
     if (form === "summary") {
         document.getElementById("editFormContainer").style.display = "none";
         document.getElementById("summaryFormContainer").style.display = "block";
-        // Compute the number of blocks and durations for each filter of the selected blocks
-        const selectedObservations = d3.selectAll(".observation.selected").data();
+
+        // Collect the selected observations (both past and planned)
+        const selectedObservations = d3.selectAll(".observation.selected, .past-observation.selected").data();
+
         const filterStats = {
             'u': { count: 0, duration: 0 },
             'g': { count: 0, duration: 0 },
@@ -1262,15 +1264,20 @@ function displayForm(form=null) {
             'i': { count: 0, duration: 0 },
             'z': { count: 0, duration: 0 },
             'y': { count: 0, duration: 0 },
-            'ph': { count: 0, duration: 0 }
+            'ph': { count: 0, duration: 0 },
+            'unknown': { count: 0, duration: 0 }
         };
+
+        // Loop through selected observations and accumulate time for each filter or "unknown" if no filters are present
         selectedObservations.forEach(observation => {
-            const nfilter = observation.filters.length;
-            observation.filters.forEach(filter => {
+            const filters = observation.filters.length ? observation.filters : ['unknown'];  // Default to "unknown" if no filters
+            const duration = observation.end - observation.start;
+            filters.forEach(filter => {
                 filterStats[filter].count += 1;
-                filterStats[filter].duration += (observation.end - observation.start)/nfilter;
+                filterStats[filter].duration += duration / filters.length;  // Split time between filters if multiple
             });
         });
+
         document.getElementById("uSumm").value = `${formatTime(filterStats['u'].duration, hms=true)}  (${filterStats['u'].count} blocks)`;
         document.getElementById("gSumm").value = `${formatTime(filterStats['g'].duration, hms=true)}  (${filterStats['g'].count} blocks)`;
         document.getElementById("rSumm").value = `${formatTime(filterStats['r'].duration, hms=true)}  (${filterStats['r'].count} blocks)`;
@@ -1278,7 +1285,9 @@ function displayForm(form=null) {
         document.getElementById("zSumm").value = `${formatTime(filterStats['z'].duration, hms=true)}  (${filterStats['z'].count} blocks)`;
         document.getElementById("ySumm").value = `${formatTime(filterStats['y'].duration, hms=true)}  (${filterStats['y'].count} blocks)`;
         document.getElementById("phSumm").value = `${formatTime(filterStats['ph'].duration, hms=true)}  (${filterStats['ph'].count} blocks)`;
-        document.getElementById("totalSumm").value = `${formatTime(selectedObservations.reduce((acc, obs) => acc + obs.end - obs.start, 0), hms=true)}  (${selectedObservations.length} blocks)`;
+        document.getElementById("unknownSumm").value = `${formatTime(filterStats['unknown'].duration, hms=true)}  (${filterStats['unknown'].count} blocks)`;
+        const totalDuration = selectedObservations.reduce((acc, obs) => acc + obs.end - obs.start, 0);
+        document.getElementById("totalSumm").value = `${formatTime(totalDuration, true)} (${selectedObservations.length} blocks)`;
     } else if (form === "edit") {
         document.getElementById("summaryFormContainer").style.display = "none";
         document.getElementById("editFormContainer").style.display = "block";
